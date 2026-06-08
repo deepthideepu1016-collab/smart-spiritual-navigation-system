@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Girivalayam Auth</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("temple.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* OVERLAY */
+.overlay {
+  background: rgba(0,0,0,0.6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BOX */
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* HEADINGS */
+h2 {
+  margin-bottom: 25px;
+  font-size: 35px;
+}
+
+/* ALL INPUTS */
+input {
+  width: 100%;
+  height: 45px;
+  padding: 0 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 14px;
+}
+
+/* PASSWORD BOX */
+.password-box {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* PASSWORD INPUT */
+.password-box input {
+  width: 100%;
+  height: 45px;
+  padding: 0 40px 0 12px;
+  margin: 0;
+}
+
+/* EYE ICON */
+.password-box span {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  height: 45px;
+  background: orange;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* LINK */
+.switch {
+  color: blue;
+  cursor: pointer;
+  margin-top: 15px;
+  display: block;
+}
+
+/* SMALL TEXT */
+small {
+  display: block;
+  text-align: left;
+  color: gray;
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="box">
+
+  <!-- LOGIN VIEW -->
+  <div id="loginBox">
+
+    <h2>Login</h2>
+
+    <input id="loginEmail" placeholder="Email">
+
+    <input id="loginPassword" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <span class="switch" onclick="showSignup()">
+      New user? Signup
+    </span>
+
+  </div>
+
+  <!-- SIGNUP VIEW -->
+  <div id="signupBox" style="display:none;">
+
+    <h2>Signup</h2>
+
+    <input id="name" placeholder="Name">
+
+    <input id="phone" placeholder="Phone"
+      oninput="validatePhone()" maxlength="10">
+
+    <input id="email" placeholder="Email"
+      oninput="validateEmail()">
+
+    <!-- PASSWORD -->
+    <div class="password-box">
+
+      <input id="password"
+        type="password"
+        placeholder="Password"
+        oninput="validatePassword()">
+
+      <span onclick="togglePassword()">👁</span>
+
+    </div>
+
+    <small id="passwordHint">
+      Must start with CAPITAL letter, include number & symbol
+    </small>
+
+    <button onclick="signup()">Register</button>
+
+    <span class="switch" onclick="showLogin()">
+      Already have account? Login
+    </span>
+
+  </div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+mongoose.connect("mongodb://127.0.0.1:27017/spiritualdb");
+
+mongoose.connection.once("open", () => {
+    console.log("MongoDB Connected Successfully");
+});
+
+// ================= USER SCHEMA =================
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    phone: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: String
+});
+
+const User = mongoose.model("User", UserSchema);
+
+// ================= SIGNUP =================
+app.post("/signup", async (req, res) => {
+
+    const { name, phone, email, password } = req.body;
+
+    try {
+
+        // 🔥 CHECK DUPLICATES (IMPORTANT)
+        const existingUser = await User.findOne({
+            $or: [
+                { email: email },
+                { phone: phone },
+                { name: name }
+            ]
+        });
+
+        if (existingUser) {
+            return res.json({
+                success: false,
+                message: "User already exists (email / phone / name must be unique)"
+            });
+        }
+
+        // 🔥 CREATE USER
+        const user = new User({
+            name,
+            phone,
+            email,
+            password
+        });
+
+        await user.save();
+
+        res.json({
+            success: true,
+            message: "User Registered Successfully"
+        });
+
+    } catch (error) {
+
+        res.json({
+            success: false,
+            message: error.message
+        });
+
+    }
+});
+
+// ================= LOGIN =================
+app.post("/login", async (req, res) => {
+
+    const { email, password } = req.body;
+
+    try {
+
+        const user = await User.findOne({ email, password });
+
+        if (user) {
+            res.json({
+                success: true,
+                message: "Login Successful"
+            });
+        } else {
+            res.json({
+                success: false,
+                message: "Invalid Email or Password"
+            });
+        }
+
+    } catch (error) {
+
+        res.json({
+            success: false,
+            message: error.message
+        });
+
+    }
+});
+
+// ================= START SERVER =================
+app.listen(3000, () => {
+    console.log("Server Running On Port 3000");
+});

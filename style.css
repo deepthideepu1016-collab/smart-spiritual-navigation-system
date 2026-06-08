@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("temple.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* DARK OVERLAY */
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FORM BOX */
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* HEADING */
+.box h1 {
+  margin-bottom: 25px;
+  font-size: 40px;
+}
+
+/* ALL INPUTS SAME SIZE */
+input {
+  width: 100%;
+  height: 48px;
+  padding: 0 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 14px;
+}
+
+/* PASSWORD BOX */
+.password-box {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* PASSWORD INPUT */
+.password-box input {
+  width: 100%;
+  height: 48px;
+  padding: 0 42px 0 12px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 14px;
+}
+
+/* EYE ICON */
+.password-box span {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 15px;
+  color: #555;
+}
+
+/* SMALL TEXT */
+small {
+  display: block;
+  text-align: left;
+  color: gray;
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  height: 48px;
+  background: orange;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: darkorange;
+}
+
+/* LOGIN LINK */
+.switch {
+  display: block;
+  margin-top: 15px;
+  color: blue;
+  text-decoration: none;
+  font-size: 16px;
+}

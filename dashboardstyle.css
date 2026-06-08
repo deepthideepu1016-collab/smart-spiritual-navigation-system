@@ -1,0 +1,256 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f3ef;
+    min-height:100vh;
+    padding:40px;
+}
+
+/* =========================
+   DASHBOARD TITLE
+========================= */
+
+.dashboard-title{
+    text-align:center;
+    font-size:42px;
+    color:#2c3e36;
+    margin-bottom:50px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+/* =========================
+   CARDS CONTAINER
+========================= */
+
+.cards-container{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:40px;
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    justify-items:center;
+}
+
+/* =========================
+   FLIP CARD
+========================= */
+
+.flip-card{
+    width:100%;
+    max-width:420px;
+    height:780px;
+    perspective:1000px;
+}
+
+/* =========================
+   INNER CARD
+========================= */
+
+.flip-card-inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    transition:transform 0.8s;
+    transform-style:preserve-3d;
+}
+
+/* =========================
+   FLIP EFFECT
+========================= */
+
+.flip-card:hover .flip-card-inner{
+    transform:rotateY(180deg);
+}
+
+/* =========================
+   FRONT + BACK
+========================= */
+
+.flip-card-front,
+.flip-card-back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    backface-visibility:hidden;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.18);
+}
+
+/* =========================
+   FRONT SIDE
+========================= */
+
+.flip-card-front{
+    background:white;
+    position:relative;
+}
+
+/* =========================
+   CARD IMAGE
+========================= */
+
+.flip-card-front img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* =========================
+   IMAGE TITLE
+========================= */
+
+.image-title{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background:rgba(0,0,0,0.65);
+    color:white;
+    text-align:center;
+    padding:22px;
+    font-size:28px;
+    font-weight:bold;
+}
+
+/* =========================
+   BACK SIDE
+========================= */
+
+.flip-card-back{
+    background:white;
+    transform:rotateY(180deg);
+    padding:20px;
+    overflow-y:auto;
+}
+
+/* =========================
+   BACK TITLE
+========================= */
+
+.flip-card-back h2{
+    text-align:center;
+    color:#2c3e36;
+    margin-bottom:20px;
+    font-size:28px;
+}
+
+/* =========================
+   INFO LIST
+========================= */
+
+.info-list{
+    list-style:none;
+}
+
+.info-list li{
+    margin-bottom:18px;
+    font-size:17px;
+    color:#444;
+    display:flex;
+    align-items:flex-start;
+    line-height:1.5;
+}
+
+/* =========================
+   ICONS
+========================= */
+
+.info-list i{
+    color:#6f9460;
+    margin-right:15px;
+    font-size:20px;
+    margin-top:3px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.explore-btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border-radius:15px;
+    background:#6f9460;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+    display:block;
+    text-align:center;
+    text-decoration:none;
+}
+
+.explore-btn:hover{
+    background:#56754a;
+    transform:scale(1.02);
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.flip-card-back::-webkit-scrollbar{
+    width:6px;
+}
+
+.flip-card-back::-webkit-scrollbar-thumb{
+    background:#6f9460;
+    border-radius:10px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .cards-container{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:500px){
+
+    body{
+        padding:20px;
+    }
+
+    .dashboard-title{
+        font-size:32px;
+    }
+
+    .flip-card{
+        height:780px;
+    }
+
+    .flip-card-back{
+        padding:18px;
+    }
+
+    .flip-card-back h2{
+        font-size:24px;
+    }
+
+    .info-list li{
+        font-size:15px;
+    }
+
+    .image-title{
+        font-size:22px;
+    }
+
+}
