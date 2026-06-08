@@ -7,7 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/spiritualdb");
+mongoose.connect("mongodb+srv://deepthideepu1016_db_user:Deepu%40123@spiritualcluster.nxx3iot.mongodb.net/spiritualdb?retryWrites=true&w=majority&appName=spiritualCluster")
+.then(() => console.log("MongoDB Atlas Connected"))
+.catch(err => console.log(err));
 
 mongoose.connection.once("open", () => {
     console.log("MongoDB Connected Successfully");
