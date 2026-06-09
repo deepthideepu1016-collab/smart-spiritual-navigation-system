@@ -13,7 +13,7 @@ if (!/^[0-9]{10}$/.test(user.phone)) {
     return;
 }
     try {
-        const response = await fetch("http://localhost:3000/signup", {
+        const response = await fetch("/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -47,7 +47,7 @@ async function login() {
     const password = document.getElementById("loginPassword").value;
 
     try {
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -117,6 +117,12 @@ app.post("/login", async (req, res) => {
 });
 
 // ================= START SERVER =================
+// Home Route
+app.get("/", (req, res) => {
+    res.send("Smart Spiritual Navigation System is running 🚀");
+});
+
+// Start Server
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
