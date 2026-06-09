@@ -1,11 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 mongoose.connect("mongodb+srv://deepthideepu1016_db_user:Deepu12345@spiritualcluster.nxx3iot.mongodb.net/spiritualdb?retryWrites=true&w=majority&appName=spiritualCluster")
 .then(() => console.log("MongoDB Atlas Connected"))
@@ -117,11 +119,9 @@ app.post("/login", async (req, res) => {
 });
 
 // ================= START SERVER =================
-// Home Route
 app.get("/", (req, res) => {
-    res.send("Smart Spiritual Navigation System is running 🚀");
+    res.sendFile(path.join(__dirname, "index.html"));
 });
-
 // Start Server
 const PORT = process.env.PORT || 3000;
 
