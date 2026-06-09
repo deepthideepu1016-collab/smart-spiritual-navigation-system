@@ -120,7 +120,7 @@ app.post("/login", async (req, res) => {
 
 // ================= START SERVER =================
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "auth.html"));
 });
 // Start Server
 const PORT = process.env.PORT || 3000;
