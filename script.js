@@ -141,3 +141,7 @@ function togglePassword() {
         password.type = "password";
     }
 }
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // stop page reload
+    login(); // call your existing function
+});

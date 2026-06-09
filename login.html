@@ -47,18 +47,16 @@
 
 <body>
 
-<div class="overlay">
-  <div class="box">
+<form id="loginForm">
 
-    <h2>Login</h2>
+  <h2>Login</h2>
 
-    <input type="email" id="loginEmail" placeholder="Email">
-    <input type="password" id="loginPassword" placeholder="Password">
+  <input type="email" id="loginEmail" placeholder="Email" required>
+  <input type="password" id="loginPassword" placeholder="Password" required>
 
-    <button onclick="login()">Login</button>
+  <button type="submit">Login</button>
 
-  </div>
-</div>
+</form>
 
 <script src="script.js"></script>
 
