@@ -145,3 +145,13 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     event.preventDefault(); // stop page reload
     login(); // call your existing function
 });
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        login(); // calls your existing login function
+    });
+
+});
