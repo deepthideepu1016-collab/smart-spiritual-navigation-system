@@ -7,11 +7,12 @@ async function signup() {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value
     };
-    //
-if (!/^[0-9]{10}$/.test(user.phone)) {
-    alert("Phone number must be exactly 10 digits");
-    return;
-}
+
+    if (!/^[0-9]{10}$/.test(user.phone)) {
+        alert("Phone number must be exactly 10 digits");
+        return;
+    }
+
     try {
         const response = await fetch("/signup", {
             method: "POST",
@@ -25,17 +26,14 @@ if (!/^[0-9]{10}$/.test(user.phone)) {
 
         if (data.success) {
             alert("Account Created Successfully");
-
-            // 🔥 IMPORTANT CHANGE (stay in same page)
-            showLogin();  
-
+            showLogin();
         } else {
-            alert("Error: " + (data.message || "Signup failed"));
+            alert(data.message);
         }
 
     } catch (error) {
-        alert("Server not running or error occurred");
         console.log(error);
+        alert("Signup Error");
     }
 }
 
@@ -47,78 +45,76 @@ async function login() {
     const password = document.getElementById("loginPassword").value;
 
     try {
+
         const response = await fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
         });
 
         const data = await response.json();
 
         if (data.success) {
             alert("Login Successful");
-
-            // 🔥 GO TO DASHBOARD
             window.location.href = "dashboard.html";
-
         } else {
-            alert("Invalid Email or Password");
+            alert(data.message || "Invalid Email or Password");
         }
 
     } catch (error) {
-        alert("Server not running or backend error");
         console.log(error);
+        alert("Login Error");
     }
 }
 
 
 // ================= UI TOGGLE =================
 function showSignup() {
-    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("loginForm").style.display = "none";
     document.getElementById("signupBox").style.display = "block";
 }
 
 function showLogin() {
-    document.getElementById("loginBox").style.display = "block";
+    document.getElementById("loginForm").style.display = "block";
     document.getElementById("signupBox").style.display = "none";
 }
+
+
+// ================= PHONE VALIDATION =================
 function validatePhone() {
+
     const phone = document.getElementById("phone");
 
-    if (phone.value.length === 0) {
-        phone.style.border = "1px solid #ccc";
-        return;
-    }
-
-    if (!/^[0-9]{10}$/.test(phone.value)) {
-        phone.style.border = "2px solid red";
-    } else {
+    if (/^[0-9]{10}$/.test(phone.value)) {
         phone.style.border = "2px solid green";
+    } else {
+        phone.style.border = "2px solid red";
     }
 }
+
+
+// ================= EMAIL VALIDATION =================
 function validateEmail() {
+
     const email = document.getElementById("email");
 
-    if (email.value.length === 0) {
-        email.style.border = "1px solid #ccc";
-        return;
-    }
-
-    if (!email.value.includes("@")) {
-        email.style.border = "2px solid red";
-    } else {
+    if (email.value.includes("@")) {
         email.style.border = "2px solid green";
+    } else {
+        email.style.border = "2px solid red";
     }
 }
-function validatePassword() {
-    const password = document.getElementById("password");
 
-    if (password.value.length === 0) {
-        password.style.border = "1px solid #ccc";
-        return;
-    }
+
+// ================= PASSWORD VALIDATION =================
+function validatePassword() {
+
+    const password = document.getElementById("password");
 
     const value = password.value;
 
@@ -132,7 +128,11 @@ function validatePassword() {
         password.style.border = "2px solid red";
     }
 }
+
+
+// ================= SHOW PASSWORD =================
 function togglePassword() {
+
     const password = document.getElementById("password");
 
     if (password.type === "password") {
@@ -141,17 +141,37 @@ function togglePassword() {
         password.type = "password";
     }
 }
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // stop page reload
-    login(); // call your existing function
-});
-document.addEventListener("DOMContentLoaded", function () {
+
+
+// ================= LOGIN FORM SUBMIT =================
+document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("loginForm");
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        login(); // calls your existing login function
-    });
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            login();
+        });
+    }
+
+});document.addEventListener("DOMContentLoaded", () => {
+
+    const passwordBox = document.getElementById("loginPassword");
+
+    if (passwordBox) {
+
+        passwordBox.addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+                login();
+
+            }
+
+        });
+
+    }
 
 });
