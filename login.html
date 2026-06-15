@@ -32,23 +32,30 @@ input{
     width:90%;
     padding:10px;
     margin:8px 0;
+    box-sizing:border-box;
 }
 
+/* password wrapper */
 .password-box{
     position:relative;
     width:90%;
     margin:auto;
 }
 
+/* make input full width inside wrapper */
 .password-box input{
     width:100%;
 }
 
+/* eye icon fix */
 .eye{
     position:absolute;
     right:10px;
-    top:18px;
+    top:50%;
+    transform:translateY(-50%);
     cursor:pointer;
+    font-size:18px;
+    user-select:none;
 }
 
 button{
@@ -79,8 +86,8 @@ button:hover{
 <input type="email" id="loginEmail" placeholder="Email" required>
 
 <div class="password-box">
-<input type="password" id="loginPassword" placeholder="Password" required>
-<span class="eye" onclick="toggleLoginPassword()">👁</span>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <span class="eye" onclick="toggleLoginPassword()">👁️</span>
 </div>
 
 <button type="submit">Login</button>
