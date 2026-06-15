@@ -87,8 +87,22 @@ button:hover{
            id="loginPassword"
            placeholder="Password"
            required>
-
-    <span class="eye" onclick="toggleLoginPassword()">👁️</span>
+<span onclick="toggleLoginPassword()"
+      style="
+        position:absolute;
+        right:10px;
+        top:50%;
+        transform:translateY(-50%);
+        cursor:pointer;
+        font-size:14px;
+        background:black;
+        color:white;
+        padding:2px 6px;
+        border-radius:4px;
+        z-index:999;
+      ">
+SHOW
+</span>
 
 </div>
 
