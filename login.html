@@ -29,35 +29,31 @@ body{
 }
 
 input{
-    width:90%;
+    width:100%;
     padding:10px;
     margin:8px 0;
     box-sizing:border-box;
 }
 
-/* password wrapper */
+/* password container */
 .password-box{
     position:relative;
-    width:90%;
-    margin:auto;
-}
-
-/* make input full width inside wrapper */
-.password-box input{
     width:100%;
 }
 
-/* eye icon fix */
+/* eye icon (FORCE VISIBILITY) */
 .eye{
     position:absolute;
-    right:10px;
+    right:12px;
     top:50%;
     transform:translateY(-50%);
     cursor:pointer;
-    font-size:18px;
-    user-select:none;
+    font-size:22px;
+    z-index:10;
+    color:black;
 }
 
+/* button */
 button{
     width:100%;
     padding:10px;
@@ -86,8 +82,14 @@ button:hover{
 <input type="email" id="loginEmail" placeholder="Email" required>
 
 <div class="password-box">
-    <input type="password" id="loginPassword" placeholder="Password" required>
+
+    <input type="password"
+           id="loginPassword"
+           placeholder="Password"
+           required>
+
     <span class="eye" onclick="toggleLoginPassword()">👁️</span>
+
 </div>
 
 <button type="submit">Login</button>
