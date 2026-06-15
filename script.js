@@ -1,3 +1,4 @@
+alert("NEW SCRIPT LOADED");
 // ================= SIGNUP =================
 async function signup() {
 
@@ -141,37 +142,38 @@ function togglePassword() {
         password.type = "password";
     }
 }
+// ================= LOGIN & SIGNUP FORM SUBMIT =================
+document.addEventListener("DOMContentLoaded", function () {
 
+    const loginForm = document.getElementById("loginForm");
 
-// ================= LOGIN FORM SUBMIT =================
-document.addEventListener("DOMContentLoaded", () => {
-
-    const form = document.getElementById("loginForm");
-
-    if (form) {
-        form.addEventListener("submit", (e) => {
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (e) {
             e.preventDefault();
             login();
         });
     }
 
-});document.addEventListener("DOMContentLoaded", () => {
+    const signupForm = document.getElementById("signupForm");
 
-    const passwordBox = document.getElementById("loginPassword");
-
-    if (passwordBox) {
-
-        passwordBox.addEventListener("keydown", function(event) {
-
-            if (event.key === "Enter") {
-
-                event.preventDefault();
-                login();
-
-            }
-
+    if (signupForm) {
+        signupForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            signup();
         });
-
     }
 
 });
+
+
+// ================= LOGIN PASSWORD SHOW/HIDE =================
+function toggleLoginPassword() {
+
+    const password = document.getElementById("loginPassword");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
