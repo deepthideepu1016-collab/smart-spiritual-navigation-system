@@ -1,4 +1,3 @@
-alert("NEW SCRIPT LOADED");
 // ================= SIGNUP =================
 async function signup() {
 
