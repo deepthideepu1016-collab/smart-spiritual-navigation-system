@@ -38,6 +38,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", UserSchema);
+const otpStore = {};
+
 
 // ================= SIGNUP =================
 app.post("/signup", async (req, res) => {
@@ -116,6 +118,65 @@ app.post("/login", async (req, res) => {
         });
 
     }
+}); 
+// ================= SEND OTP =================
+app.post("/send-otp", async (req, res) => {
+
+    const { phone } = req.body;
+
+    const user = await User.findOne({ phone });
+
+    if (!user) {
+        return res.json({
+            success: false,
+            message: "Mobile number not registered"
+        });
+    }
+
+    const otp =
+        Math.floor(100000 + Math.random() * 900000);
+
+    otpStore[phone] = otp;
+
+    console.log("OTP =", otp);
+
+    res.json({
+        success: true,
+        message: "OTP Generated"
+    });
+
+});
+
+// ================= RESET PASSWORD =================
+app.post("/reset-password", async (req, res) => {
+
+    const {
+        phone,
+        otp,
+        newPassword
+    } = req.body;
+
+    if (otpStore[phone] != otp) {
+
+        return res.json({
+            success: false,
+            message: "Invalid OTP"
+        });
+
+    }
+
+    await User.updateOne(
+        { phone },
+        { password: newPassword }
+    );
+
+    delete otpStore[phone];
+
+    res.json({
+        success: true,
+        message: "Password Changed Successfully"
+    });
+
 });
 
 // ================= START SERVER =================

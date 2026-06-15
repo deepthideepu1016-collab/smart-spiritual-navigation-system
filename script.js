@@ -176,3 +176,35 @@ function toggleLoginPassword() {
         password.type = "password";
     }
 }
+function showForgotPassword() {
+
+    document.getElementById("loginForm").style.display = "none";
+
+    const forgotBox =
+        document.getElementById("forgotBox");
+
+    if (forgotBox) {
+        forgotBox.style.display = "block";
+    }
+}
+
+function showLogin() {
+
+    document.getElementById("loginForm").style.display = "block";
+
+    const forgotBox =
+        document.getElementById("forgotBox");
+
+    if (forgotBox) {
+        forgotBox.style.display = "none";
+    }
+}
+
+// Temporary placeholders
+function sendOTP() {
+    alert("OTP feature will be connected to backend next.");
+}
+
+function resetPassword() {
+    alert("Password reset feature will be connected to backend next.");
+}

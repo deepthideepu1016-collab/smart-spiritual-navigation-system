@@ -13,26 +13,76 @@
 
 <div class="box">
 
-<form id="loginForm">
+    <!-- LOGIN FORM -->
+    <form id="loginForm">
 
-<h1>Login</h1>
+        <h1>Login</h1>
 
-<input type="email" id="loginEmail" placeholder="Email" required>
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Email"
+            required>
 
-<div class="password-box">
+        <div class="password-box">
 
-    <input type="password"
-           id="loginPassword"
-           placeholder="Password"
-           required>
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required>
 
-    <span onclick="toggleLoginPassword()" class="eye">👁️</span>
+            <span onclick="toggleLoginPassword()" class="eye">
+                👁️
+            </span>
 
-</div>
+        </div>
 
-<button type="submit">Login</button>
+        <button type="submit">Login</button>
 
-</form>
+        <span class="switch" onclick="showForgotPassword()">
+            Forgot Password?
+        </span>
+
+        <span class="switch" onclick="showSignup()">
+            New user? Signup
+        </span>
+
+    </form>
+
+    <!-- FORGOT PASSWORD -->
+    <div id="forgotBox" style="display:none;">
+
+        <h1>Reset Password</h1>
+
+        <input
+            type="text"
+            id="forgotPhone"
+            placeholder="Enter Mobile Number">
+
+        <input
+            type="text"
+            id="otp"
+            placeholder="Enter OTP">
+
+        <input
+            type="password"
+            id="newPassword"
+            placeholder="New Password">
+
+        <button onclick="sendOTP()">
+            Send OTP
+        </button>
+
+        <button onclick="resetPassword()">
+            Reset Password
+        </button>
+
+        <span class="switch" onclick="showLogin()">
+            Back to Login
+        </span>
+
+    </div>
 
 </div>
 
