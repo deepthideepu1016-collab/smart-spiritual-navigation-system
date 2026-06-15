@@ -78,12 +78,25 @@ function showSignup() {
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("signupBox").style.display = "block";
 }
-
 function showLogin() {
-    document.getElementById("loginForm").style.display = "block";
-    document.getElementById("signupBox").style.display = "none";
-}
 
+    document.getElementById("loginForm").style.display =
+        "block";
+
+    const signupBox =
+        document.getElementById("signupBox");
+
+    if (signupBox) {
+        signupBox.style.display = "none";
+    }
+
+    const forgotBox =
+        document.getElementById("forgotBox");
+
+    if (forgotBox) {
+        forgotBox.style.display = "none";
+    }
+}
 
 // ================= PHONE VALIDATION =================
 function validatePhone() {
@@ -199,12 +212,94 @@ function showLogin() {
         forgotBox.style.display = "none";
     }
 }
+// ================= SEND OTP =================
+async function sendOTP() {
 
-// Temporary placeholders
-function sendOTP() {
-    alert("OTP feature will be connected to backend next.");
+    const phone =
+        document.getElementById("forgotPhone").value;
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Enter valid 10-digit mobile number");
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/send-otp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                phone: phone
+            })
+        });
+
+        const data = await response.json();
+
+        alert(data.message);
+
+    } catch (error) {
+
+        console.log(error);
+        alert("Error sending OTP");
+    }
 }
 
-function resetPassword() {
-    alert("Password reset feature will be connected to backend next.");
+
+// ================= RESET PASSWORD =================
+async function resetPassword() {
+
+    const phone =
+        document.getElementById("forgotPhone").value;
+
+    const otp =
+        document.getElementById("otp").value;
+
+    const newPassword =
+        document.getElementById("newPassword").value;
+
+    if (!newPassword) {
+        alert("Enter new password");
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch("/reset-password", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body: JSON.stringify({
+                phone,
+                otp,
+                newPassword
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+
+            alert("Password Reset Successful");
+
+            showLogin();
+
+        } else {
+
+            alert(data.message);
+        }
+
+    } catch (error) {
+
+        console.log(error);
+        alert("Reset Password Error");
+    }
 }
