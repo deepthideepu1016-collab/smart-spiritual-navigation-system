@@ -4,69 +4,7 @@
 <meta charset="UTF-8">
 <title>Login</title>
 
-<style>
-body{
-    margin:0;
-    font-family:Arial;
-    background:url("temple.jpg") no-repeat center center fixed;
-    background-size:cover;
-}
-
-.overlay{
-    background:rgba(0,0,0,0.6);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.box{
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    width:300px;
-    text-align:center;
-}
-
-input{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    box-sizing:border-box;
-}
-
-/* password container */
-.password-box{
-    position:relative;
-    width:100%;
-}
-
-/* eye icon (FORCE VISIBILITY) */
-.eye{
-    position:absolute;
-    right:12px;
-    top:50%;
-    transform:translateY(-50%);
-    cursor:pointer;
-    font-size:22px;
-    z-index:10;
-    color:black;
-}
-
-/* button */
-button{
-    width:100%;
-    padding:10px;
-    background:blue;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-
-button:hover{
-    background:darkblue;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -77,7 +15,7 @@ button:hover{
 
 <form id="loginForm">
 
-<h2>Login</h2>
+<h1>Login</h1>
 
 <input type="email" id="loginEmail" placeholder="Email" required>
 
@@ -87,22 +25,8 @@ button:hover{
            id="loginPassword"
            placeholder="Password"
            required>
-<span onclick="toggleLoginPassword()"
-      style="
-        position:absolute;
-        right:10px;
-        top:50%;
-        transform:translateY(-50%);
-        cursor:pointer;
-        font-size:14px;
-        background:black;
-        color:white;
-        padding:2px 6px;
-        border-radius:4px;
-        z-index:999;
-      ">
-SHOW
-</span>
+
+    <span onclick="toggleLoginPassword()" class="eye">👁️</span>
 
 </div>
 
