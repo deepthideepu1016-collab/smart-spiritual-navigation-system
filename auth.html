@@ -54,15 +54,17 @@ input {
 }
 
 .password-box input {
-  padding: 0 40px 0 12px;
+  padding-right: 45px;
 }
 
 .password-box span {
   position: absolute;
-  right: 12px;
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  font-size: 18px;
+  user-select: none;
 }
 
 button {
@@ -75,6 +77,10 @@ button {
   cursor: pointer;
   margin-top: 10px;
   font-size: 16px;
+}
+
+button:hover {
+  background: darkorange;
 }
 
 .switch {
@@ -106,9 +112,21 @@ small {
 
     <h2>Login</h2>
 
-    <input id="loginEmail" type="email" placeholder="Email" required>
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="Email"
+      required>
 
-    <input id="loginPassword" type="password" placeholder="Password" required>
+    <div class="password-box">
+      <input
+        id="loginPassword"
+        type="password"
+        placeholder="Password"
+        required>
+
+      <span onclick="toggleLoginPassword()">👁</span>
+    </div>
 
     <button type="submit">Login</button>
 
@@ -125,18 +143,27 @@ small {
 
     <input id="name" placeholder="Name">
 
-    <input id="phone" placeholder="Phone"
-      oninput="validatePhone()" maxlength="10">
+    <input
+      id="phone"
+      placeholder="Phone"
+      maxlength="10"
+      oninput="validatePhone()">
 
-    <input id="email" placeholder="Email"
+    <input
+      id="email"
+      placeholder="Email"
       oninput="validateEmail()">
 
     <div class="password-box">
-      <input id="password"
+
+      <input
+        id="password"
         type="password"
         placeholder="Password"
         oninput="validatePassword()">
+
       <span onclick="togglePassword()">👁</span>
+
     </div>
 
     <small>
