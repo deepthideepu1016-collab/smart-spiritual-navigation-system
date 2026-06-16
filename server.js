@@ -127,10 +127,11 @@ app.post("/send-otp", async (req, res) => {
     const user = await User.findOne({ phone });
 
     if (!user) {
-        return res.json({
-            success: false,
-            message: "Mobile number not registered"
-        });
+     res.json({
+    success: true,
+    message: "OTP Generated",
+    otp: otp
+});   
     }
 
     const otp =

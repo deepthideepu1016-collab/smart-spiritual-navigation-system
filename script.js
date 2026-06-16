@@ -213,10 +213,10 @@ function showLogin() {
     }
 }
 // ================= SEND OTP =================
+// ================= SEND OTP =================
 async function sendOTP() {
 
-    const phone =
-        document.getElementById("forgotPhone").value;
+    const phone = document.getElementById("forgotPhone").value;
 
     if (!/^[0-9]{10}$/.test(phone)) {
         alert("Enter valid 10-digit mobile number");
@@ -237,7 +237,11 @@ async function sendOTP() {
 
         const data = await response.json();
 
-        alert(data.message);
+        if (data.success) {
+            alert("Your OTP is: " + data.otp);
+        } else {
+            alert(data.message);
+        }
 
     } catch (error) {
 
@@ -245,7 +249,6 @@ async function sendOTP() {
         alert("Error sending OTP");
     }
 }
-
 
 // ================= RESET PASSWORD =================
 async function resetPassword() {
