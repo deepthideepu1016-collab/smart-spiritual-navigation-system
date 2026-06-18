@@ -2,20 +2,24 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const twilio = require("twilio");
+
+const client = twilio(
+    process.env.TWILIO_ACCOUNT_SID,
+    process.env.TWILIO_AUTH_TOKEN
+);
 
 const app = express();
+const otpTimeStore = {};
+const OTP_EXPIRY_MS = 2 * 60 * 1000; // 2 minutes
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-mongoose.connect("mongodb+srv://deepthideepu1016_db_user:Deepu12345@spiritualcluster.nxx3iot.mongodb.net/spiritualdb?retryWrites=true&w=majority&appName=spiritualCluster")
-.then(() => console.log("MongoDB Atlas Connected"))
-.catch(err => console.log(err));
-
-mongoose.connection.once("open", () => {
-    console.log("MongoDB Connected Successfully");
-});
+mongoose.connect("mongodb://127.0.0.1:27017/spiritualdb")
+.then(() => console.log("MongoDB Connected Successfully"))
+.catch(err => console.log("MongoDB Error:", err));
 
 // ================= USER SCHEMA =================
 const UserSchema = new mongoose.Schema({
@@ -38,7 +42,6 @@ const UserSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", UserSchema);
-const otpStore = {};
 
 
 // ================= SIGNUP =================
@@ -122,71 +125,93 @@ app.post("/login", async (req, res) => {
 // ================= SEND OTP =================
 app.post("/send-otp", async (req, res) => {
 
-    const { phone } = req.body;
+    try {
 
-    const user = await User.findOne({ phone });
+        const { phone } = req.body;
 
-    if (!user) {
-     res.json({
-    success: true,
-    message: "OTP Generated",
-    otp: otp
-});   
+        const user = await User.findOne({ phone });
+
+        if (!user) {
+            return res.json({
+                success: false,
+                message: "Phone number not registered"
+            });
+        }
+
+        await client.verify.v2
+            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
+            .verifications.create({
+                to: "+91" + phone,
+                channel: "sms"
+            });
+            otpTimeStore[phone] = Date.now();
+
+        res.json({
+            success: true,
+            message: "OTP Sent Successfully"
+        });
+
+    } catch (error) {
+
+        res.json({
+            success: false,
+            message: error.message
+        });
+
     }
-
-    const otp =
-        Math.floor(100000 + Math.random() * 900000);
-
-    otpStore[phone] = otp;
-
-    console.log("OTP =", otp);
-
-    res.json({
-        success: true,
-        message: "OTP Generated"
-    });
-
 });
 
 // ================= RESET PASSWORD =================
 app.post("/reset-password", async (req, res) => {
+    try {
+        const { phone, otp, newPassword } = req.body;
 
-    const {
-        phone,
-        otp,
-        newPassword
-    } = req.body;
+        if (!otpTimeStore[phone]) {
+            return res.json({
+                success: false,
+                message: "Please click Send OTP first"
+            });
+        }
 
-    if (otpStore[phone] != otp) {
+        if (Date.now() - otpTimeStore[phone] > OTP_EXPIRY_MS) {
+            delete otpTimeStore[phone];
 
-        return res.json({
-            success: false,
-            message: "Invalid OTP"
+            return res.json({
+                success: false,
+                message: "OTP expired. Please click Send OTP again."
+            });
+        }
+
+        const verificationCheck = await client.verify.v2
+            .services("VA0aa93204737989b7a474160d0baddf20")
+            .verificationChecks.create({
+                to: "+91" + phone,
+                code: otp
+            });
+
+        if (verificationCheck.status !== "approved") {
+            return res.json({
+                success: false,
+                message: "Invalid OTP"
+            });
+        }
+
+        await User.updateOne(
+            { phone },
+            { password: newPassword }
+        );
+
+        delete otpTimeStore[phone];
+
+        res.json({
+            success: true,
+            message: "Password Changed Successfully"
         });
 
+    } catch (error) {
+        res.json({
+            success: false,
+            message: error.message
+        });
     }
-
-    await User.updateOne(
-        { phone },
-        { password: newPassword }
-    );
-
-    delete otpStore[phone];
-
-    res.json({
-        success: true,
-        message: "Password Changed Successfully"
-    });
-
-});
-
-// ================= START SERVER =================
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "auth.html"));
-});
-// Start Server
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log("Server Running On Port", PORT);
 });
