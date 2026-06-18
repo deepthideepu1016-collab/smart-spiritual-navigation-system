@@ -215,3 +215,13 @@ app.post("/reset-password", async (req, res) => {
         });
     }
 });
+// ================= START SERVER =================
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "auth.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("Server Running On Port", PORT);
+});
