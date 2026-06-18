@@ -142,6 +142,7 @@ app.post("/send-otp", async (req, res) => {
             });
         }
 
+        console.log("Channel received:", channel);
         const selectedChannel = channel || "sms";
 
         await client.verify.v2
