@@ -229,8 +229,7 @@ app.post("/reset-password", async (req, res) => {
             { phone },
             { password: newPassword }
         );
-        );
-
+        
         delete otpVerifiedStore[phone];
         delete otpTimeStore[phone];
 
