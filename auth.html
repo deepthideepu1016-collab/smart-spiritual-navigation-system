@@ -202,48 +202,42 @@ small{
     <!-- FORGOT PASSWORD -->
     <div id="forgotBox" style="display:none;">
 
-        <h2>Reset Password</h2>
+    <h2>Reset Password</h2>
 
-        <input
-            id="forgotPhone"
-            placeholder="Enter Mobile Number">
+    <div id="otpBox">
+        <input id="forgotPhone" placeholder="Enter Mobile Number">
 
-        <input
-            id="otp"
-            placeholder="Enter OTP">
-
-        <input
-            id="newPassword"
-            type="password"
-            placeholder="New Password">
+        <input id="otp" placeholder="Enter OTP">
 
         <p style="margin-top:10px; margin-bottom:5px;">
-    Select OTP Method
-</p>
+            Select OTP Method
+        </p>
 
-<button onclick="sendOTP('sms')">
-    Send OTP by SMS
-</button>
-
-<button onclick="sendOTP('whatsapp')">
-    Send OTP by WhatsApp
-</button>
-
-        <button onclick="resetPassword()">
-            Reset Password
+        <button onclick="sendOTP('sms')">
+            Send OTP by SMS
         </button>
 
-        <span class="switch"
-              onclick="showLogin()">
-            Back to Login
-        </span>
+        <button onclick="sendOTP('whatsapp')">
+            Send OTP by WhatsApp
+        </button>
 
+        <button onclick="verifyOTP()">
+            Verify OTP
+        </button>
     </div>
 
-</div>
-</div>
+    <div id="newPasswordBox" style="display:none;">
+        <input id="newPassword" type="password" placeholder="New Password">
 
-<script src="script.js"></script>
+        <input id="confirmPassword" type="password" placeholder="Confirm Password">
 
-</body>
-</html>
+        <button onclick="resetPassword()">
+            Set Password
+        </button>
+    </div>
+
+    <span class="switch" onclick="showLogin()">
+        Back to Login
+    </span>
+
+</div>

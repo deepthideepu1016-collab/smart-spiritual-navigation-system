@@ -242,3 +242,59 @@ async function sendOTP(channel) {
         alert("Error sending OTP");
     }
 }
+async function verifyOTP() {
+    const phone = document.getElementById("forgotPhone").value;
+    const otp = document.getElementById("otp").value;
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Enter valid 10-digit mobile number");
+        return;
+    }
+
+    if (otp.trim() === "") {
+        alert("Enter OTP");
+        return;
+    }
+
+    const response = await fetch("/verify-otp", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ phone, otp })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if (data.success) {
+        document.getElementById("otpBox").style.display = "none";
+        document.getElementById("newPasswordBox").style.display = "block";
+    }
+}
+
+async function resetPassword() {
+    const phone = document.getElementById("forgotPhone").value;
+    const newPassword = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (newPassword !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    const response = await fetch("/reset-password", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ phone, newPassword })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if (data.success) {
+        showLogin();
+    }
+}
