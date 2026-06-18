@@ -11,6 +11,7 @@ const client = twilio(
 
 const app = express();
 const otpTimeStore = {};
+const otpVerifiedStore = {};
 const OTP_EXPIRY_MS = 2 * 60 * 1000; // 2 minutes
 
 app.use(cors());
@@ -128,7 +129,6 @@ app.post("/login", async (req, res) => {
     }
 }); 
 // ================= SEND OTP =================
-// ================= SEND OTP =================
 app.post("/send-otp", async (req, res) => {
     try {
         const { phone, channel } = req.body;
@@ -164,12 +164,44 @@ app.post("/send-otp", async (req, res) => {
             message: error.message
         });
     }
+});// ================= VERIFY OTP =================
+app.post("/verify-otp", async (req, res) => {
+    try {
+        const { phone, otp } = req.body;
+
+        const verificationCheck = await client.verify.v2
+            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
+            .verificationChecks.create({
+                to: "+91" + phone,
+                code: otp
+            });
+
+        if (verificationCheck.status === "approved") {
+            otpVerifiedStore[phone] = true;
+
+            return res.json({
+                success: true,
+                message: "OTP Verified Successfully"
+            });
+        }
+
+        res.json({
+            success: false,
+            message: "Invalid OTP"
+        });
+
+    } catch (error) {
+        res.json({
+            success: false,
+            message: error.message
+        });
+    }
 });
 
 // ================= RESET PASSWORD =================
 app.post("/reset-password", async (req, res) => {
     try {
-        const { phone, otp, newPassword } = req.body;
+        const { phone, newPassword } = req.body;
 
         if (!otpTimeStore[phone]) {
             return res.json({
@@ -187,25 +219,19 @@ app.post("/reset-password", async (req, res) => {
             });
         }
 
-        const verificationCheck = await client.verify.v2
-            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
-            .verificationChecks.create({
-                to: "+91" + phone,
-                code: otp
-            });
-
-        if (verificationCheck.status !== "approved") {
-            return res.json({
-                success: false,
-                message: "Invalid OTP"
-            });
-        }
-
+        if (!otpVerifiedStore[phone]) {
+    return res.json({
+        success: false,
+        message: "Please verify OTP first"
+    });
+}
         await User.updateOne(
             { phone },
             { password: newPassword }
         );
+        );
 
+        delete otpVerifiedStore[phone];
         delete otpTimeStore[phone];
 
         res.json({
