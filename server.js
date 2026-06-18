@@ -141,7 +141,7 @@ app.post("/send-otp", async (req, res) => {
                 message: "Phone number not registered"
             });
         }
-
+        const {phone,channel } = req.body;
         console.log("Channel received:", channel);
         const selectedChannel = channel || "sms";
 
