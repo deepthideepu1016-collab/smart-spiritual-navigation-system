@@ -183,7 +183,7 @@ app.post("/reset-password", async (req, res) => {
         }
 
         const verificationCheck = await client.verify.v2
-            .services("VA0aa93204737989b7a474160d0baddf20")
+            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
             .verificationChecks.create({
                 to: "+91" + phone,
                 code: otp
