@@ -213,8 +213,7 @@ function showLogin() {
     }
 }
 // ================= SEND OTP =================
-// ================= SEND OTP =================
-async function sendOTP() {
+async function sendOTP(channel) {
 
     const phone = document.getElementById("forgotPhone").value;
 
@@ -224,85 +223,22 @@ async function sendOTP() {
     }
 
     try {
-
         const response = await fetch("/send-otp", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                phone: phone
+                phone: phone,
+                channel: channel
             })
         });
 
         const data = await response.json();
-
-        if (data.success) {
-    alert("OTP sent successfully. Check your mobile.");
-} else {
-    alert(data.message);
-}
+        alert(data.message);
 
     } catch (error) {
-
         console.log(error);
         alert("Error sending OTP");
-    }
-}
-
-// ================= RESET PASSWORD =================
-async function resetPassword() {
-
-    const phone =
-        document.getElementById("forgotPhone").value;
-
-    const otp =
-        document.getElementById("otp").value;
-
-    const newPassword =
-        document.getElementById("newPassword").value;
-
-    if (!newPassword) {
-        alert("Enter new password");
-        return;
-    }
-
-    try {
-
-        const response =
-            await fetch("/reset-password", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type":
-                    "application/json"
-            },
-
-            body: JSON.stringify({
-                phone,
-                otp,
-                newPassword
-            })
-
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-
-            alert("Password Reset Successful");
-
-            showLogin();
-
-        } else {
-
-            alert(data.message);
-        }
-
-    } catch (error) {
-
-        console.log(error);
-        alert("Reset Password Error");
     }
 }

@@ -217,9 +217,17 @@ small{
             type="password"
             placeholder="New Password">
 
-        <button onclick="sendOTP()">
-            Send OTP
-        </button>
+        <p style="margin-top:10px; margin-bottom:5px;">
+    Select OTP Method
+</p>
+
+<button onclick="sendOTP('sms')">
+    Send OTP by SMS
+</button>
+
+<button onclick="sendOTP('whatsapp')">
+    Send OTP by WhatsApp
+</button>
 
         <button onclick="resetPassword()">
             Reset Password

@@ -123,11 +123,10 @@ app.post("/login", async (req, res) => {
     }
 }); 
 // ================= SEND OTP =================
+// ================= SEND OTP =================
 app.post("/send-otp", async (req, res) => {
-
     try {
-
-        const { phone } = req.body;
+        const { phone, channel } = req.body;
 
         const user = await User.findOne({ phone });
 
@@ -138,26 +137,27 @@ app.post("/send-otp", async (req, res) => {
             });
         }
 
+        const selectedChannel = channel || "sms";
+
         await client.verify.v2
             .services(process.env.TWILIO_VERIFY_SERVICE_SID)
             .verifications.create({
                 to: "+91" + phone,
-                channel: "sms"
+                channel: selectedChannel
             });
-            otpTimeStore[phone] = Date.now();
+
+        otpTimeStore[phone] = Date.now();
 
         res.json({
             success: true,
-            message: "OTP Sent Successfully"
+            message: "OTP sent successfully via " + selectedChannel
         });
 
     } catch (error) {
-
         res.json({
             success: false,
             message: error.message
         });
-
     }
 });
 
