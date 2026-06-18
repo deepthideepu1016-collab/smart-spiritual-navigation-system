@@ -16,6 +16,11 @@ const OTP_EXPIRY_MS = 2 * 60 * 1000; // 2 minutes
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log("Server Running On Port", PORT);
+});
 
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log("MongoDB Atlas Connected"))
@@ -218,9 +223,4 @@ app.post("/reset-password", async (req, res) => {
 // ================= START SERVER =================
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "auth.html"));
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0", () => {
-    console.log("Server Running On Port", PORT);
 });
