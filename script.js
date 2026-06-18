@@ -1,6 +1,5 @@
 // ================= SIGNUP =================
 async function signup() {
-
     const user = {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
@@ -16,9 +15,7 @@ async function signup() {
     try {
         const response = await fetch("/signup", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
         });
 
@@ -30,31 +27,22 @@ async function signup() {
         } else {
             alert(data.message);
         }
-
     } catch (error) {
         console.log(error);
         alert("Signup Error");
     }
 }
 
-
 // ================= LOGIN =================
 async function login() {
-
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
 
     try {
-
         const response = await fetch("/login", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();
@@ -65,98 +53,86 @@ async function login() {
         } else {
             alert(data.message || "Invalid Email or Password");
         }
-
     } catch (error) {
         console.log(error);
         alert("Login Error");
     }
 }
 
-
 // ================= UI TOGGLE =================
 function showSignup() {
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("signupBox").style.display = "block";
+    document.getElementById("forgotBox").style.display = "none";
 }
+
 function showLogin() {
+    document.getElementById("loginForm").style.display = "block";
 
-    document.getElementById("loginForm").style.display =
-        "block";
+    const signupBox = document.getElementById("signupBox");
+    if (signupBox) signupBox.style.display = "none";
 
-    const signupBox =
-        document.getElementById("signupBox");
-
-    if (signupBox) {
-        signupBox.style.display = "none";
-    }
-
-    const forgotBox =
-        document.getElementById("forgotBox");
-
-    if (forgotBox) {
-        forgotBox.style.display = "none";
-    }
+    const forgotBox = document.getElementById("forgotBox");
+    if (forgotBox) forgotBox.style.display = "none";
 }
 
-// ================= PHONE VALIDATION =================
+function showForgotPassword() {
+    document.getElementById("loginForm").style.display = "none";
+
+    const signupBox = document.getElementById("signupBox");
+    if (signupBox) signupBox.style.display = "none";
+
+    const forgotBox = document.getElementById("forgotBox");
+    if (forgotBox) forgotBox.style.display = "block";
+
+    const otpBox = document.getElementById("otpBox");
+    if (otpBox) otpBox.style.display = "block";
+
+    const newPasswordBox = document.getElementById("newPasswordBox");
+    if (newPasswordBox) newPasswordBox.style.display = "none";
+}
+
+// ================= VALIDATIONS =================
 function validatePhone() {
-
     const phone = document.getElementById("phone");
-
-    if (/^[0-9]{10}$/.test(phone.value)) {
-        phone.style.border = "2px solid green";
-    } else {
-        phone.style.border = "2px solid red";
-    }
+    phone.style.border = /^[0-9]{10}$/.test(phone.value)
+        ? "2px solid green"
+        : "2px solid red";
 }
 
-
-// ================= EMAIL VALIDATION =================
 function validateEmail() {
-
     const email = document.getElementById("email");
-
-    if (email.value.includes("@")) {
-        email.style.border = "2px solid green";
-    } else {
-        email.style.border = "2px solid red";
-    }
+    email.style.border = email.value.includes("@")
+        ? "2px solid green"
+        : "2px solid red";
 }
 
-
-// ================= PASSWORD VALIDATION =================
 function validatePassword() {
-
     const password = document.getElementById("password");
-
     const value = password.value;
 
     const hasCapital = /^[A-Z]/.test(value);
     const hasNumber = /[0-9]/.test(value);
     const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(value);
 
-    if (hasCapital && hasNumber && hasSymbol) {
-        password.style.border = "2px solid green";
-    } else {
-        password.style.border = "2px solid red";
-    }
+    password.style.border = hasCapital && hasNumber && hasSymbol
+        ? "2px solid green"
+        : "2px solid red";
 }
-
 
 // ================= SHOW PASSWORD =================
 function togglePassword() {
-
     const password = document.getElementById("password");
-
-    if (password.type === "password") {
-        password.type = "text";
-    } else {
-        password.type = "password";
-    }
+    password.type = password.type === "password" ? "text" : "password";
 }
-// ================= LOGIN & SIGNUP FORM SUBMIT =================
-document.addEventListener("DOMContentLoaded", function () {
 
+function toggleLoginPassword() {
+    const password = document.getElementById("loginPassword");
+    password.type = password.type === "password" ? "text" : "password";
+}
+
+// ================= FORM SUBMIT =================
+document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("loginForm");
 
     if (loginForm) {
@@ -165,56 +141,10 @@ document.addEventListener("DOMContentLoaded", function () {
             login();
         });
     }
-
-    const signupForm = document.getElementById("signupForm");
-
-    if (signupForm) {
-        signupForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            signup();
-        });
-    }
-
 });
 
-
-// ================= LOGIN PASSWORD SHOW/HIDE =================
-function toggleLoginPassword() {
-
-    const password = document.getElementById("loginPassword");
-
-    if (password.type === "password") {
-        password.type = "text";
-    } else {
-        password.type = "password";
-    }
-}
-function showForgotPassword() {
-
-    document.getElementById("loginForm").style.display = "none";
-
-    const forgotBox =
-        document.getElementById("forgotBox");
-
-    if (forgotBox) {
-        forgotBox.style.display = "block";
-    }
-}
-
-function showLogin() {
-
-    document.getElementById("loginForm").style.display = "block";
-
-    const forgotBox =
-        document.getElementById("forgotBox");
-
-    if (forgotBox) {
-        forgotBox.style.display = "none";
-    }
-}
 // ================= SEND OTP =================
 async function sendOTP(channel) {
-
     const phone = document.getElementById("forgotPhone").value;
 
     if (!/^[0-9]{10}$/.test(phone)) {
@@ -225,23 +155,19 @@ async function sendOTP(channel) {
     try {
         const response = await fetch("/send-otp", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                phone: phone,
-                channel: channel
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phone, channel })
         });
 
         const data = await response.json();
         alert(data.message);
-
     } catch (error) {
         console.log(error);
         alert("Error sending OTP");
     }
 }
+
+// ================= VERIFY OTP =================
 async function verifyOTP() {
     const phone = document.getElementById("forgotPhone").value;
     const otp = document.getElementById("otp").value;
@@ -258,9 +184,7 @@ async function verifyOTP() {
 
     const response = await fetch("/verify-otp", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone, otp })
     });
 
@@ -273,10 +197,16 @@ async function verifyOTP() {
     }
 }
 
+// ================= RESET PASSWORD =================
 async function resetPassword() {
     const phone = document.getElementById("forgotPhone").value;
     const newPassword = document.getElementById("newPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (newPassword.trim() === "" || confirmPassword.trim() === "") {
+        alert("Enter both passwords");
+        return;
+    }
 
     if (newPassword !== confirmPassword) {
         alert("Passwords do not match");
@@ -285,9 +215,7 @@ async function resetPassword() {
 
     const response = await fetch("/reset-password", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone, newPassword })
     });
 
