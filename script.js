@@ -238,10 +238,10 @@ async function sendOTP() {
         const data = await response.json();
 
         if (data.success) {
-            alert("Your OTP is: " + data.otp);
-        } else {
-            alert(data.message);
-        }
+    alert("OTP sent successfully. Check your mobile.");
+} else {
+    alert(data.message);
+}
 
     } catch (error) {
 
