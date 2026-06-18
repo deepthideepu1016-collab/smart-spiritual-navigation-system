@@ -186,9 +186,9 @@ small{
             include number & symbol
         </small>
 
-        <button onclick="signup()">
-            Register
-        </button>
+        <button type="button" onclick="signup()">
+    Register
+</button>
 
         <span class="switch"
               onclick="showLogin()">
@@ -212,17 +212,17 @@ small{
             Select OTP Method
         </p>
 
-        <button onclick="sendOTP('sms')">
-            Send OTP by SMS
+        <button type="button" onclick="sendOTP('sms')">
+    Send OTP by SMS
         </button>
 
-        <button onclick="sendOTP('whatsapp')">
-            Send OTP by WhatsApp
-        </button>
+        <button type="button" onclick="sendOTP('whatsapp')">
+    Send OTP by WhatsApp
+       </button>
 
-        <button onclick="verifyOTP()">
-            Verify OTP
-        </button>
+<button type="button" onclick="verifyOTP()">
+    Verify OTP
+</button> 
     </div>
 
     <div id="newPasswordBox" style="display:none;">
@@ -230,9 +230,9 @@ small{
 
         <input id="confirmPassword" type="password" placeholder="Confirm Password">
 
-        <button onclick="resetPassword()">
-            Set Password
-        </button>
+     <button type="button" onclick="resetPassword()">
+    Set Password
+</button>
     </div>
 
     <span class="switch" onclick="showLogin()">
