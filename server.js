@@ -143,15 +143,10 @@ app.post("/send-otp", async (req, res) => {
             });
         }
 
-        console.log("Channel received:", channel);
-
         const selectedChannel = channel || "sms";
+        console.log("Channel received:", selectedChannel);
 
-        let toNumber = "+91" + phone;
-
-        if (selectedChannel === "whatsapp") {
-            toNumber = "whatsapp:+91" + phone;
-        }
+        const toNumber = "+91" + phone;
 
         await client.verify.v2
             .services(process.env.TWILIO_VERIFY_SERVICE_SID)

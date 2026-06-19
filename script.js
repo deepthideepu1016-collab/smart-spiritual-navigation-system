@@ -168,18 +168,11 @@ async function sendOTP(channel) {
 }
 
 // ================= VERIFY OTP =================
-// ================= VERIFY OTP =================
 app.post("/verify-otp", async (req, res) => {
     try {
-        const { phone, otp, channel } = req.body;
+        const { phone, otp } = req.body;
 
-        const selectedChannel = channel || "sms";
-
-        let toNumber = "+91" + phone;
-
-        if (selectedChannel === "whatsapp") {
-            toNumber = "whatsapp:+91" + phone;
-        }
+        const toNumber = "+91" + phone;
 
         const verificationCheck = await client.verify.v2
             .services(process.env.TWILIO_VERIFY_SERVICE_SID)
@@ -209,7 +202,6 @@ app.post("/verify-otp", async (req, res) => {
         });
     }
 });
-
 // ================= RESET PASSWORD =================
 async function resetPassword() {
     const phone = document.getElementById("forgotPhone").value;
