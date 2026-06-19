@@ -163,12 +163,13 @@ app.post("/send-otp", async (req, res) => {
         });
 
     } catch (error) {
-        res.json({
-            success: false,
-            message: error.message
-        });
-    }
-});
+    console.log("Twilio Error:", error);
+
+    res.json({
+        success: false,
+        message: error.message
+    });
+}
 // ================= VERIFY OTP =================
 app.post("/verify-otp", async (req, res) => {
     try {
