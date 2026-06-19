@@ -5,14 +5,12 @@
 <title>Girivalayam Auth</title>
 
 <style>
-
 body{
     margin:0;
     font-family:Arial,sans-serif;
     background:url("temple.jpg") no-repeat center center fixed;
     background-size:cover;
 }
-
 .overlay{
     background:rgba(0,0,0,0.6);
     height:100vh;
@@ -20,7 +18,6 @@ body{
     justify-content:center;
     align-items:center;
 }
-
 .box{
     background:white;
     padding:30px;
@@ -29,12 +26,10 @@ body{
     text-align:center;
     box-sizing:border-box;
 }
-
 h2{
     margin-bottom:25px;
     font-size:35px;
 }
-
 input{
     width:100%;
     height:45px;
@@ -46,17 +41,14 @@ input{
     outline:none;
     font-size:14px;
 }
-
 .password-box{
     position:relative;
     width:100%;
     margin:10px 0;
 }
-
 .password-box input{
     padding-right:45px;
 }
-
 .password-box span{
     position:absolute;
     right:15px;
@@ -65,7 +57,6 @@ input{
     cursor:pointer;
     font-size:18px;
 }
-
 button{
     width:100%;
     height:45px;
@@ -77,18 +68,15 @@ button{
     margin-top:10px;
     font-size:16px;
 }
-
 button:hover{
     background:darkorange;
 }
-
 .switch{
     color:blue;
     cursor:pointer;
     margin-top:15px;
     display:block;
 }
-
 small{
     display:block;
     text-align:left;
@@ -97,7 +85,6 @@ small{
     margin-top:5px;
     margin-bottom:10px;
 }
-
 </style>
 </head>
 
@@ -106,123 +93,65 @@ small{
 <div class="overlay">
 <div class="box">
 
-    <!-- LOGIN FORM -->
-    <form id="loginForm">
+<form id="loginForm">
+    <h2>Login</h2>
 
-        <h2>Login</h2>
+    <input id="loginEmail" type="email" placeholder="Email" required>
 
-        <input
-            id="loginEmail"
-            type="email"
-            placeholder="Email"
-            required>
-
-        <div class="password-box">
-
-            <input
-                id="loginPassword"
-                type="password"
-                placeholder="Password"
-                required>
-
-            <span onclick="toggleLoginPassword()">
-                👁
-            </span>
-
-        </div>
-
-        <button type="submit">
-            Login
-        </button>
-
-    <button type="button" onclick="showForgotPassword()">
-    Forgot Password?
-    </button>
-
-        <span class="switch"
-              onclick="showSignup()">
-            New user? Signup
-        </span>
-
-    </form>
-
-
-    <!-- SIGNUP FORM -->
-    <div id="signupBox" style="display:none;">
-
-        <h2>Signup</h2>
-
-        <input
-            id="name"
-            placeholder="Name">
-
-        <input
-            id="phone"
-            placeholder="Phone"
-            maxlength="10"
-            oninput="validatePhone()">
-
-        <input
-            id="email"
-            placeholder="Email"
-            oninput="validateEmail()">
-
-        <div class="password-box">
-
-            <input
-                id="password"
-                type="password"
-                placeholder="Password"
-                oninput="validatePassword()">
-
-            <span onclick="togglePassword()">
-                👁
-            </span>
-
-        </div>
-
-        <small>
-            Must start with CAPITAL letter,
-            include number & symbol
-        </small>
-
-        <button type="button" onclick="signup()">
-    Register
-</button>
-
-        <span class="switch"
-              onclick="showLogin()">
-            Already have account? Login
-        </span>
-
+    <div class="password-box">
+        <input id="loginPassword" type="password" placeholder="Password" required>
+        <span onclick="toggleLoginPassword()">👁</span>
     </div>
 
+    <button type="submit">Login</button>
 
-    <!-- FORGOT PASSWORD -->
-    <div id="forgotBox" style="display:none;">
+    <button type="button" onclick="showForgotPassword()">
+        Forgot Password?
+    </button>
 
+    <span class="switch" onclick="showSignup()">
+        New user? Signup
+    </span>
+</form>
+
+<div id="signupBox" style="display:none;">
+    <h2>Signup</h2>
+
+    <input id="name" placeholder="Name">
+
+    <input id="phone" placeholder="Phone" maxlength="10" oninput="validatePhone()">
+
+    <input id="email" placeholder="Email" oninput="validateEmail()">
+
+    <div class="password-box">
+        <input id="password" type="password" placeholder="Password" oninput="validatePassword()">
+        <span onclick="togglePassword()">👁</span>
+    </div>
+
+    <small>Must start with CAPITAL letter, include number & symbol</small>
+
+    <button type="button" onclick="signup()">Register</button>
+
+    <span class="switch" onclick="showLogin()">
+        Already have account? Login
+    </span>
+</div>
+
+<div id="forgotBox" style="display:none;">
     <h2>Reset Password</h2>
 
     <div id="otpBox">
-        <input id="forgotPhone" placeholder="Enter Mobile Number">
+        <input id="forgotPhone" placeholder="Enter Mobile Number" maxlength="10">
+
+        <button type="button" onclick="sendOTP()">
+            Send OTP by SMS
+        </button>
 
         <input id="otp" placeholder="Enter OTP">
 
-        <p style="margin-top:10px; margin-bottom:5px;">
-            Select OTP Method
-        </p>
-
-        <button type="button" onclick="sendOTP('sms')">
-    Send OTP by SMS
+        <button type="button" onclick="verifyOTP()">
+            Verify OTP
         </button>
-
-        <button type="button" onclick="sendOTP('whatsapp')">
-    Send OTP by WhatsApp
-       </button>
-
-<button type="button" onclick="verifyOTP()">
-    Verify OTP
-</button> 
     </div>
 
     <div id="newPasswordBox" style="display:none;">
@@ -230,16 +159,16 @@ small{
 
         <input id="confirmPassword" type="password" placeholder="Confirm Password">
 
-     <button type="button" onclick="resetPassword()">
-    Set Password
-</button>
+        <button type="button" onclick="resetPassword()">
+            Set Password
+        </button>
     </div>
 
     <span class="switch" onclick="showLogin()">
         Back to Login
     </span>
-
 </div>
+
 </div>
 </div>
 

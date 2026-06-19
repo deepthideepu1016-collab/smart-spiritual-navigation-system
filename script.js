@@ -68,28 +68,16 @@ function showSignup() {
 
 function showLogin() {
     document.getElementById("loginForm").style.display = "block";
-
-    const signupBox = document.getElementById("signupBox");
-    if (signupBox) signupBox.style.display = "none";
-
-    const forgotBox = document.getElementById("forgotBox");
-    if (forgotBox) forgotBox.style.display = "none";
+    document.getElementById("signupBox").style.display = "none";
+    document.getElementById("forgotBox").style.display = "none";
 }
 
 function showForgotPassword() {
     document.getElementById("loginForm").style.display = "none";
-
-    const signupBox = document.getElementById("signupBox");
-    if (signupBox) signupBox.style.display = "none";
-
-    const forgotBox = document.getElementById("forgotBox");
-    if (forgotBox) forgotBox.style.display = "block";
-
-    const otpBox = document.getElementById("otpBox");
-    if (otpBox) otpBox.style.display = "block";
-
-    const newPasswordBox = document.getElementById("newPasswordBox");
-    if (newPasswordBox) newPasswordBox.style.display = "none";
+    document.getElementById("signupBox").style.display = "none";
+    document.getElementById("forgotBox").style.display = "block";
+    document.getElementById("otpBox").style.display = "block";
+    document.getElementById("newPasswordBox").style.display = "none";
 }
 
 // ================= VALIDATIONS =================
@@ -143,8 +131,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// ================= SEND OTP =================
-async function sendOTP(channel) {
+// ================= SEND OTP SMS ONLY =================
+async function sendOTP() {
     const phone = document.getElementById("forgotPhone").value;
 
     if (!/^[0-9]{10}$/.test(phone)) {
@@ -156,11 +144,12 @@ async function sendOTP(channel) {
         const response = await fetch("/send-otp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone, channel })
+            body: JSON.stringify({ phone })
         });
 
         const data = await response.json();
         alert(data.message);
+
     } catch (error) {
         console.log(error);
         alert("Error sending OTP");
@@ -168,40 +157,41 @@ async function sendOTP(channel) {
 }
 
 // ================= VERIFY OTP =================
-app.post("/verify-otp", async (req, res) => {
+async function verifyOTP() {
+    const phone = document.getElementById("forgotPhone").value;
+    const otp = document.getElementById("otp").value;
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Enter valid mobile number");
+        return;
+    }
+
+    if (otp.trim() === "") {
+        alert("Enter OTP");
+        return;
+    }
+
     try {
-        const { phone, otp } = req.body;
+        const response = await fetch("/verify-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phone, otp })
+        });
 
-        const toNumber = "+91" + phone;
+        const data = await response.json();
+        alert(data.message);
 
-        const verificationCheck = await client.verify.v2
-            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
-            .verificationChecks.create({
-                to: toNumber,
-                code: otp
-            });
-
-        if (verificationCheck.status === "approved") {
-            otpVerifiedStore[phone] = true;
-
-            return res.json({
-                success: true,
-                message: "OTP Verified Successfully"
-            });
+        if (data.success) {
+            document.getElementById("otpBox").style.display = "none";
+            document.getElementById("newPasswordBox").style.display = "block";
         }
 
-        res.json({
-            success: false,
-            message: "Invalid OTP"
-        });
-
     } catch (error) {
-        res.json({
-            success: false,
-            message: error.message
-        });
+        console.log(error);
+        alert("OTP verification error");
     }
-});
+}
+
 // ================= RESET PASSWORD =================
 async function resetPassword() {
     const phone = document.getElementById("forgotPhone").value;
@@ -218,16 +208,22 @@ async function resetPassword() {
         return;
     }
 
-    const response = await fetch("/reset-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, newPassword })
-    });
+    try {
+        const response = await fetch("/reset-password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phone, newPassword })
+        });
 
-    const data = await response.json();
-    alert(data.message);
+        const data = await response.json();
+        alert(data.message);
 
-    if (data.success) {
-        showLogin();
+        if (data.success) {
+            showLogin();
+        }
+
+    } catch (error) {
+        console.log(error);
+        alert("Reset password error");
     }
 }
