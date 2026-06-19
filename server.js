@@ -247,6 +247,77 @@ app.post("/reset-password", async (req, res) => {
 });
 
 // ================= HOME PAGE =================
+app.post("/update-profile", async (req, res) => {
+    try {
+        const { oldEmail, name, email } = req.body;
+
+        const updatedUser = await User.findOneAndUpdate(
+            { email: oldEmail },
+            { name, email },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.json({
+                success:false,
+                message:"User not found"
+            });
+        }
+
+        res.json({
+            success:true,
+            message:"Profile Updated Successfully",
+            user:{
+                name:updatedUser.name,
+                email:updatedUser.email,
+                phone:updatedUser.phone
+            }
+        });
+
+    } catch (error) {
+        res.json({
+            success:false,
+            message:error.message
+        });
+    }
+});
+
+app.post("/change-password", async (req, res) => {
+    try {
+        const { email, currentPassword, newPassword } = req.body;
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.json({
+                success:false,
+                message:"User not found"
+            });
+        }
+
+        if (user.password !== currentPassword) {
+            return res.json({
+                success:false,
+                message:"Current password is wrong"
+            });
+        }
+
+        user.password = newPassword;
+        await user.save();
+
+        res.json({
+            success:true,
+            message:"Password Changed Successfully"
+        });
+
+    } catch (error) {
+        res.json({
+            success:false,
+            message:error.message
+        });
+    }
+});
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "auth.html"));
 });

@@ -226,7 +226,25 @@ padding-top:80px;
 </head>
 
 <body>
+<div id="editModal" class="modal">
+  <div class="modal-box">
+    <h2>Edit Profile</h2>
+    <input id="editName" placeholder="New Name">
+    <input id="editEmail" placeholder="New Email">
+    <button onclick="saveProfile()">Save Changes</button>
+    <button onclick="closeModal('editModal')">Cancel</button>
+  </div>
+</div>
 
+<div id="passwordModal" class="modal">
+  <div class="modal-box">
+    <h2>Change Password</h2>
+    <input id="currentPassword" type="password" placeholder="Current Password">
+    <input id="newPassword" type="password" placeholder="New Password">
+    <button onclick="savePassword()">Change Password</button>
+    <button onclick="closeModal('passwordModal')">Cancel</button>
+  </div>
+</div>
 <div class="profile-container">
     <div class="profile-circle" onclick="toggleProfileMenu()">
         <span id="profileInitial">U</span>
