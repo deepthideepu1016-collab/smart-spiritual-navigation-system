@@ -48,17 +48,18 @@ async function login() {
         const data = await response.json();
 
         if (data.success) {
+            localStorage.setItem("loggedUser", JSON.stringify(data.user));
             alert("Login Successful");
             window.location.href = "dashboard.html";
         } else {
             alert(data.message || "Invalid Email or Password");
         }
+
     } catch (error) {
         console.log(error);
         alert("Login Error");
     }
 }
-
 // ================= UI TOGGLE =================
 function showSignup() {
     document.getElementById("loginForm").style.display = "none";

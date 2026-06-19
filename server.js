@@ -103,7 +103,12 @@ app.post("/login", async (req, res) => {
         if (user) {
             res.json({
                 success: true,
-                message: "Login Successful"
+                message: "Login Successful",
+                user: {
+                    name: user.name,
+                    phone: user.phone,
+                    email: user.email
+                }
             });
         } else {
             res.json({
