@@ -129,6 +129,7 @@ app.post("/login", async (req, res) => {
     }
 }); 
 // ================= SEND OTP =================
+    // ================= SEND OTP =================
 app.post("/send-otp", async (req, res) => {
     try {
         const { phone, channel } = req.body;
@@ -141,14 +142,21 @@ app.post("/send-otp", async (req, res) => {
                 message: "Phone number not registered"
             });
         }
-        const {phone,channel } = req.body;
+
         console.log("Channel received:", channel);
+
         const selectedChannel = channel || "sms";
+
+        let toNumber = "+91" + phone;
+
+        if (selectedChannel === "whatsapp") {
+            toNumber = "whatsapp:+91" + phone;
+        }
 
         await client.verify.v2
             .services(process.env.TWILIO_VERIFY_SERVICE_SID)
             .verifications.create({
-                to: "+91" + phone,
+                to: toNumber,
                 channel: selectedChannel
             });
 
@@ -165,7 +173,8 @@ app.post("/send-otp", async (req, res) => {
             message: error.message
         });
     }
-});// ================= VERIFY OTP =================
+});
+// ================= VERIFY OTP =================
 app.post("/verify-otp", async (req, res) => {
     try {
         const { phone, otp } = req.body;

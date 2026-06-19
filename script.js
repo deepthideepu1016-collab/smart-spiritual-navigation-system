@@ -168,34 +168,47 @@ async function sendOTP(channel) {
 }
 
 // ================= VERIFY OTP =================
-async function verifyOTP() {
-    const phone = document.getElementById("forgotPhone").value;
-    const otp = document.getElementById("otp").value;
+// ================= VERIFY OTP =================
+app.post("/verify-otp", async (req, res) => {
+    try {
+        const { phone, otp, channel } = req.body;
 
-    if (!/^[0-9]{10}$/.test(phone)) {
-        alert("Enter valid 10-digit mobile number");
-        return;
+        const selectedChannel = channel || "sms";
+
+        let toNumber = "+91" + phone;
+
+        if (selectedChannel === "whatsapp") {
+            toNumber = "whatsapp:+91" + phone;
+        }
+
+        const verificationCheck = await client.verify.v2
+            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
+            .verificationChecks.create({
+                to: toNumber,
+                code: otp
+            });
+
+        if (verificationCheck.status === "approved") {
+            otpVerifiedStore[phone] = true;
+
+            return res.json({
+                success: true,
+                message: "OTP Verified Successfully"
+            });
+        }
+
+        res.json({
+            success: false,
+            message: "Invalid OTP"
+        });
+
+    } catch (error) {
+        res.json({
+            success: false,
+            message: error.message
+        });
     }
-
-    if (otp.trim() === "") {
-        alert("Enter OTP");
-        return;
-    }
-
-    const response = await fetch("/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, otp })
-    });
-
-    const data = await response.json();
-    alert(data.message);
-
-    if (data.success) {
-        document.getElementById("otpBox").style.display = "none";
-        document.getElementById("newPasswordBox").style.display = "block";
-    }
-}
+});
 
 // ================= RESET PASSWORD =================
 async function resetPassword() {
