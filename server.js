@@ -170,6 +170,7 @@ app.post("/send-otp", async (req, res) => {
         message: error.message
     });
 }
+});
 // ================= VERIFY OTP =================
 app.post("/verify-otp", async (req, res) => {
     try {
