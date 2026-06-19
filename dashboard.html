@@ -98,10 +98,63 @@ border-radius:8px;
 cursor:pointer;
 font-size:15px;
 text-align:left;
+color:black;
 }
 
 .profile-menu button:hover{
 background:#e3efdd;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+z-index:3000;
+justify-content:center;
+align-items:center;
+}
+
+.modal-box{
+background:white;
+width:360px;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-box h2{
+margin-bottom:15px;
+color:#2c3e36;
+}
+
+.modal-box input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+}
+
+.modal-box button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#6f9460;
+color:white;
+cursor:pointer;
+font-size:15px;
+}
+
+.modal-box .cancel-btn{
+background:#999;
 }
 
 .dashboard-title{
@@ -226,25 +279,7 @@ padding-top:80px;
 </head>
 
 <body>
-<div id="editModal" class="modal">
-  <div class="modal-box">
-    <h2>Edit Profile</h2>
-    <input id="editName" placeholder="New Name">
-    <input id="editEmail" placeholder="New Email">
-    <button onclick="saveProfile()">Save Changes</button>
-    <button onclick="closeModal('editModal')">Cancel</button>
-  </div>
-</div>
 
-<div id="passwordModal" class="modal">
-  <div class="modal-box">
-    <h2>Change Password</h2>
-    <input id="currentPassword" type="password" placeholder="Current Password">
-    <input id="newPassword" type="password" placeholder="New Password">
-    <button onclick="savePassword()">Change Password</button>
-    <button onclick="closeModal('passwordModal')">Cancel</button>
-  </div>
-</div>
 <div class="profile-container">
     <div class="profile-circle" onclick="toggleProfileMenu()">
         <span id="profileInitial">U</span>
@@ -266,6 +301,26 @@ padding-top:80px;
         <button onclick="changePassword()">🔒 Change Password</button>
         <button onclick="logout()">🚪 Logout</button>
     </div>
+</div>
+
+<div id="editModal" class="modal">
+  <div class="modal-box">
+    <h2>Edit Profile</h2>
+    <input id="editName" placeholder="New Name">
+    <input id="editEmail" placeholder="New Email">
+    <button onclick="saveProfile()">Save Changes</button>
+    <button class="cancel-btn" onclick="closeModal('editModal')">Cancel</button>
+  </div>
+</div>
+
+<div id="passwordModal" class="modal">
+  <div class="modal-box">
+    <h2>Change Password</h2>
+    <input id="currentPassword" type="password" placeholder="Current Password">
+    <input id="newPassword" type="password" placeholder="New Password">
+    <button onclick="savePassword()">Change Password</button>
+    <button class="cancel-btn" onclick="closeModal('passwordModal')">Cancel</button>
+  </div>
 </div>
 
 <h1 class="dashboard-title">Tiruvannamalai Dashboard</h1>
@@ -366,11 +421,69 @@ function viewProfile(){
 }
 
 function editProfile(){
-    alert("Edit Profile feature will be added next.");
+    document.getElementById("editName").value = user.name;
+    document.getElementById("editEmail").value = user.email;
+    document.getElementById("editModal").style.display = "flex";
 }
 
 function changePassword(){
-    alert("Change Password feature will be added next.");
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("passwordModal").style.display = "flex";
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display = "none";
+}
+
+async function saveProfile(){
+    const newName = document.getElementById("editName").value;
+    const newEmail = document.getElementById("editEmail").value;
+
+    const response = await fetch("/update-profile", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            oldEmail:user.email,
+            name:newName,
+            email:newEmail
+        })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if(data.success){
+        localStorage.setItem("loggedUser", JSON.stringify(data.user));
+        location.reload();
+    }
+}
+
+async function savePassword(){
+    const currentPassword = document.getElementById("currentPassword").value;
+    const newPassword = document.getElementById("newPassword").value;
+
+    if(currentPassword.trim() === "" || newPassword.trim() === ""){
+        alert("Enter current password and new password");
+        return;
+    }
+
+    const response = await fetch("/change-password", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            email:user.email,
+            currentPassword,
+            newPassword
+        })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if(data.success){
+        closeModal("passwordModal");
+    }
 }
 
 function logout(){
