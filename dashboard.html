@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tiruvannamalai Dashboard</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 *{
@@ -22,40 +21,87 @@ padding:30px;
 position:relative;
 }
 
-.profile-box{
+.profile-container{
 position:absolute;
 top:20px;
-right:20px;
-background:white;
-padding:12px 15px;
-border-radius:12px;
-display:flex;
-align-items:center;
-gap:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
+right:30px;
+z-index:1000;
 }
 
-.profile-logo{
-width:45px;
-height:45px;
+.profile-circle{
+width:55px;
+height:55px;
 border-radius:50%;
-background:orange;
+background:#6f9460;
 color:white;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:24px;
+font-size:26px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
-.profile-box h4{
-margin:0;
-font-size:16px;
+.profile-menu{
+display:none;
+position:absolute;
+top:70px;
+right:0;
+width:290px;
+background:white;
+border-radius:15px;
+box-shadow:0 8px 25px rgba(0,0,0,0.25);
+padding:20px;
+text-align:center;
 }
 
-.profile-box p{
-margin:2px 0;
-font-size:12px;
+.big-profile-circle{
+width:75px;
+height:75px;
+border-radius:50%;
+background:#6f9460;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+font-weight:bold;
+margin:0 auto 10px;
+}
+
+.profile-menu h3{
+margin:5px 0;
+font-size:20px;
+color:#222;
+}
+
+.profile-menu p{
+margin:5px 0;
+font-size:14px;
 color:#555;
+}
+
+.profile-menu hr{
+margin:15px 0;
+border:none;
+border-top:1px solid #ddd;
+}
+
+.profile-menu button{
+width:100%;
+padding:12px;
+margin:6px 0;
+border:none;
+background:#f4f4f4;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+text-align:left;
+}
+
+.profile-menu button:hover{
+background:#e3efdd;
 }
 
 .dashboard-title{
@@ -169,15 +215,11 @@ background:#56754a;
 }
 
 @media(max-width:1000px){
-.profile-box{
-position:static;
-margin-bottom:20px;
-}
 .cards-container{
 grid-template-columns:1fr;
 }
 .dashboard-title{
-padding-top:10px;
+padding-top:80px;
 }
 }
 </style>
@@ -185,31 +227,136 @@ padding-top:10px;
 
 <body>
 
-<div class="profile-box">
-    <div class="profile-logo">
-        <i class="fa-solid fa-user"></i>
+<div class="profile-container">
+    <div class="profile-circle" onclick="toggleProfileMenu()">
+        <span id="profileInitial">U</span>
     </div>
-    <div>
-        <h4 id="profileName">User</h4>
-        <p id="profilePhone">Phone</p>
-        <p id="profileEmail">Email</p>
+
+    <div class="profile-menu" id="profileMenu">
+        <div class="big-profile-circle">
+            <span id="menuInitial">U</span>
+        </div>
+
+        <h3 id="menuName">User Name</h3>
+        <p id="menuEmail">user@gmail.com</p>
+        <p id="menuPhone">+91 0000000000</p>
+
+        <hr>
+
+        <button onclick="viewProfile()">👤 View Profile</button>
+        <button onclick="editProfile()">✏️ Edit Profile</button>
+        <button onclick="changePassword()">🔒 Change Password</button>
+        <button onclick="logout()">🚪 Logout</button>
     </div>
 </div>
 
-<h1 class="dashboard-title">
-Tiruvannamalai Dashboard
-</h1>
+<h1 class="dashboard-title">Tiruvannamalai Dashboard</h1>
 
-<!-- keep your same cards code here exactly -->
+<div class="cards-container">
+
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<img src="temple1.jpg">
+<div class="image-title">Arunachaleswarar Temple</div>
+</div>
+<div class="flip-card-back">
+<h2>Temple Information</h2>
+<ul class="info-list">
+<li><i class="fa-solid fa-clock"></i>Temple Timings</li>
+<li><i class="fa-solid fa-book"></i>Temple History</li>
+<li><i class="fa-solid fa-gopuram"></i>Rajagopuram Details</li>
+<li><i class="fa-solid fa-bell"></i>Darshan Information</li>
+<li><i class="fa-solid fa-fire"></i>Festivals & Deepam</li>
+<li><i class="fa-solid fa-star"></i>Special Poojas</li>
+</ul>
+<a href="temple-details.html" class="explore-btn">Explore Temple</a>
+</div>
+</div>
+</div>
+
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<img src="temple2.jpg">
+<div class="image-title">Girivalam Route</div>
+</div>
+<div class="flip-card-back">
+<h2>Girivalam Navigation</h2>
+<ul class="info-list">
+<li><i class="fa-solid fa-route"></i>14 KM Girivalam Route</li>
+<li><i class="fa-solid fa-location-dot"></i>GPS Navigation</li>
+<li><i class="fa-solid fa-droplet"></i>Water Points</li>
+<li><i class="fa-solid fa-utensils"></i>Food Centres</li>
+<li><i class="fa-solid fa-phone"></i>Emergency Help</li>
+<li><i class="fa-solid fa-om"></i>Ashta Lingams</li>
+</ul>
+<a href="girivalam-route.html" class="explore-btn">Start Girivalam</a>
+</div>
+</div>
+</div>
+
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<img src="temple3.jpg">
+<div class="image-title">Other Sacred Places</div>
+</div>
+<div class="flip-card-back">
+<h2>Other Sacred Places</h2>
+<ul class="info-list">
+<li><i class="fa-solid fa-place-of-worship"></i>Sri Ramana Ashramam</li>
+<li><i class="fa-solid fa-mountain"></i>Virupaksha Cave</li>
+<li><i class="fa-solid fa-tree"></i>Skandashramam</li>
+<li><i class="fa-solid fa-om"></i>Yogi Ramsuratkumar Ashram</li>
+<li><i class="fa-solid fa-water"></i>Sathanur Dam</li>
+<li><i class="fa-solid fa-gopuram"></i>Pachaiamman Temple</li>
+</ul>
+<a href="sacred_places.html" class="explore-btn">Explore Places</a>
+</div>
+</div>
+</div>
+
+</div>
 
 <script>
 const user = JSON.parse(localStorage.getItem("loggedUser"));
 
-if (user) {
-    document.getElementById("profileName").innerText = user.name;
-    document.getElementById("profilePhone").innerText = user.phone;
-    document.getElementById("profileEmail").innerText = user.email;
-} else {
+if(user){
+    const initial = user.name ? user.name.charAt(0).toUpperCase() : "U";
+
+    document.getElementById("profileInitial").innerText = initial;
+    document.getElementById("menuInitial").innerText = initial;
+    document.getElementById("menuName").innerText = user.name;
+    document.getElementById("menuEmail").innerText = user.email;
+    document.getElementById("menuPhone").innerText = "+91 " + user.phone;
+}else{
+    window.location.href = "auth.html";
+}
+
+function toggleProfileMenu(){
+    const menu = document.getElementById("profileMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function viewProfile(){
+    alert(
+        "Name: " + user.name +
+        "\nEmail: " + user.email +
+        "\nPhone: +91 " + user.phone
+    );
+}
+
+function editProfile(){
+    alert("Edit Profile feature will be added next.");
+}
+
+function changePassword(){
+    alert("Change Password feature will be added next.");
+}
+
+function logout(){
+    localStorage.removeItem("loggedUser");
     window.location.href = "auth.html";
 }
 </script>
