@@ -130,7 +130,17 @@ small{
 
     <small>Must start with CAPITAL letter, include number & symbol</small>
 
-    <button type="button" onclick="signup()">Register</button>
+    <input type="text" id="signupOtp" placeholder="Enter OTP" style="display:none;">
+
+<button type="button" onclick="sendSignupOTP()">Send OTP</button>
+
+<button type="button" id="verifyOtpBtn" onclick="verifySignupOTP()" style="display:none;">
+    Verify OTP
+</button>
+
+<button type="button" id="registerBtn" onclick="signup()" disabled>
+    Register
+</button>
 
     <span class="switch" onclick="showLogin()">
         Already have account? Login
