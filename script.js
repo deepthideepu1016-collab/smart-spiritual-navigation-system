@@ -1,5 +1,61 @@
+let signupOtpVerified = false;
+
+// ================= SEND SIGNUP OTP =================
+async function sendSignupOTP() {
+    const phone = document.getElementById("phone").value;
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Enter valid 10-digit mobile number");
+        return;
+    }
+
+    const response = await fetch("/send-signup-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if (data.success) {
+        document.getElementById("signupOtp").style.display = "block";
+        document.getElementById("verifyOtpBtn").style.display = "block";
+    }
+}
+
+// ================= VERIFY SIGNUP OTP =================
+async function verifySignupOTP() {
+    const phone = document.getElementById("phone").value;
+    const otp = document.getElementById("signupOtp").value;
+
+    if (otp.trim() === "") {
+        alert("Enter OTP");
+        return;
+    }
+
+    const response = await fetch("/verify-signup-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, otp })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if (data.success) {
+        signupOtpVerified = true;
+        document.getElementById("registerBtn").disabled = false;
+    }
+}
 // ================= SIGNUP =================
 async function signup() {
+
+    if (!signupOtpVerified) {
+        alert("Please verify OTP first");
+        return;
+    }
+
     const user = {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
@@ -12,25 +68,7 @@ async function signup() {
         return;
     }
 
-    try {
-        const response = await fetch("/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(user)
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            alert("Account Created Successfully");
-            showLogin();
-        } else {
-            alert(data.message);
-        }
-    } catch (error) {
-        console.log(error);
-        alert("Signup Error");
-    }
+    // ...rest of your code...
 }
 
 // ================= LOGIN =================
