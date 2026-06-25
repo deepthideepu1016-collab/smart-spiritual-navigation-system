@@ -108,3 +108,18 @@ background:#6f9460;
 color:white;
 cursor:pointer;
 }
+.back-btn{
+    display:inline-block;
+    padding:15px 25px;
+    background:#4d7040;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+.back-btn:hover{
+    background:#35552c;
+}
