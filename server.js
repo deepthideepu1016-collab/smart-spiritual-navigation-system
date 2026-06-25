@@ -51,76 +51,6 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-// ================= SEND SIGNUP OTP =================
-app.post("/send-signup-otp", async (req, res) => {
-    try {
-        const { phone } = req.body;
-
-        const existingUser = await User.findOne({ phone });
-
-        if (existingUser) {
-            return res.json({
-                success: false,
-                message: "Phone number already registered"
-            });
-        }
-
-        await client.verify.v2
-            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
-            .verifications.create({
-                to: "+91" + phone,
-                channel: "sms"
-            });
-
-        otpTimeStore[phone] = Date.now();
-
-        res.json({
-            success: true,
-            message: "OTP sent successfully"
-        });
-
-    } catch (error) {
-        res.json({
-            success: false,
-            message: error.message
-        });
-    }
-});
-
-// ================= VERIFY SIGNUP OTP =================
-app.post("/verify-signup-otp", async (req, res) => {
-    try {
-        const { phone, otp } = req.body;
-
-        const verificationCheck = await client.verify.v2
-            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
-            .verificationChecks.create({
-                to: "+91" + phone,
-                code: otp
-            });
-
-        if (verificationCheck.status === "approved") {
-            otpVerifiedStore[phone] = true;
-
-            return res.json({
-                success: true,
-                message: "OTP Verified Successfully"
-            });
-        }
-
-        res.json({
-            success: false,
-            message: "Invalid OTP"
-        });
-
-    } catch (error) {
-        res.json({
-            success: false,
-            message: error.message
-        });
-    }
-});
-
 // ================= SIGNUP =================
 app.post("/signup", async (req, res) => {
     const { name, phone, email, password } = req.body;
@@ -140,12 +70,6 @@ app.post("/signup", async (req, res) => {
                 message: "User already exists"
             });
         }
-        if (!otpVerifiedStore[phone]) {
-    return res.json({
-        success: false,
-        message: "Please verify OTP before registration"
-    });
-}
 
         const user = new User({
             name,
@@ -155,8 +79,6 @@ app.post("/signup", async (req, res) => {
         });
 
         await user.save();
-        delete otpVerifiedStore[phone];
-        delete otpTimeStore[phone];
 
         res.json({
             success: true,
