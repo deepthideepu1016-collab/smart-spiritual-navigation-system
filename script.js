@@ -7,11 +7,16 @@ async function signup(){
     }
 
     const user = {
-        name: name.value,
-        phone: phone.value,
-        email: email.value,
-        password: password.value
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
     };
+
+    if(user.name.trim() === ""){
+        alert("Enter name");
+        return;
+    }
 
     const res = await fetch("/signup", {
         method:"POST",
@@ -24,6 +29,7 @@ async function signup(){
 
     if(data.success) showLogin();
 }
+
 
 async function sendSignupOTP(){
     if(!/^[0-9]{10}$/.test(phone.value)){
