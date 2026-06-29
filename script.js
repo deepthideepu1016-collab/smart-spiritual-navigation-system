@@ -69,8 +69,8 @@ async function login(){
         method:"POST",
         headers:{ "Content-Type":"application/json" },
         body:JSON.stringify({
-            email: loginEmail.value,
-            password: loginPassword.value
+            email: document.getElementById("loginEmail").value.trim(),
+            password: document.getElementById("loginPassword").value.trim()
         })
     });
 
@@ -79,7 +79,7 @@ async function login(){
 
     if(data.success){
         localStorage.setItem("loggedUser", JSON.stringify(data.user));
-        window.location.href = "dashboard.html";
+        window.location.assign("/dashboard.html");
     }
 }
 
