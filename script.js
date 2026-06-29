@@ -79,7 +79,7 @@ async function login(){
 
     if(data.success){
         localStorage.setItem("loggedUser", JSON.stringify(data.user));
-        window.location.assign("/dashboard.html");
+        window.location.href = "dashboard.html";
     }
 }
 
