@@ -85,6 +85,35 @@ small{
     margin-top:5px;
     margin-bottom:10px;
 }
+.phone-box{
+    display:flex;
+    align-items:center;
+    border:1px solid #ccc;
+    border-radius:5px;
+    overflow:hidden;
+    margin:10px 0;
+    height:45px;
+}
+.country-code{
+    width:80px;
+    background:#f5f5f5;
+    font-weight:bold;
+    border-right:1px solid #ccc;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+}
+.phone-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:0 12px;
+    height:100%;
+    font-size:14px;
+    margin:0;
+}
 </style>
 </head>
 
@@ -105,14 +134,9 @@ small{
 
     <button type="submit">Login</button>
 
-    <button type="button" onclick="showForgotPassword()">
-        
-        Forgot Password?
-    </button>
+    <button type="button" onclick="showForgotPassword()">Forgot Password?</button>
 
-    <span class="switch" onclick="showSignup()">
-        New user? Signup
-    </span>
+    <span class="switch" onclick="showSignup()">New user? Signup</span>
 </form>
 
 <div id="signupBox" style="display:none;">
@@ -120,7 +144,10 @@ small{
 
     <input id="name" placeholder="Name">
 
-    <input id="phone" placeholder="Phone" maxlength="10" oninput="validatePhone()">
+    <div class="phone-box">
+        <div class="country-code">🇮🇳 +91</div>
+        <input id="phone" type="text" placeholder="Enter Mobile Number" maxlength="10" oninput="validatePhone()">
+    </div>
 
     <input id="email" placeholder="Email" oninput="validateEmail()">
 
@@ -130,19 +157,17 @@ small{
     </div>
 
     <small>Must start with CAPITAL letter, include number & symbol</small>
+
     <button type="button" onclick="sendSignupOTP()">Send OTP</button>
 
-<div id="signupOtpBox" style="display:none;">
-    <input id="signupOtp" placeholder="Enter OTP">
-    <button type="button" onclick="verifySignupOTP()">Verify OTP</button>
-</div>
+    <div id="signupOtpBox" style="display:none;">
+        <input id="signupOtp" placeholder="Enter OTP">
+        <button type="button" onclick="verifySignupOTP()">Verify OTP</button>
+    </div>
 
-<button id="registerBtn" type="button" onclick="signup()" style="display:none;">
-    Register
-</button>
-    <span class="switch" onclick="showLogin()">
-        Already have account? Login
-    </span>
+    <button id="registerBtn" type="button" onclick="signup()" style="display:none;">Register</button>
+
+    <span class="switch" onclick="showLogin()">Already have account? Login</span>
 </div>
 
 <div id="forgotBox" style="display:none;">
@@ -151,30 +176,21 @@ small{
     <div id="otpBox">
         <input id="forgotPhone" placeholder="Enter Mobile Number" maxlength="10">
 
-        <button type="button" onclick="sendOTP()">
-            Send OTP by SMS
-        </button>
+        <button type="button" onclick="sendOTP()">Send OTP by SMS</button>
 
         <input id="otp" placeholder="Enter OTP">
 
-        <button type="button" onclick="verifyOTP()">
-            Verify OTP
-        </button>
+        <button type="button" onclick="verifyOTP()">Verify OTP</button>
     </div>
 
     <div id="newPasswordBox" style="display:none;">
         <input id="newPassword" type="password" placeholder="New Password">
-
         <input id="confirmPassword" type="password" placeholder="Confirm Password">
 
-        <button type="button" onclick="resetPassword()">
-            Set Password
-        </button>
+        <button type="button" onclick="resetPassword()">Set Password</button>
     </div>
 
-    <span class="switch" onclick="showLogin()">
-        Back to Login
-    </span>
+    <span class="switch" onclick="showLogin()">Back to Login</span>
 </div>
 
 </div>

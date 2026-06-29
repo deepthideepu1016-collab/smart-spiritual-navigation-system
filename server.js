@@ -124,11 +124,12 @@ app.post("/login", async (req, res) => {
         });
     }
 });
-// ================= SEND SIGNUP OTP =================
+// ================= SIGNUP OTP =================
 app.post("/send-signup-otp", async (req, res) => {
     try {
         const { phone } = req.body;
 
+        // Check if phone is already registered
         const existingUser = await User.findOne({ phone });
 
         if (existingUser) {
@@ -138,6 +139,7 @@ app.post("/send-signup-otp", async (req, res) => {
             });
         }
 
+        // Send OTP using Twilio Verify
         await client.verify.v2
             .services(process.env.TWILIO_VERIFY_SERVICE_SID)
             .verifications.create({
@@ -149,11 +151,11 @@ app.post("/send-signup-otp", async (req, res) => {
 
         res.json({
             success: true,
-            message: "OTP sent successfully by SMS"
+            message: "OTP sent successfully"
         });
 
     } catch (error) {
-        console.log("Signup OTP Error:", error.message);
+        console.log(error);
 
         res.json({
             success: false,
