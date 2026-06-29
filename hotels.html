@@ -22,7 +22,7 @@ body{
 
 .header{
     text-align:center;
-    margin-bottom:40px;
+    margin-bottom:25px;
 }
 
 .header h1{
@@ -34,6 +34,15 @@ body{
     color:#666;
     font-size:18px;
     margin-top:10px;
+}
+
+.category-title{
+    max-width:1400px;
+    margin:35px auto 20px;
+    font-size:28px;
+    color:#2c3e36;
+    border-left:8px solid #6f9460;
+    padding-left:15px;
 }
 
 .hotels-container{
@@ -49,6 +58,11 @@ body{
     border-radius:20px;
     overflow:hidden;
     box-shadow:0 8px 20px rgba(0,0,0,0.18);
+    transition:0.3s;
+}
+
+.hotel-card:hover{
+    transform:translateY(-6px);
 }
 
 .hotel-card img{
@@ -70,6 +84,17 @@ body{
     color:#f39c12;
     margin-bottom:12px;
     font-size:18px;
+}
+
+.tag{
+    display:inline-block;
+    background:#e3efdd;
+    color:#2c3e36;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
 .hotel-content p{
@@ -110,7 +135,7 @@ body{
 .back-btn{
     display:block;
     width:220px;
-    margin:40px auto 0;
+    margin:45px auto 0;
     text-align:center;
     background:#2c3e36;
     color:white;
@@ -132,82 +157,25 @@ body{
 
 <div class="header">
     <h1>Hotels & Accommodation</h1>
-    <p>Popular stays near Arunachaleswarar Temple, Tiruvannamalai</p>
+    <p>Budget to premium stays near Arunachaleswarar Temple, Tiruvannamalai</p>
 </div>
+
+<h2 class="category-title">Budget Stay</h2>
 
 <div class="hotels-container">
 
 <div class="hotel-card">
     <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800">
     <div class="hotel-content">
-        <h2>Hotel Arunachala</h2>
+        <span class="tag">Budget / Official TTDC</span>
+        <h2>TTDC Hotel Aalayam</h2>
         <div class="rating">★★★★☆</div>
-        <p><i class="fa-solid fa-location-dot"></i> Near Arunachaleswarar Temple</p>
-        <p><i class="fa-solid fa-bed"></i> AC Rooms, Family Rooms, Parking</p>
-        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹2500 onwards</p>
+        <p><i class="fa-solid fa-location-dot"></i> Tiruvannamalai, near temple area</p>
+        <p><i class="fa-solid fa-bed"></i> Deluxe rooms, family rooms, official Tamil Nadu Tourism stay</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Budget-friendly stay</p>
         <div class="buttons">
-            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Hotel+Arunachala+Tiruvannamalai">Map</a>
-            <a class="book-btn" target="_blank" href="https://www.google.com/search?q=Hotel+Arunachala+Tiruvannamalai+booking">Book</a>
-        </div>
-    </div>
-</div>
-
-<div class="hotel-card">
-    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800">
-    <div class="hotel-content">
-        <h2>Anantharaa Hotel</h2>
-        <div class="rating">★★★★☆</div>
-        <p><i class="fa-solid fa-location-dot"></i> Thiruvoodal Street, Tiruvannamalai</p>
-        <p><i class="fa-solid fa-bed"></i> Clean Rooms, Restaurant, WiFi</p>
-        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹2500 onwards</p>
-        <div class="buttons">
-            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Anantharaa+Hotel+Tiruvannamalai">Map</a>
-            <a class="book-btn" target="_blank" href="https://www.google.com/search?q=Anantharaa+Hotel+Tiruvannamalai+booking">Book</a>
-        </div>
-    </div>
-</div>
-
-<div class="hotel-card">
-    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800">
-    <div class="hotel-content">
-        <h2>Arudra Residency</h2>
-        <div class="rating">★★★★☆</div>
-        <p><i class="fa-solid fa-location-dot"></i> Near Temple Area</p>
-        <p><i class="fa-solid fa-bed"></i> AC Rooms, Free WiFi, Terrace</p>
-        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹3000 onwards</p>
-        <div class="buttons">
-            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Arudra+Residency+Tiruvannamalai">Map</a>
-            <a class="book-btn" target="_blank" href="https://www.google.com/search?q=Arudra+Residency+Tiruvannamalai+booking">Book</a>
-        </div>
-    </div>
-</div>
-
-<div class="hotel-card">
-    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800">
-    <div class="hotel-content">
-        <h2>Sri Sarvesha JS Palace</h2>
-        <div class="rating">★★★★☆</div>
-        <p><i class="fa-solid fa-location-dot"></i> Near North Gopuram</p>
-        <p><i class="fa-solid fa-bed"></i> Temple View, AC Rooms, Parking</p>
-        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹3000 onwards</p>
-        <div class="buttons">
-            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Sri+Sarvesha+JS+Palace+Tiruvannamalai">Map</a>
-            <a class="book-btn" target="_blank" href="https://www.google.com/search?q=Sri+Sarvesha+JS+Palace+Tiruvannamalai+booking">Book</a>
-        </div>
-    </div>
-</div>
-
-<div class="hotel-card">
-    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800">
-    <div class="hotel-content">
-        <h2>Hotel Himalayaa</h2>
-        <div class="rating">★★★★☆</div>
-        <p><i class="fa-solid fa-location-dot"></i> Tiruvannamalai Town</p>
-        <p><i class="fa-solid fa-bed"></i> Premium Stay, Restaurant, Parking</p>
-        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹3500 onwards</p>
-        <div class="buttons">
-            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Hotel+Himalayaa+Tiruvannamalai">Map</a>
-            <a class="book-btn" target="_blank" href="https://www.google.com/search?q=Hotel+Himalayaa+Tiruvannamalai+booking">Book</a>
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/TTDC+Hotel+Aalayam+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://ttdconline.com/hotel/aalayam">Book</a>
         </div>
     </div>
 </div>
@@ -215,14 +183,139 @@ body{
 <div class="hotel-card">
     <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800">
     <div class="hotel-content">
+        <span class="tag">Budget</span>
+        <h2>Hotel Ramakrishna</h2>
+        <div class="rating">★★★☆☆</div>
+        <p><i class="fa-solid fa-location-dot"></i> Tiruvannamalai town</p>
+        <p><i class="fa-solid fa-bed"></i> Basic rooms, family stay, near main areas</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹1000 onwards</p>
+        <div class="buttons">
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Hotel+Ramakrishna+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://www.makemytrip.com/hotels/hotel_ramakrishna-details-tiruvannamalai.html">Book</a>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800">
+    <div class="hotel-content">
+        <span class="tag">Budget / Temple Near</span>
+        <h2>Hotel Arunachala</h2>
+        <div class="rating">★★★★☆</div>
+        <p><i class="fa-solid fa-location-dot"></i> 5, Vada Sannathi Street, near temple</p>
+        <p><i class="fa-solid fa-bed"></i> AC rooms, family rooms, parking</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹2300 onwards</p>
+        <div class="buttons">
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Hotel+Arunachala+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://hotelarunachala.in/">Book</a>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<h2 class="category-title">Mid-Range Stay</h2>
+
+<div class="hotels-container">
+
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800">
+    <div class="hotel-content">
+        <span class="tag">Mid-Range</span>
+        <h2>Anantharaa Hotel</h2>
+        <div class="rating">★★★★☆</div>
+        <p><i class="fa-solid fa-location-dot"></i> Thiruvoodal Street, Tiruvannamalai</p>
+        <p><i class="fa-solid fa-bed"></i> Clean rooms, restaurant, WiFi</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹2500 onwards</p>
+        <div class="buttons">
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Anantharaa+Hotel+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://www.booking.com/searchresults.html?ss=Anantharaa+Hotel+Tiruvannamalai">Book</a>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800">
+    <div class="hotel-content">
+        <span class="tag">Mid-Range</span>
+        <h2>Arudra Residency</h2>
+        <div class="rating">★★★★☆</div>
+        <p><i class="fa-solid fa-location-dot"></i> Near Arunachaleswarar Temple area</p>
+        <p><i class="fa-solid fa-bed"></i> AC rooms, WiFi, terrace, family stay</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹3000 onwards</p>
+        <div class="buttons">
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Arudra+Residency+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://www.booking.com/searchresults.html?ss=Arudra+Residency+Tiruvannamalai">Book</a>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800">
+    <div class="hotel-content">
+        <span class="tag">Mid-Range / Temple View</span>
+        <h2>Sri Sarvesha JS Palace</h2>
+        <div class="rating">★★★★☆</div>
+        <p><i class="fa-solid fa-location-dot"></i> Near North Gopuram</p>
+        <p><i class="fa-solid fa-bed"></i> Temple view, AC rooms, parking</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹3000 onwards</p>
+        <div class="buttons">
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Sri+Sarvesha+JS+Palace+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://www.booking.com/searchresults.html?ss=Sri+Sarvesha+JS+Palace+Tiruvannamalai">Book</a>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<h2 class="category-title">Premium Stay</h2>
+
+<div class="hotels-container">
+
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800">
+    <div class="hotel-content">
+        <span class="tag">Premium</span>
+        <h2>Hotel Himalayaa</h2>
+        <div class="rating">★★★★☆</div>
+        <p><i class="fa-solid fa-location-dot"></i> 687D, Polur Road, Vengikkal</p>
+        <p><i class="fa-solid fa-bed"></i> Premium rooms, restaurant, parking</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹3500 onwards</p>
+        <div class="buttons">
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Hotel+Himalayaa+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://www.makemytrip.com/hotels/hotel_himalayaa-details-tiruvannamalai.html">Book</a>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800">
+    <div class="hotel-content">
+        <span class="tag">Premium / Family</span>
         <h2>Athena Hotel</h2>
         <div class="rating">★★★★☆</div>
         <p><i class="fa-solid fa-location-dot"></i> Tiruvannamalai</p>
-        <p><i class="fa-solid fa-bed"></i> Swimming Pool, Restaurant, Family Stay</p>
-        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹3000 onwards</p>
+        <p><i class="fa-solid fa-bed"></i> Swimming pool, restaurant, family stay</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Approx ₹4500 onwards</p>
         <div class="buttons">
             <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/Athena+Hotel+Tiruvannamalai">Map</a>
-            <a class="book-btn" target="_blank" href="https://www.google.com/search?q=Athena+Hotel+Tiruvannamalai+booking">Book</a>
+            <a class="book-btn" target="_blank" href="https://www.booking.com/hotel/in/athena-tiruvannamalai.html">Book</a>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800">
+    <div class="hotel-content">
+        <span class="tag">Premium Search</span>
+        <h2>More Premium Hotels</h2>
+        <div class="rating">★★★★☆</div>
+        <p><i class="fa-solid fa-location-dot"></i> Tiruvannamalai</p>
+        <p><i class="fa-solid fa-bed"></i> Compare rooms, ratings, and facilities</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> Price depends on date</p>
+        <div class="buttons">
+            <a class="map-btn" target="_blank" href="https://www.google.com/maps/search/premium+hotels+Tiruvannamalai">Map</a>
+            <a class="book-btn" target="_blank" href="https://www.booking.com/searchresults.html?ss=Tiruvannamalai">Book</a>
         </div>
     </div>
 </div>
