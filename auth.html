@@ -106,6 +106,7 @@ small{
     <button type="submit">Login</button>
 
     <button type="button" onclick="showForgotPassword()">
+        
         Forgot Password?
     </button>
 
@@ -129,7 +130,16 @@ small{
     </div>
 
     <small>Must start with CAPITAL letter, include number & symbol</small>
-    <button type="button" onclick="signup()">Register</button>
+    <button type="button" onclick="sendSignupOTP()">Send OTP</button>
+
+<div id="signupOtpBox" style="display:none;">
+    <input id="signupOtp" placeholder="Enter OTP">
+    <button type="button" onclick="verifySignupOTP()">Verify OTP</button>
+</div>
+
+<button id="registerBtn" type="button" onclick="signup()" style="display:none;">
+    Register
+</button>
     <span class="switch" onclick="showLogin()">
         Already have account? Login
     </span>
