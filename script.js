@@ -1,24 +1,12 @@
 let signupOtpVerified = false;
 
 async function signup(){
-    if(!signupOtpVerified){
-        alert("Please verify OTP first");
-        return;
-    }
-
     const user = {
         name: document.getElementById("name").value.trim(),
         phone: document.getElementById("phone").value.trim(),
         email: document.getElementById("email").value.trim(),
         password: document.getElementById("password").value.trim()
     };
-
-    console.log("Signup user:", user);
-
-    if(user.name === ""){
-        alert("Enter name");
-        return;
-    }
 
     const res = await fetch("/signup", {
         method:"POST",
@@ -27,9 +15,7 @@ async function signup(){
     });
 
     const data = await res.json();
-    alert(data.message);
-
-    if(data.success) showLogin();
+    return data;
 }
 
 async function sendSignupOTP(){
@@ -57,17 +43,24 @@ async function verifySignupOTP(){
         method:"POST",
         headers:{ "Content-Type":"application/json" },
         body:JSON.stringify({
-            phone: phone.value,
-            otp: signupOtp.value
+            phone: document.getElementById("phone").value.trim(),
+            otp: document.getElementById("signupOtp").value.trim()
         })
     });
 
     const data = await res.json();
-    alert(data.message);
 
     if(data.success){
-        signupOtpVerified = true;
-        registerBtn.style.display = "block";
+        const registerData = await signup();
+
+        if(registerData.success){
+            alert("OTP Verified Successfully.\nUser Registered Successfully");
+            showLogin();
+        }else{
+            alert(registerData.message);
+        }
+    }else{
+        alert("OTP not matched. Please enter correct OTP");
     }
 }
 
