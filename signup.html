@@ -68,6 +68,36 @@ a{
     display:block;
     margin-top:10px;
 }
+.phone-box{
+    display:flex;
+    align-items:center;
+    width:90%;
+    margin:8px auto;
+    border:1px solid #ccc;
+    border-radius:5px;
+    overflow:hidden;
+    height:42px;
+}
+
+.country-code{
+    width:70px;
+    background:#f5f5f5;
+    border-right:1px solid #ccc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.phone-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:10px;
+    margin:0;
+    width:auto;
+}
 </style>
 </head>
 
@@ -83,11 +113,21 @@ a{
 
 <input type="text" id="name" placeholder="Name" required>
 
-<input type="text"
-       id="phone"
-       placeholder="Phone"
-       oninput="validatePhone()"
-       required>
+<div class="phone-box">
+
+    <div class="country-code">
+        🇮🇳 +91
+    </div>
+
+    <input
+        type="text"
+        id="phone"
+        placeholder="Enter Mobile Number"
+        maxlength="10"
+        oninput="validatePhone()"
+        required>
+
+</div>
 
 <input type="email"
        id="email"

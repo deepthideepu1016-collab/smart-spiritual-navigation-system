@@ -109,8 +109,12 @@ function toggleLoginPassword(){
     loginPassword.type = loginPassword.type === "password" ? "text" : "password";
 }
 
-function validatePhone(){
-    phone.style.border = /^[0-9]{10}$/.test(phone.value)
+function validatePhone() {
+    const phone = document.getElementById("phone");
+
+    const valid = /^[6-9][0-9]{9}$/.test(phone.value);
+
+    phone.style.border = valid
         ? "2px solid green"
         : "2px solid red";
 }
