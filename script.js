@@ -7,13 +7,15 @@ async function signup(){
     }
 
     const user = {
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
+        name: document.getElementById("name").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value.trim()
     };
 
-    if(user.name.trim() === ""){
+    console.log("Signup user:", user);
+
+    if(user.name === ""){
         alert("Enter name");
         return;
     }
@@ -29,7 +31,6 @@ async function signup(){
 
     if(data.success) showLogin();
 }
-
 
 async function sendSignupOTP(){
     if(!/^[0-9]{10}$/.test(phone.value)){
