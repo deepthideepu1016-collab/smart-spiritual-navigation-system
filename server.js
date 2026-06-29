@@ -124,6 +124,43 @@ app.post("/login", async (req, res) => {
         });
     }
 });
+// ================= SEND SIGNUP OTP =================
+app.post("/send-signup-otp", async (req, res) => {
+    try {
+        const { phone } = req.body;
+
+        const existingUser = await User.findOne({ phone });
+
+        if (existingUser) {
+            return res.json({
+                success: false,
+                message: "Phone number already registered"
+            });
+        }
+
+        await client.verify.v2
+            .services(process.env.TWILIO_VERIFY_SERVICE_SID)
+            .verifications.create({
+                to: "+91" + phone,
+                channel: "sms"
+            });
+
+        otpTimeStore[phone] = Date.now();
+
+        res.json({
+            success: true,
+            message: "OTP sent successfully by SMS"
+        });
+
+    } catch (error) {
+        console.log("Signup OTP Error:", error.message);
+
+        res.json({
+            success: false,
+            message: error.message
+        });
+    }
+});
 
 // ================= SEND OTP SMS ONLY =================
 app.post("/send-otp", async (req, res) => {

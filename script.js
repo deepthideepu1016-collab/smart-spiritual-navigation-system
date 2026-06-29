@@ -1,5 +1,11 @@
+let signupOtpVerified = false;
 // ================= SIGNUP =================
 async function signup() {
+    if (!signupOtpVerified) {
+        alert("Please verify phone number using OTP first");
+        return;
+    }
+
     const user = {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
@@ -131,6 +137,62 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+// ================= SIGNUP OTP =================
+async function sendSignupOTP() {
+    const phone = document.getElementById("phone").value;
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Enter valid 10-digit mobile number");
+        return;
+    }
+
+    try {
+        const response = await fetch("/send-signup-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phone })
+        });
+
+        const data = await response.json();
+        alert(data.message);
+
+        if (data.success) {
+            document.getElementById("signupOtpBox").style.display = "block";
+        }
+    } catch (error) {
+        console.log(error);
+        alert("Error sending signup OTP");
+    }
+}
+
+async function verifySignupOTP() {
+    const phone = document.getElementById("phone").value;
+    const otp = document.getElementById("signupOtp").value;
+
+    if (otp.trim() === "") {
+        alert("Enter OTP");
+        return;
+    }
+
+    try {
+        const response = await fetch("/verify-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phone, otp })
+        });
+
+        const data = await response.json();
+        alert(data.message);
+
+        if (data.success) {
+            signupOtpVerified = true;
+            document.getElementById("registerBtn").style.display = "block";
+        }
+    } catch (error) {
+        console.log(error);
+        alert("OTP verification error");
+    }
+}
 
 // ================= SEND OTP SMS ONLY =================
 async function sendOTP() {
