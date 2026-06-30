@@ -12,7 +12,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
@@ -106,7 +106,7 @@ body{
     background:#e3efdd;
 }
 
-/* MODAL */
+/* MODALS */
 .modal{
     display:none;
     position:fixed;
@@ -163,12 +163,12 @@ body{
 .dashboard-title{
     text-align:center;
     font-size:42px;
-    margin-bottom:30px;
+    margin-bottom:35px;
     color:#2c3e36;
     padding-top:70px;
 }
 
-/* MOVING IMAGE SLIDER */
+/* SCROLLING IMAGES */
 .image-slider{
     width:100%;
     max-width:1500px;
@@ -332,8 +332,10 @@ body{
 }
 </style>
 </head>
+
 <body>
 
+<!-- PROFILE -->
 <div class="profile-container">
     <div class="profile-circle" onclick="toggleProfileMenu()">
         <span id="profileInitial">U</span>
@@ -357,6 +359,7 @@ body{
     </div>
 </div>
 
+<!-- MODALS -->
 <div id="editModal" class="modal">
     <div class="modal-box">
         <h2>Edit Profile</h2>
@@ -379,6 +382,7 @@ body{
 
 <h1 class="dashboard-title">Tiruvannamalai Dashboard</h1>
 
+<!-- 10 MOVING IMAGES ONLY -->
 <div class="image-slider">
     <div class="slider-track">
 
@@ -390,7 +394,7 @@ body{
         <img src="images/mokshamaragam.jpg">
         <img src="images/ramana-asaramam.jpg">
         <img src="images/ramana-maharshi.jpg">
-        <img src="images/meditation-asharamam.jpg">
+        <img src="images/meditation-hall.jpg">
         <img src="images/sathanur-dam.jpg">
 
         <img src="images/rajagopuram.jpg">
@@ -401,152 +405,168 @@ body{
         <img src="images/mokshamaragam.jpg">
         <img src="images/ramana-asaramam.jpg">
         <img src="images/ramana-maharshi.jpg">
-        <img src="images/meditation-asharamam.jpg">
+        <img src="images/meditation-hall.jpg">
         <img src="images/sathanur-dam.jpg">
 
     </div>
 </div>
 
+<!-- OLD FLIP CARDS -->
 <div class="cards-container">
-    <!-- Temple Information -->
-<div class="flip-card">
-    <div class="flip-card-inner">
 
-        <div class="flip-card-front">
-            <img src="images/Tiruvunamalaiar-Temple.jpg">
-            <div class="image-title">Temple Information</div>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+
+            <div class="flip-card-front">
+                <img src="temple1.jpg">
+                <div class="image-title">Arunachaleswarar Temple</div>
+            </div>
+
+            <div class="flip-card-back">
+                <h2>Temple Information</h2>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-clock"></i>Temple Timings</li>
+                    <li><i class="fa-solid fa-book"></i>Temple History</li>
+                    <li>
+                        <i class="fa-solid fa-gopuram"></i>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Arunachaleswarar+Temple+Tiruvannamalai"
+                        target="_blank"
+                        style="color:black; text-decoration:none;">
+                        Rajagopuram Details - Route Map
+                        </a>
+                    </li>
+                    <li><i class="fa-solid fa-bell"></i>Darshan Information</li>
+                    <li><i class="fa-solid fa-fire"></i>Festivals & Deepam</li>
+                    <li><i class="fa-solid fa-star"></i>Special Poojas</li>
+                </ul>
+                <a href="temple-details.html" class="explore-btn">Explore Temple</a>
+            </div>
+
         </div>
-
-        <div class="flip-card-back">
-            <h2>Temple Information</h2>
-            <p>
-                Explore Arunachaleswarar Temple history,
-                timings, darshan details and important information.
-            </p>
-
-            <a href="temple-details.html">Explore</a>
-        </div>
-
     </div>
-</div>
 
-<!-- Girivalam Route -->
-<div class="flip-card">
-    <div class="flip-card-inner">
+    <div class="flip-card">
+        <div class="flip-card-inner">
 
-        <div class="flip-card-front">
-            <img src="images/route-map.jpg">
-            <div class="image-title">Girivalam Route</div>
+            <div class="flip-card-front">
+                <img src="temple2.jpg">
+                <div class="image-title">Girivalam Route</div>
+            </div>
+
+            <div class="flip-card-back">
+                <h2>Girivalam Navigation</h2>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-route"></i>14 KM Girivalam Route</li>
+                    <li><i class="fa-solid fa-location-dot"></i>GPS Navigation</li>
+                    <li><i class="fa-solid fa-droplet"></i>Water Points</li>
+                    <li><i class="fa-solid fa-utensils"></i>Food Centres</li>
+                    <li><i class="fa-solid fa-phone"></i>Emergency Help</li>
+                    <li><i class="fa-solid fa-om"></i>Ashta Lingams</li>
+                </ul>
+                <a href="girivalam-route.html" class="explore-btn">Start Girivalam</a>
+            </div>
+
         </div>
-
-        <div class="flip-card-back">
-            <h2>Girivalam Route</h2>
-            <p>
-                View the complete 14 KM Girivalam route,
-                water points, toilets and Annadhanam centres.
-            </p>
-
-            <a href="girivalam-route.html">Explore</a>
-        </div>
-
     </div>
-</div>
 
-<!-- Other Sacred Places -->
-<div class="flip-card">
-    <div class="flip-card-inner">
+    <div class="flip-card">
+        <div class="flip-card-inner">
 
-        <div class="flip-card-front">
-            <img src="images/ramana-asaramam.jpg">
-            <div class="image-title">Other Sacred Places</div>
+            <div class="flip-card-front">
+                <img src="temple3.jpg">
+                <div class="image-title">Other Sacred Places</div>
+            </div>
+
+            <div class="flip-card-back">
+                <h2>Other Sacred Places</h2>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-place-of-worship"></i>Sri Ramana Ashramam</li>
+                    <li><i class="fa-solid fa-mountain"></i>Virupaksha Cave</li>
+                    <li><i class="fa-solid fa-tree"></i>Skandashramam</li>
+                    <li><i class="fa-solid fa-om"></i>Yogi Ramsuratkumar Ashram</li>
+                    <li><i class="fa-solid fa-water"></i>Sathanur Dam</li>
+                    <li><i class="fa-solid fa-gopuram"></i>Pachaiamman Temple</li>
+                </ul>
+                <a href="sacred_places.html" class="explore-btn">Explore Places</a>
+            </div>
+
         </div>
-
-        <div class="flip-card-back">
-            <h2>Other Sacred Places</h2>
-            <p>
-                Explore Ramana Ashram,
-                Skandashram,
-                Virupaksha Cave,
-                Sathanur Dam and more.
-            </p>
-
-            <a href="sacred_places.html">Explore</a>
-        </div>
-
     </div>
-</div>
 
-<!-- Hotels -->
-<div class="flip-card">
-    <div class="flip-card-inner">
+    <div class="flip-card">
+        <div class="flip-card-inner">
 
-        <div class="flip-card-front">
-            <img src="temple4.jpg">
-            <div class="image-title">Hotels</div>
+            <div class="flip-card-front">
+                <img src="temple4.jpg" alt="Hotels in Tiruvannamalai">
+                <div class="image-title">Hotels in Tiruvannamalai</div>
+            </div>
+
+            <div class="flip-card-back">
+                <h2>Hotels & Accommodation</h2>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-hotel"></i>Hotels</li>
+                    <li><i class="fa-solid fa-bed"></i>Lodges</li>
+                    <li><i class="fa-solid fa-building"></i>Budget Rooms</li>
+                    <li><i class="fa-solid fa-star"></i>Premium Hotels</li>
+                    <li><i class="fa-solid fa-location-dot"></i>Near Temple Stay</li>
+                    <li><i class="fa-solid fa-phone"></i>Contact Details</li>
+                </ul>
+                <a href="hotels.html" class="explore-btn">Explore Hotels</a>
+            </div>
+
         </div>
-
-        <div class="flip-card-back">
-            <h2>Hotels</h2>
-            <p>
-                Discover nearby hotels,
-                lodges and accommodation
-                around Tiruvannamalai.
-            </p>
-
-            <a href="hotels.html">Explore</a>
-        </div>
-
     </div>
-</div>
 
-<!-- Ashta Lingams -->
-<div class="flip-card">
-    <div class="flip-card-inner">
+    <div class="flip-card">
+        <div class="flip-card-inner">
 
-        <div class="flip-card-front">
-            <img src="images/circular-map.jpg">
-            <div class="image-title">Ashta Lingams</div>
+            <div class="flip-card-front">
+                <img src="images/circular-map.jpg">
+                <div class="image-title">Ashta Lingams</div>
+            </div>
+
+            <div class="flip-card-back">
+                <h2>Ashta Lingams</h2>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-om"></i>Indra Lingam</li>
+                    <li><i class="fa-solid fa-fire"></i>Agni Lingam</li>
+                    <li><i class="fa-solid fa-location-dot"></i>Yama Lingam</li>
+                    <li><i class="fa-solid fa-water"></i>Varuna Lingam</li>
+                    <li><i class="fa-solid fa-wind"></i>Vayu Lingam</li>
+                    <li><i class="fa-solid fa-mountain"></i>Kubera Lingam</li>
+                </ul>
+                <a href="girivalam-route.html" class="explore-btn">Explore Lingams</a>
+            </div>
+
         </div>
-
-        <div class="flip-card-back">
-            <h2>Ashta Lingams</h2>
-            <p>
-                Learn about all eight sacred Lingams,
-                their history, mantras and significance.
-            </p>
-
-            <a href="girivalam-route.html">Explore</a>
-        </div>
-
     </div>
-</div>
 
-<!-- Emergency Support -->
-<div class="flip-card">
-    <div class="flip-card-inner">
+    <div class="flip-card">
+        <div class="flip-card-inner">
 
-        <div class="flip-card-front">
-            <img src="images/sathanur-dam.jpg">
-            <div class="image-title">Emergency Support</div>
+            <div class="flip-card-front">
+                <img src="temple.jpg">
+                <div class="image-title">Emergency Support</div>
+            </div>
+
+            <div class="flip-card-back">
+                <h2>Emergency Support</h2>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-phone"></i>Police Help</li>
+                    <li><i class="fa-solid fa-truck-medical"></i>Ambulance</li>
+                    <li><i class="fa-solid fa-hospital"></i>Nearby Hospitals</li>
+                    <li><i class="fa-solid fa-location-dot"></i>Current Location Help</li>
+                    <li><i class="fa-solid fa-droplet"></i>Water & Rest Points</li>
+                    <li><i class="fa-solid fa-circle-info"></i>Emergency Guidance</li>
+                </ul>
+                <a href="#" class="explore-btn">Emergency Help</a>
+            </div>
+
         </div>
-
-        <div class="flip-card-back">
-            <h2>Emergency Support</h2>
-            <p>
-                Emergency contacts,
-                hospitals,
-                police,
-                ambulance
-                and important helpline numbers.
-            </p>
-
-            <a href="emergency.html">Explore</a>
-        </div>
-
     </div>
-</div>
 
 </div>
+
 <script>
 const user = JSON.parse(localStorage.getItem("loggedUser"));
 
@@ -636,7 +656,6 @@ async function savePassword(){
 
     const data = await response.json();
     alert(data.message);
-
     if(data.success){
         closeModal("passwordModal");
     }
