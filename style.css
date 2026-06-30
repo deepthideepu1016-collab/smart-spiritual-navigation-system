@@ -123,3 +123,25 @@ cursor:pointer;
 .back-btn:hover{
     background:#35552c;
 }
+.booking-box{
+background:#f7fbf4;
+padding:20px;
+border-left:5px solid #6f9460;
+border-radius:12px;
+margin-bottom:30px;
+}
+
+.booking-btn{
+display:inline-block;
+margin-top:15px;
+padding:12px 24px;
+background:#6f9460;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+.booking-btn:hover{
+background:#56754a;
+}
