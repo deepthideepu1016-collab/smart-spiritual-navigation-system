@@ -4,548 +4,276 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tiruvannamalai Dashboard</title>
-<a href="gallery.html" class="gallery-btn">View Moving Pictures</a>
-.gallery-btn{
-    display:block;
-    width:250px;
-    margin:0 auto 35px;
-    text-align:center;
-    background:#2c3e36;
-    color:white;
-    padding:14px;
-    border-radius:30px;
-    text-decoration:none;
-    font-size:18px;
-    font-weight:bold;
-}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
 body{
-background:#f5f3ee;
-padding:30px;
-position:relative;
+    background:#f4f3ef;
 }
 
-.profile-container{
-position:absolute;
-top:20px;
-right:30px;
-z-index:1000;
+.header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:10;
+    background:rgba(44,62,54,0.85);
+    color:white;
+    text-align:center;
+    padding:22px;
+    font-size:42px;
+    font-weight:bold;
 }
 
-.profile-circle{
-width:55px;
-height:55px;
-border-radius:50%;
-background:#6f9460;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:26px;
-font-weight:bold;
-cursor:pointer;
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+.hero-slider{
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    position:relative;
 }
 
-.profile-menu{
-display:none;
-position:absolute;
-top:70px;
-right:0;
-width:290px;
-background:white;
-border-radius:15px;
-box-shadow:0 8px 25px rgba(0,0,0,0.25);
-padding:20px;
-text-align:center;
+.slides{
+    width:1000%;
+    height:100%;
+    display:flex;
+    animation:slide 40s infinite;
 }
 
-.big-profile-circle{
-width:75px;
-height:75px;
-border-radius:50%;
-background:#6f9460;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px;
-font-weight:bold;
-margin:0 auto 10px;
+.slide{
+    width:10%;
+    height:100%;
+    position:relative;
 }
 
-.profile-menu h3{
-margin:5px 0;
-font-size:20px;
-color:#222;
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.profile-menu p{
-margin:5px 0;
-font-size:14px;
-color:#555;
+.overlay{
+    position:absolute;
+    bottom:80px;
+    left:70px;
+    background:rgba(0,0,0,0.55);
+    color:white;
+    padding:25px 35px;
+    border-radius:15px;
 }
 
-.profile-menu hr{
-margin:15px 0;
-border:none;
-border-top:1px solid #ddd;
+.overlay h2{
+    font-size:38px;
+    margin-bottom:10px;
 }
 
-.profile-menu button{
-width:100%;
-padding:12px;
-margin:6px 0;
-border:none;
-background:#f4f4f4;
-border-radius:8px;
-cursor:pointer;
-font-size:15px;
-text-align:left;
-color:black;
+.overlay p{
+    font-size:20px;
 }
 
-.profile-menu button:hover{
-background:#e3efdd;
+@keyframes slide{
+    0%{transform:translateX(0);}
+    8%{transform:translateX(0);}
+
+    10%{transform:translateX(-10%);}
+    18%{transform:translateX(-10%);}
+
+    20%{transform:translateX(-20%);}
+    28%{transform:translateX(-20%);}
+
+    30%{transform:translateX(-30%);}
+    38%{transform:translateX(-30%);}
+
+    40%{transform:translateX(-40%);}
+    48%{transform:translateX(-40%);}
+
+    50%{transform:translateX(-50%);}
+    58%{transform:translateX(-50%);}
+
+    60%{transform:translateX(-60%);}
+    68%{transform:translateX(-60%);}
+
+    70%{transform:translateX(-70%);}
+    78%{transform:translateX(-70%);}
+
+    80%{transform:translateX(-80%);}
+    88%{transform:translateX(-80%);}
+
+    90%{transform:translateX(-90%);}
+    100%{transform:translateX(-90%);}
 }
 
-.modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-z-index:3000;
-justify-content:center;
-align-items:center;
+.cards{
+    padding:50px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
 }
 
-.modal-box{
-background:white;
-width:360px;
-padding:25px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 8px 25px rgba(0,0,0,0.3);
+.card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.18);
 }
 
-.modal-box h2{
-margin-bottom:15px;
-color:#2c3e36;
+.card h3{
+    color:#2c3e36;
+    margin-bottom:15px;
 }
 
-.modal-box input{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:15px;
+.card a{
+    display:inline-block;
+    margin-top:15px;
+    background:#2c3e36;
+    color:white;
+    padding:12px 22px;
+    border-radius:25px;
+    text-decoration:none;
 }
 
-.modal-box button{
-width:100%;
-padding:12px;
-margin-top:10px;
-border:none;
-border-radius:8px;
-background:#6f9460;
-color:white;
-cursor:pointer;
-font-size:15px;
-}
+@media(max-width:768px){
+    .header{
+        font-size:28px;
+    }
 
-.modal-box .cancel-btn{
-background:#999;
-}
+    .overlay{
+        left:25px;
+        right:25px;
+        bottom:50px;
+    }
 
-.dashboard-title{
-text-align:center;
-font-size:42px;
-margin-bottom:40px;
-color:#2c3e36;
-padding-top:70px;
-}
+    .overlay h2{
+        font-size:28px;
+    }
 
-.cards-container{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-max-width:1600px;
-margin:auto;
-}
-
-.flip-card{
-background:transparent;
-height:650px;
-perspective:1000px;
-}
-
-.flip-card-inner{
-position:relative;
-width:100%;
-height:100%;
-transition:transform 0.8s;
-transform-style:preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner{
-transform:rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back{
-position:absolute;
-width:100%;
-height:100%;
-backface-visibility:hidden;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
-}
-
-.flip-card-front img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.image-title{
-position:absolute;
-bottom:0;
-width:100%;
-background:rgba(0,0,0,0.6);
-color:white;
-text-align:center;
-padding:20px;
-font-size:24px;
-font-weight:bold;
-}
-
-.flip-card-back{
-background:white;
-transform:rotateY(180deg);
-padding:25px;
-overflow-y:auto;
-}
-
-.flip-card-back h2{
-text-align:center;
-margin-bottom:25px;
-color:#2c3e36;
-}
-
-.info-list{
-list-style:none;
-}
-
-.info-list li{
-margin-bottom:18px;
-font-size:17px;
-line-height:1.6;
-display:flex;
-align-items:flex-start;
-}
-
-.info-list i{
-margin-right:12px;
-color:#6f9460;
-margin-top:4px;
-}
-
-.explore-btn{
-display:block;
-text-align:center;
-margin-top:25px;
-background:#6f9460;
-color:white;
-padding:15px;
-border-radius:12px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.explore-btn:hover{
-background:#56754a;
-}
-
-@media(max-width:1000px){
-.cards-container{
-grid-template-columns:1fr;
-}
-.dashboard-title{
-padding-top:80px;
-}
+    .cards{
+        grid-template-columns:1fr;
+        padding:25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-    <div class="profile-circle" onclick="toggleProfileMenu()">
-        <span id="profileInitial">U</span>
-    </div>
+<div class="header">
+    Tiruvannamalai Dashboard
+</div>
 
-    <div class="profile-menu" id="profileMenu">
-        <div class="big-profile-circle">
-            <span id="menuInitial">U</span>
+<div class="hero-slider">
+    <div class="slides">
+
+        <div class="slide">
+            <img src="images/Tiruvunamalaiar-Temple.jpg">
+            <div class="overlay">
+                <h2>Arunachaleswarar Temple</h2>
+                <p>Spiritual heart of Tiruvannamalai</p>
+            </div>
         </div>
 
-        <h3 id="menuName">User Name</h3>
-        <p id="menuEmail">user@gmail.com</p>
-        <p id="menuPhone">+91 0000000000</p>
+        <div class="slide">
+            <img src="images/rajagopuram.jpg">
+            <div class="overlay">
+                <h2>Rajagopuram</h2>
+                <p>Majestic entrance of the temple</p>
+            </div>
+        </div>
 
-        <hr>
+        <div class="slide">
+            <img src="images/annamalaiyar.jpg">
+            <div class="overlay">
+                <h2>Annamalaiyar Temple</h2>
+                <p>Sacred Shiva temple view</p>
+            </div>
+        </div>
 
-        <button onclick="viewProfile()">👤 View Profile</button>
-        <button onclick="editProfile()">✏️ Edit Profile</button>
-        <button onclick="changePassword()">🔒 Change Password</button>
-        <button onclick="logout()">🚪 Logout</button>
+        <div class="slide">
+            <img src="images/route-map.jpg">
+            <div class="overlay">
+                <h2>Girivalam Route</h2>
+                <p>14 KM spiritual walking path</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/circular-map.jpg">
+            <div class="overlay">
+                <h2>Ashta Lingam Map</h2>
+                <p>Eight sacred lingams around Arunachala</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/mokshamaragam.jpg">
+            <div class="overlay">
+                <h2>Agni Lingam</h2>
+                <p>One of the sacred Ashta Lingams</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/ramanasaramam.jpg">
+            <div class="overlay">
+                <h2>Ramana Ashram</h2>
+                <p>Peaceful spiritual place</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/ramana-maharshi.jpg">
+            <div class="overlay">
+                <h2>Ramana Maharshi</h2>
+                <p>Great saint of Arunachala</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/meditation-asharamam.jpg">
+            <div class="overlay">
+                <h2>Meditation Hall</h2>
+                <p>Calm place for silence and devotion</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="images/sathanur-dam.jpg">
+            <div class="overlay">
+                <h2>Sathanur Dam</h2>
+                <p>Beautiful nearby tourist place</p>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<div id="editModal" class="modal">
-  <div class="modal-box">
-    <h2>Edit Profile</h2>
-    <input id="editName" placeholder="New Name">
-    <input id="editEmail" placeholder="New Email">
-    <button onclick="saveProfile()">Save Changes</button>
-    <button class="cancel-btn" onclick="closeModal('editModal')">Cancel</button>
-  </div>
-</div>
+<div class="cards">
 
-<div id="passwordModal" class="modal">
-  <div class="modal-box">
-    <h2>Change Password</h2>
-    <input id="currentPassword" type="password" placeholder="Current Password">
-    <input id="newPassword" type="password" placeholder="New Password">
-    <button onclick="savePassword()">Change Password</button>
-    <button class="cancel-btn" onclick="closeModal('passwordModal')">Cancel</button>
-  </div>
-</div>
+    <div class="card">
+        <h3>Temple Information</h3>
+        <p>Know temple history, timings and details.</p>
+        <a href="temple-details.html">Explore</a>
+    </div>
 
-<h1 class="dashboard-title">Tiruvannamalai Dashboard</h1>
+    <div class="card">
+        <h3>Girivalam Route</h3>
+        <p>View route map, water points and rest areas.</p>
+        <a href="girivalam-route.html">Explore</a>
+    </div>
 
-<div class="cards-container">
-
-<div class="flip-card">
-<div class="flip-card-inner">
-<div class="flip-card-front">
-<img src="temple1.jpg">
-<div class="image-title">Arunachaleswarar Temple</div>
-</div>
-<div class="flip-card-back">
-<h2>Temple Information</h2>
-<ul class="info-list">
-<li>
-    <i class="fa-solid fa-ticket"></i>
-    <a href="https://annamalaiyar.hrce.tn.gov.in/"
-       target="_blank"
-       style="color:black; text-decoration:none;">
-       Official Online Booking Link
-    </a>
-</li>
-<li><i class="fa-solid fa-clock"></i>Temple Timings</li>
-<li><i class="fa-solid fa-book"></i>Temple History</li>
-<li>
-    <i class="fa-solid fa-gopuram"></i>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Arunachaleswarar+Temple+Tiruvannamalai"
-       target="_blank"
-       style="color:black; text-decoration:none;">
-       Rajagopuram Details - Route Map
-    </a>
-</li>
-<li><i class="fa-solid fa-bell"></i>Darshan Information</li>
-<li><i class="fa-solid fa-fire"></i>Festivals & Deepam</li>
-<li><i class="fa-solid fa-star"></i>Special Poojas</li>
-</ul>
-<a href="temple-details.html" class="explore-btn">Explore Temple</a>
-</div>
-</div>
-</div>
-
-<div class="flip-card">
-<div class="flip-card-inner">
-<div class="flip-card-front">
-<img src="temple2.jpg">
-<div class="image-title">Girivalam Route</div>
-</div>
-<div class="flip-card-back">
-<h2>Girivalam Navigation</h2>
-<ul class="info-list">
-<li><i class="fa-solid fa-route"></i>14 KM Girivalam Route</li>
-<li><i class="fa-solid fa-location-dot"></i>GPS Navigation</li>
-<li><i class="fa-solid fa-droplet"></i>Water Points</li>
-<li><i class="fa-solid fa-utensils"></i>Food Centres</li>
-<li><i class="fa-solid fa-phone"></i>Emergency Help</li>
-<li><i class="fa-solid fa-om"></i>Ashta Lingams</li>
-</ul>
-<a href="girivalam-route.html" class="explore-btn">Start Girivalam</a>
-</div>
-</div>
-</div>
-
-<div class="flip-card">
-<div class="flip-card-inner">
-<div class="flip-card-front">
-<img src="temple3.jpg">
-<div class="image-title">Other Sacred Places</div>
-</div>
-<div class="flip-card-back">
-<h2>Other Sacred Places</h2>
-<ul class="info-list">
-<li><i class="fa-solid fa-place-of-worship"></i>Sri Ramana Ashramam</li>
-<li><i class="fa-solid fa-mountain"></i>Virupaksha Cave</li>
-<li><i class="fa-solid fa-tree"></i>Skandashramam</li>
-<li><i class="fa-solid fa-om"></i>Yogi Ramsuratkumar Ashram</li>
-<li><i class="fa-solid fa-water"></i>Sathanur Dam</li>
-<li><i class="fa-solid fa-gopuram"></i>Pachaiamman Temple</li>
-</ul>
-<a href="sacred_places.html" class="explore-btn">Explore Places</a>
-</div>
-</div>
-</div>
-
-<!-- Hotels Card Starts Here -->
-
-<div class="flip-card">
-<div class="flip-card-inner">
-
-<div class="flip-card-front">
-<img src="temple4.jpg" alt="Hotels in Tiruvannamalai">
-<div class="image-title">Hotels in Tiruvannamalai</div>
-</div>
-
-<div class="flip-card-back">
-<h2>Hotels & Accommodation</h2>
-
-<ul class="info-list">
-<li><i class="fa-solid fa-hotel"></i>Hotels</li>
-<li><i class="fa-solid fa-bed"></i>Lodges</li>
-<li><i class="fa-solid fa-building"></i>Budget Rooms</li>
-<li><i class="fa-solid fa-star"></i>Premium Hotels</li>
-<li><i class="fa-solid fa-location-dot"></i>Near Temple Stay</li>
-<li><i class="fa-solid fa-phone"></i>Contact Details</li>
-</ul>
-<a href="hotels.html" class="explore-btn">
-Explore Hotels
-</a>
-</div>
-</div>
-</div>
+    <div class="card">
+        <h3>Other Sacred Places</h3>
+        <p>Explore ashrams, caves and nearby places.</p>
+        <a href="sacred_places.html">Explore</a>
+    </div>
 
 </div>
-
-<script>
-const user = JSON.parse(localStorage.getItem("loggedUser"));
-
-if(user){
-    const initial = user.name ? user.name.charAt(0).toUpperCase() : "U";
-
-    document.getElementById("profileInitial").innerText = initial;
-    document.getElementById("menuInitial").innerText = initial;
-    document.getElementById("menuName").innerText = user.name;
-    document.getElementById("menuEmail").innerText = user.email;
-    document.getElementById("menuPhone").innerText = "+91 " + user.phone;
-}else{
-    console.log("No logged user found");
-}
-
-function toggleProfileMenu(){
-    const menu = document.getElementById("profileMenu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
-
-function viewProfile(){
-    alert(
-        "Name: " + user.name +
-        "\nEmail: " + user.email +
-        "\nPhone: +91 " + user.phone
-    );
-}
-
-function editProfile(){
-    document.getElementById("editName").value = user.name;
-    document.getElementById("editEmail").value = user.email;
-    document.getElementById("editModal").style.display = "flex";
-}
-
-function changePassword(){
-    document.getElementById("currentPassword").value = "";
-    document.getElementById("newPassword").value = "";
-    document.getElementById("passwordModal").style.display = "flex";
-}
-
-function closeModal(id){
-    document.getElementById(id).style.display = "none";
-}
-
-async function saveProfile(){
-    const newName = document.getElementById("editName").value;
-    const newEmail = document.getElementById("editEmail").value;
-
-    const response = await fetch("/update-profile", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({
-            oldEmail:user.email,
-            name:newName,
-            email:newEmail
-        })
-    });
-
-    const data = await response.json();
-    alert(data.message);
-
-    if(data.success){
-        localStorage.setItem("loggedUser", JSON.stringify(data.user));
-        location.reload();
-    }
-}
-
-async function savePassword(){
-    const currentPassword = document.getElementById("currentPassword").value;
-    const newPassword = document.getElementById("newPassword").value;
-
-    if(currentPassword.trim() === "" || newPassword.trim() === ""){
-        alert("Enter current password and new password");
-        return;
-    }
-
-    const response = await fetch("/change-password", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({
-            email:user.email,
-            currentPassword,
-            newPassword
-        })
-    });
-
-    const data = await response.json();
-    alert(data.message);
-
-    if(data.success){
-        closeModal("passwordModal");
-    }
-}
-
-function logout(){
-    localStorage.removeItem("loggedUser");
-    window.location.href = "auth.html";
-}
-</script>
 
 </body>
 </html>
