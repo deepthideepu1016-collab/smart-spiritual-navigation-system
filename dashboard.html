@@ -2,201 +2,530 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Girivalayam Auth</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiruvannamalai Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:url("temple.jpg") no-repeat center center fixed;
-    background-size:cover;
+background:#f5f3ee;
+padding:30px;
+position:relative;
 }
-.overlay{
-    background:rgba(0,0,0,0.6);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+
+.profile-container{
+position:absolute;
+top:20px;
+right:30px;
+z-index:1000;
 }
-.box{
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    width:350px;
-    text-align:center;
-    box-sizing:border-box;
+
+.profile-circle{
+width:55px;
+height:55px;
+border-radius:50%;
+background:#6f9460;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
-h2{
-    margin-bottom:25px;
-    font-size:35px;
+
+.profile-menu{
+display:none;
+position:absolute;
+top:70px;
+right:0;
+width:290px;
+background:white;
+border-radius:15px;
+box-shadow:0 8px 25px rgba(0,0,0,0.25);
+padding:20px;
+text-align:center;
 }
-input{
-    width:100%;
-    height:45px;
-    padding:0 12px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:5px;
-    box-sizing:border-box;
-    outline:none;
-    font-size:14px;
+
+.big-profile-circle{
+width:75px;
+height:75px;
+border-radius:50%;
+background:#6f9460;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+font-weight:bold;
+margin:0 auto 10px;
 }
-.password-box{
-    position:relative;
-    width:100%;
-    margin:10px 0;
+
+.profile-menu h3{
+margin:5px 0;
+font-size:20px;
+color:#222;
 }
-.password-box input{
-    padding-right:45px;
+
+.profile-menu p{
+margin:5px 0;
+font-size:14px;
+color:#555;
 }
-.password-box span{
-    position:absolute;
-    right:15px;
-    top:50%;
-    transform:translateY(-50%);
-    cursor:pointer;
-    font-size:18px;
+
+.profile-menu hr{
+margin:15px 0;
+border:none;
+border-top:1px solid #ddd;
 }
-button{
-    width:100%;
-    height:45px;
-    background:orange;
-    border:none;
-    color:white;
-    border-radius:5px;
-    cursor:pointer;
-    margin-top:10px;
-    font-size:16px;
+
+.profile-menu button{
+width:100%;
+padding:12px;
+margin:6px 0;
+border:none;
+background:#f4f4f4;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+text-align:left;
+color:black;
 }
-button:hover{
-    background:darkorange;
+
+.profile-menu button:hover{
+background:#e3efdd;
 }
-.switch{
-    color:blue;
-    cursor:pointer;
-    margin-top:15px;
-    display:block;
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+z-index:3000;
+justify-content:center;
+align-items:center;
 }
-small{
-    display:block;
-    text-align:left;
-    color:gray;
-    font-size:11px;
-    margin-top:5px;
-    margin-bottom:10px;
+
+.modal-box{
+background:white;
+width:360px;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,0.3);
 }
-.phone-box{
-    display:flex;
-    align-items:center;
-    border:1px solid #ccc;
-    border-radius:5px;
-    overflow:hidden;
-    margin:10px 0;
-    height:45px;
+
+.modal-box h2{
+margin-bottom:15px;
+color:#2c3e36;
 }
-.country-code{
-    width:80px;
-    background:#f5f5f5;
-    font-weight:bold;
-    border-right:1px solid #ccc;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:14px;
+
+.modal-box input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
 }
-.phone-box input{
-    flex:1;
-    border:none;
-    outline:none;
-    padding:0 12px;
-    height:100%;
-    font-size:14px;
-    margin:0;
+
+.modal-box button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#6f9460;
+color:white;
+cursor:pointer;
+font-size:15px;
+}
+
+.modal-box .cancel-btn{
+background:#999;
+}
+
+.dashboard-title{
+text-align:center;
+font-size:42px;
+margin-bottom:40px;
+color:#2c3e36;
+padding-top:70px;
+}
+
+.cards-container{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+max-width:1600px;
+margin:auto;
+}
+
+.flip-card{
+background:transparent;
+height:650px;
+perspective:1000px;
+}
+
+.flip-card-inner{
+position:relative;
+width:100%;
+height:100%;
+transition:transform 0.8s;
+transform-style:preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner{
+transform:rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back{
+position:absolute;
+width:100%;
+height:100%;
+backface-visibility:hidden;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.flip-card-front img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.image-title{
+position:absolute;
+bottom:0;
+width:100%;
+background:rgba(0,0,0,0.6);
+color:white;
+text-align:center;
+padding:20px;
+font-size:24px;
+font-weight:bold;
+}
+
+.flip-card-back{
+background:white;
+transform:rotateY(180deg);
+padding:25px;
+overflow-y:auto;
+}
+
+.flip-card-back h2{
+text-align:center;
+margin-bottom:25px;
+color:#2c3e36;
+}
+
+.info-list{
+list-style:none;
+}
+
+.info-list li{
+margin-bottom:18px;
+font-size:17px;
+line-height:1.6;
+display:flex;
+align-items:flex-start;
+}
+
+.info-list i{
+margin-right:12px;
+color:#6f9460;
+margin-top:4px;
+}
+
+.explore-btn{
+display:block;
+text-align:center;
+margin-top:25px;
+background:#6f9460;
+color:white;
+padding:15px;
+border-radius:12px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.explore-btn:hover{
+background:#56754a;
+}
+
+@media(max-width:1000px){
+.cards-container{
+grid-template-columns:1fr;
+}
+.dashboard-title{
+padding-top:80px;
+}
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
-<div class="box">
-
-<form id="loginForm">
-    <h2>Login</h2>
-
-    <input id="loginEmail" type="email" placeholder="Email" required>
-
-    <div class="password-box">
-        <input id="loginPassword" type="password" placeholder="Password" required>
-        <span onclick="toggleLoginPassword()">👁</span>
+<div class="profile-container">
+    <div class="profile-circle" onclick="toggleProfileMenu()">
+        <span id="profileInitial">U</span>
     </div>
 
-    <button type="submit">Login</button>
+    <div class="profile-menu" id="profileMenu">
+        <div class="big-profile-circle">
+            <span id="menuInitial">U</span>
+        </div>
 
-    <button type="button" onclick="showForgotPassword()">Forgot Password?</button>
+        <h3 id="menuName">User Name</h3>
+        <p id="menuEmail">user@gmail.com</p>
+        <p id="menuPhone">+91 0000000000</p>
 
-    <span class="switch" onclick="showSignup()">New user? Signup</span>
-</form>
+        <hr>
 
-<div id="signupBox" style="display:none;">
-    <h2>Signup</h2>
-
-    <input id="name" placeholder="Name">
-
-    <div class="phone-box">
-        <div class="country-code">🇮🇳 +91</div>
-        <input id="phone" type="text" placeholder="Enter Mobile Number" maxlength="10" oninput="validatePhone()">
+        <button onclick="viewProfile()">👤 View Profile</button>
+        <button onclick="editProfile()">✏️ Edit Profile</button>
+        <button onclick="changePassword()">🔒 Change Password</button>
+        <button onclick="logout()">🚪 Logout</button>
     </div>
-
-    <input id="email" placeholder="Email" oninput="validateEmail()">
-
-    <div class="password-box">
-        <input id="password" type="password" placeholder="Password" oninput="validatePassword()">
-        <span onclick="togglePassword()">👁</span>
-    </div>
-
-    <small>Must start with CAPITAL letter, include number & symbol</small>
-
-    <button type="button" onclick="sendSignupOTP()">Send OTP</button>
-
-    <div id="signupOtpBox" style="display:none;">
-        <input id="signupOtp" placeholder="Enter OTP">
-        <button type="button" onclick="verifySignupOTP()">Verify OTP</button>
-    </div>
-
-    <button id="registerBtn" type="button" onclick="signup()" style="display:none;">Register</button>
-
-    <span class="switch" onclick="showLogin()">Already have account? Login</span>
 </div>
 
-<div id="forgotBox" style="display:none;">
-    <h2>Reset Password</h2>
+<div id="editModal" class="modal">
+  <div class="modal-box">
+    <h2>Edit Profile</h2>
+    <input id="editName" placeholder="New Name">
+    <input id="editEmail" placeholder="New Email">
+    <button onclick="saveProfile()">Save Changes</button>
+    <button class="cancel-btn" onclick="closeModal('editModal')">Cancel</button>
+  </div>
+</div>
 
-    <div id="otpBox">
-        <input id="forgotPhone" placeholder="Enter Mobile Number" maxlength="10">
+<div id="passwordModal" class="modal">
+  <div class="modal-box">
+    <h2>Change Password</h2>
+    <input id="currentPassword" type="password" placeholder="Current Password">
+    <input id="newPassword" type="password" placeholder="New Password">
+    <button onclick="savePassword()">Change Password</button>
+    <button class="cancel-btn" onclick="closeModal('passwordModal')">Cancel</button>
+  </div>
+</div>
 
-        <button type="button" onclick="sendOTP()">Send OTP by SMS</button>
+<h1 class="dashboard-title">Tiruvannamalai Dashboard</h1>
 
-        <input id="otp" placeholder="Enter OTP">
+<div class="cards-container">
 
-        <button type="button" onclick="verifyOTP()">Verify OTP</button>
-    </div>
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<img src="temple1.jpg">
+<div class="image-title">Arunachaleswarar Temple</div>
+</div>
+<div class="flip-card-back">
+<h2>Temple Information</h2>
+<ul class="info-list">
+<li><i class="fa-solid fa-clock"></i>Temple Timings</li>
+<li><i class="fa-solid fa-book"></i>Temple History</li>
+<li>
+    <i class="fa-solid fa-gopuram"></i>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Arunachaleswarar+Temple+Tiruvannamalai"
+       target="_blank"
+       style="color:black; text-decoration:none;">
+       Rajagopuram Details - Route Map
+    </a>
+</li>
+<li><i class="fa-solid fa-bell"></i>Darshan Information</li>
+<li><i class="fa-solid fa-fire"></i>Festivals & Deepam</li>
+<li><i class="fa-solid fa-star"></i>Special Poojas</li>
+</ul>
+<a href="temple-details.html" class="explore-btn">Explore Temple</a>
+</div>
+</div>
+</div>
 
-    <div id="newPasswordBox" style="display:none;">
-        <input id="newPassword" type="password" placeholder="New Password">
-        <input id="confirmPassword" type="password" placeholder="Confirm Password">
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<img src="temple2.jpg">
+<div class="image-title">Girivalam Route</div>
+</div>
+<div class="flip-card-back">
+<h2>Girivalam Navigation</h2>
+<ul class="info-list">
+<li><i class="fa-solid fa-route"></i>14 KM Girivalam Route</li>
+<li><i class="fa-solid fa-location-dot"></i>GPS Navigation</li>
+<li><i class="fa-solid fa-droplet"></i>Water Points</li>
+<li><i class="fa-solid fa-utensils"></i>Food Centres</li>
+<li><i class="fa-solid fa-phone"></i>Emergency Help</li>
+<li><i class="fa-solid fa-om"></i>Ashta Lingams</li>
+</ul>
+<a href="girivalam-route.html" class="explore-btn">Start Girivalam</a>
+</div>
+</div>
+</div>
 
-        <button type="button" onclick="resetPassword()">Set Password</button>
-    </div>
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<img src="temple3.jpg">
+<div class="image-title">Other Sacred Places</div>
+</div>
+<div class="flip-card-back">
+<h2>Other Sacred Places</h2>
+<ul class="info-list">
+<li><i class="fa-solid fa-place-of-worship"></i>Sri Ramana Ashramam</li>
+<li><i class="fa-solid fa-mountain"></i>Virupaksha Cave</li>
+<li><i class="fa-solid fa-tree"></i>Skandashramam</li>
+<li><i class="fa-solid fa-om"></i>Yogi Ramsuratkumar Ashram</li>
+<li><i class="fa-solid fa-water"></i>Sathanur Dam</li>
+<li><i class="fa-solid fa-gopuram"></i>Pachaiamman Temple</li>
+</ul>
+<a href="sacred_places.html" class="explore-btn">Explore Places</a>
+</div>
+</div>
+</div>
 
-    <span class="switch" onclick="showLogin()">Back to Login</span>
+<!-- Hotels Card Starts Here -->
+
+<div class="flip-card">
+<div class="flip-card-inner">
+
+<div class="flip-card-front">
+<img src="temple4.jpg" alt="Hotels in Tiruvannamalai">
+<div class="image-title">Hotels in Tiruvannamalai</div>
+</div>
+
+<div class="flip-card-back">
+<h2>Hotels & Accommodation</h2>
+
+<ul class="info-list">
+<li><i class="fa-solid fa-hotel"></i>Hotels</li>
+<li><i class="fa-solid fa-bed"></i>Lodges</li>
+<li><i class="fa-solid fa-building"></i>Budget Rooms</li>
+<li><i class="fa-solid fa-star"></i>Premium Hotels</li>
+<li><i class="fa-solid fa-location-dot"></i>Near Temple Stay</li>
+<li><i class="fa-solid fa-phone"></i>Contact Details</li>
+</ul>
+<a href="hotels.html" class="explore-btn">
+Explore Hotels
+</a>
+</div>
+</div>
 </div>
 
 </div>
-</div>
 
-<script src="script.js"></script>
+<script>
+const user = JSON.parse(localStorage.getItem("loggedUser"));
+
+if(user){
+    const initial = user.name ? user.name.charAt(0).toUpperCase() : "U";
+
+    document.getElementById("profileInitial").innerText = initial;
+    document.getElementById("menuInitial").innerText = initial;
+    document.getElementById("menuName").innerText = user.name;
+    document.getElementById("menuEmail").innerText = user.email;
+    document.getElementById("menuPhone").innerText = "+91 " + user.phone;
+}else{
+    console.log("No logged user found");
+}
+
+function toggleProfileMenu(){
+    const menu = document.getElementById("profileMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function viewProfile(){
+    alert(
+        "Name: " + user.name +
+        "\nEmail: " + user.email +
+        "\nPhone: +91 " + user.phone
+    );
+}
+
+function editProfile(){
+    document.getElementById("editName").value = user.name;
+    document.getElementById("editEmail").value = user.email;
+    document.getElementById("editModal").style.display = "flex";
+}
+
+function changePassword(){
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("passwordModal").style.display = "flex";
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display = "none";
+}
+
+async function saveProfile(){
+    const newName = document.getElementById("editName").value;
+    const newEmail = document.getElementById("editEmail").value;
+
+    const response = await fetch("/update-profile", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            oldEmail:user.email,
+            name:newName,
+            email:newEmail
+        })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if(data.success){
+        localStorage.setItem("loggedUser", JSON.stringify(data.user));
+        location.reload();
+    }
+}
+
+async function savePassword(){
+    const currentPassword = document.getElementById("currentPassword").value;
+    const newPassword = document.getElementById("newPassword").value;
+
+    if(currentPassword.trim() === "" || newPassword.trim() === ""){
+        alert("Enter current password and new password");
+        return;
+    }
+
+    const response = await fetch("/change-password", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            email:user.email,
+            currentPassword,
+            newPassword
+        })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if(data.success){
+        closeModal("passwordModal");
+    }
+}
+
+function logout(){
+    localStorage.removeItem("loggedUser");
+    window.location.href = "auth.html";
+}
+</script>
 
 </body>
 </html>
