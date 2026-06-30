@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tiruvannamalai Dashboard</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 *{
     margin:0;
@@ -14,36 +16,174 @@
 }
 
 body{
-    background:#f4f3ef;
-    padding-bottom:50px;
+    background:#f5f3ee;
+    padding:30px;
+    position:relative;
+}
+
+/* PROFILE */
+.profile-container{
+    position:absolute;
+    top:20px;
+    right:30px;
+    z-index:1000;
+}
+
+.profile-circle{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#6f9460;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+.profile-menu{
+    display:none;
+    position:absolute;
+    top:70px;
+    right:0;
+    width:290px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    padding:20px;
+    text-align:center;
+}
+
+.big-profile-circle{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#6f9460;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    font-weight:bold;
+    margin:0 auto 10px;
+}
+
+.profile-menu h3{
+    margin:5px 0;
+    font-size:20px;
+    color:#222;
+}
+
+.profile-menu p{
+    margin:5px 0;
+    font-size:14px;
+    color:#555;
+}
+
+.profile-menu hr{
+    margin:15px 0;
+    border:none;
+    border-top:1px solid #ddd;
+}
+
+.profile-menu button{
+    width:100%;
+    padding:12px;
+    margin:6px 0;
+    border:none;
+    background:#f4f4f4;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    text-align:left;
+    color:black;
+}
+
+.profile-menu button:hover{
+    background:#e3efdd;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    z-index:3000;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-box{
+    background:white;
+    width:360px;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-box h2{
+    margin-bottom:15px;
+    color:#2c3e36;
+}
+
+.modal-box input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.modal-box button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#6f9460;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.modal-box .cancel-btn{
+    background:#999;
 }
 
 /* TITLE */
 .dashboard-title{
     text-align:center;
     font-size:42px;
-    color:white;
-    background:#2c3e36;
-    padding:22px;
-    font-weight:bold;
+    margin-bottom:30px;
+    color:#2c3e36;
+    padding-top:70px;
 }
 
-/* MOVING IMAGE ROW */
+/* MOVING IMAGE SLIDER */
 .image-slider{
-    width:90%;
-    max-width:1200px;
+    width:100%;
+    max-width:1500px;
     height:260px;
-    margin:35px auto 55px;
+    margin:0 auto 45px;
     overflow:hidden;
     border-radius:22px;
     background:white;
-    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    box-shadow:0 8px 25px rgba(0,0,0,0.22);
 }
 
 .slider-track{
     display:flex;
-    width:max-content;
     height:100%;
+    width:max-content;
     animation:scrollImages 35s linear infinite;
 }
 
@@ -52,11 +192,11 @@ body{
 }
 
 .slider-track img{
-    width:330px;
+    width:340px;
     height:260px;
     object-fit:cover;
+    margin-right:22px;
     flex-shrink:0;
-    margin-right:20px;
 }
 
 @keyframes scrollImages{
@@ -68,18 +208,18 @@ body{
     }
 }
 
-/* FLIP CARDS */
+/* OLD FLIP CARDS */
 .cards-container{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:35px;
-    width:90%;
-    max-width:1200px;
+    gap:30px;
+    max-width:1600px;
     margin:auto;
 }
 
 .flip-card{
-    height:420px;
+    background:transparent;
+    height:650px;
     perspective:1000px;
 }
 
@@ -101,10 +241,9 @@ body{
     width:100%;
     height:100%;
     backface-visibility:hidden;
-    border-radius:22px;
+    border-radius:20px;
     overflow:hidden;
-    box-shadow:0 8px 22px rgba(0,0,0,0.2);
-    background:white;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
 .flip-card-front img{
@@ -117,53 +256,69 @@ body{
     position:absolute;
     bottom:0;
     width:100%;
-    background:rgba(44,62,54,0.9);
+    background:rgba(0,0,0,0.6);
     color:white;
     text-align:center;
-    padding:18px;
-    font-size:23px;
+    padding:20px;
+    font-size:24px;
     font-weight:bold;
 }
 
 .flip-card-back{
+    background:white;
     transform:rotateY(180deg);
-    padding:30px;
+    padding:25px;
+    overflow-y:auto;
+}
+
+.flip-card-back h2{
     text-align:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-
-.flip-card-back h3{
+    margin-bottom:25px;
     color:#2c3e36;
-    font-size:28px;
-    margin-bottom:18px;
 }
 
-.flip-card-back p{
-    color:#555;
+.info-list{
+    list-style:none;
+}
+
+.info-list li{
+    margin-bottom:18px;
     font-size:17px;
     line-height:1.6;
+    display:flex;
+    align-items:flex-start;
 }
 
-.flip-card-back a{
-    margin-top:22px;
-    background:#2c3e36;
+.info-list i{
+    margin-right:12px;
+    color:#6f9460;
+    margin-top:4px;
+}
+
+.explore-btn{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    background:#6f9460;
     color:white;
-    padding:13px 28px;
-    border-radius:25px;
+    padding:15px;
+    border-radius:12px;
     text-decoration:none;
     font-weight:bold;
 }
 
-@media(max-width:900px){
+.explore-btn:hover{
+    background:#56754a;
+}
+
+@media(max-width:1000px){
     .cards-container{
         grid-template-columns:1fr;
     }
 
     .dashboard-title{
-        font-size:30px;
+        padding-top:80px;
+        font-size:32px;
     }
 
     .image-slider{
@@ -171,18 +326,59 @@ body{
     }
 
     .slider-track img{
-        width:280px;
+        width:290px;
         height:220px;
     }
 }
 </style>
 </head>
-
 <body>
+
+<div class="profile-container">
+    <div class="profile-circle" onclick="toggleProfileMenu()">
+        <span id="profileInitial">U</span>
+    </div>
+
+    <div class="profile-menu" id="profileMenu">
+        <div class="big-profile-circle">
+            <span id="menuInitial">U</span>
+        </div>
+
+        <h3 id="menuName">User Name</h3>
+        <p id="menuEmail">user@gmail.com</p>
+        <p id="menuPhone">+91 0000000000</p>
+
+        <hr>
+
+        <button onclick="viewProfile()">👤 View Profile</button>
+        <button onclick="editProfile()">✏️ Edit Profile</button>
+        <button onclick="changePassword()">🔒 Change Password</button>
+        <button onclick="logout()">🚪 Logout</button>
+    </div>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-box">
+        <h2>Edit Profile</h2>
+        <input id="editName" placeholder="New Name">
+        <input id="editEmail" placeholder="New Email">
+        <button onclick="saveProfile()">Save Changes</button>
+        <button class="cancel-btn" onclick="closeModal('editModal')">Cancel</button>
+    </div>
+</div>
+
+<div id="passwordModal" class="modal">
+    <div class="modal-box">
+        <h2>Change Password</h2>
+        <input id="currentPassword" type="password" placeholder="Current Password">
+        <input id="newPassword" type="password" placeholder="New Password">
+        <button onclick="savePassword()">Change Password</button>
+        <button class="cancel-btn" onclick="closeModal('passwordModal')">Cancel</button>
+    </div>
+</div>
 
 <h1 class="dashboard-title">Tiruvannamalai Dashboard</h1>
 
-<!-- 10 SCROLLING IMAGES -->
 <div class="image-slider">
     <div class="slider-track">
 
@@ -211,94 +407,246 @@ body{
     </div>
 </div>
 
-<!-- FLIP CARDS BELOW -->
 <div class="cards-container">
+    <!-- Temple Information -->
+<div class="flip-card">
+    <div class="flip-card-inner">
 
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/Tiruvunamalaiar-Temple.jpg">
-                <div class="image-title">Temple Information</div>
-            </div>
-            <div class="flip-card-back">
-                <h3>Temple Information</h3>
-                <p>Know temple history, timings and important spiritual details.</p>
-                <a href="temple-details.html">Explore</a>
-            </div>
+        <div class="flip-card-front">
+            <img src="images/Tiruvunamalaiar-Temple.jpg">
+            <div class="image-title">Temple Information</div>
         </div>
-    </div>
 
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/route-map.jpg">
-                <div class="image-title">Girivalam Route</div>
-            </div>
-            <div class="flip-card-back">
-                <h3>Girivalam Route</h3>
-                <p>View 14 KM Girivalam route, water points and rest places.</p>
-                <a href="girivalam-route.html">Explore</a>
-            </div>
-        </div>
-    </div>
+        <div class="flip-card-back">
+            <h2>Temple Information</h2>
+            <p>
+                Explore Arunachaleswarar Temple history,
+                timings, darshan details and important information.
+            </p>
 
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/ramana-asaramam.jpg">
-                <div class="image-title">Other Sacred Places</div>
-            </div>
-            <div class="flip-card-back">
-                <h3>Other Sacred Places</h3>
-                <p>Explore Ramana Ashram, caves, dam and nearby spiritual places.</p>
-                <a href="sacred_places.html">Explore</a>
-            </div>
+            <a href="temple-details.html">Explore</a>
         </div>
-    </div>
 
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/circular-map.jpg">
-                <div class="image-title">Ashta Lingams</div>
-            </div>
-            <div class="flip-card-back">
-                <h3>Ashta Lingams</h3>
-                <p>Explore eight sacred lingams around Arunachala Girivalam path.</p>
-                <a href="ashta-lingams.html">Explore</a>
-            </div>
-        </div>
     </div>
+</div>
 
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="temple4.jpg">
-                <div class="image-title">Hotels</div>
-            </div>
-            <div class="flip-card-back">
-                <h3>Hotels</h3>
-                <p>Find nearby hotels and stay options in Tiruvannamalai.</p>
-                <a href="hotels.html">Explore</a>
-            </div>
-        </div>
-    </div>
+<!-- Girivalam Route -->
+<div class="flip-card">
+    <div class="flip-card-inner">
 
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/sathanur-dam.jpg">
-                <div class="image-title">Emergency Support</div>
-            </div>
-            <div class="flip-card-back">
-                <h3>Emergency Support</h3>
-                <p>Access ambulance, police, hospital and emergency contacts.</p>
-                <a href="emergency.html">Explore</a>
-            </div>
+        <div class="flip-card-front">
+            <img src="images/route-map.jpg">
+            <div class="image-title">Girivalam Route</div>
         </div>
+
+        <div class="flip-card-back">
+            <h2>Girivalam Route</h2>
+            <p>
+                View the complete 14 KM Girivalam route,
+                water points, toilets and Annadhanam centres.
+            </p>
+
+            <a href="girivalam-route.html">Explore</a>
+        </div>
+
     </div>
+</div>
+
+<!-- Other Sacred Places -->
+<div class="flip-card">
+    <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+            <img src="images/ramana-asaramam.jpg">
+            <div class="image-title">Other Sacred Places</div>
+        </div>
+
+        <div class="flip-card-back">
+            <h2>Other Sacred Places</h2>
+            <p>
+                Explore Ramana Ashram,
+                Skandashram,
+                Virupaksha Cave,
+                Sathanur Dam and more.
+            </p>
+
+            <a href="sacred_places.html">Explore</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Hotels -->
+<div class="flip-card">
+    <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+            <img src="temple4.jpg">
+            <div class="image-title">Hotels</div>
+        </div>
+
+        <div class="flip-card-back">
+            <h2>Hotels</h2>
+            <p>
+                Discover nearby hotels,
+                lodges and accommodation
+                around Tiruvannamalai.
+            </p>
+
+            <a href="hotels.html">Explore</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Ashta Lingams -->
+<div class="flip-card">
+    <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+            <img src="images/circular-map.jpg">
+            <div class="image-title">Ashta Lingams</div>
+        </div>
+
+        <div class="flip-card-back">
+            <h2>Ashta Lingams</h2>
+            <p>
+                Learn about all eight sacred Lingams,
+                their history, mantras and significance.
+            </p>
+
+            <a href="girivalam-route.html">Explore</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Emergency Support -->
+<div class="flip-card">
+    <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+            <img src="images/sathanur-dam.jpg">
+            <div class="image-title">Emergency Support</div>
+        </div>
+
+        <div class="flip-card-back">
+            <h2>Emergency Support</h2>
+            <p>
+                Emergency contacts,
+                hospitals,
+                police,
+                ambulance
+                and important helpline numbers.
+            </p>
+
+            <a href="emergency.html">Explore</a>
+        </div>
+
+    </div>
+</div>
 
 </div>
+<script>
+const user = JSON.parse(localStorage.getItem("loggedUser"));
+
+if(user){
+    const initial = user.name ? user.name.charAt(0).toUpperCase() : "U";
+
+    document.getElementById("profileInitial").innerText = initial;
+    document.getElementById("menuInitial").innerText = initial;
+    document.getElementById("menuName").innerText = user.name;
+    document.getElementById("menuEmail").innerText = user.email;
+    document.getElementById("menuPhone").innerText = "+91 " + user.phone;
+}
+else{
+    window.location.href = "auth.html";
+}
+
+function toggleProfileMenu(){
+    const menu = document.getElementById("profileMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function viewProfile(){
+    alert(
+        "Name: " + user.name +
+        "\nEmail: " + user.email +
+        "\nPhone: +91 " + user.phone
+    );
+}
+
+function editProfile(){
+    document.getElementById("editName").value = user.name;
+    document.getElementById("editEmail").value = user.email;
+    document.getElementById("editModal").style.display = "flex";
+}
+
+function changePassword(){
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("passwordModal").style.display = "flex";
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display = "none";
+}
+
+async function saveProfile(){
+    const newName = document.getElementById("editName").value;
+    const newEmail = document.getElementById("editEmail").value;
+
+    const response = await fetch("/update-profile", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            oldEmail:user.email,
+            name:newName,
+            email:newEmail
+        })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if(data.success){
+        localStorage.setItem("loggedUser", JSON.stringify(data.user));
+        location.reload();
+    }
+}
+
+async function savePassword(){
+    const currentPassword = document.getElementById("currentPassword").value;
+    const newPassword = document.getElementById("newPassword").value;
+
+    if(currentPassword.trim() === "" || newPassword.trim() === ""){
+        alert("Enter current password and new password");
+        return;
+    }
+
+    const response = await fetch("/change-password", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            email:user.email,
+            currentPassword,
+            newPassword
+        })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    if(data.success){
+        closeModal("passwordModal");
+    }
+}
+
+function logout(){
+    localStorage.removeItem("loggedUser");
+    window.location.href = "auth.html";
+}
+</script>
 
 </body>
 </html>
