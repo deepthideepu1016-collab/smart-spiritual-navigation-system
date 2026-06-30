@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,6 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -24,8 +22,6 @@ body{
     padding:25px;
 }
 
-/* HEADER */
-
 .header{
     text-align:center;
     font-size:35px;
@@ -33,8 +29,6 @@ body{
     color:#2d3b36;
     margin-bottom:30px;
 }
-
-/* MAIN CARD */
 
 .details-card{
     max-width:900px;
@@ -45,27 +39,19 @@ body{
     box-shadow:0 6px 20px rgba(0,0,0,0.12);
 }
 
-/* IMAGE */
-
 .details-card img{
     width:100%;
     height:400px;
     object-fit:cover;
 }
 
-/* CONTENT */
-
 .content{
     padding:30px;
 }
 
-/* SECTION */
-
 .section{
     margin-bottom:35px;
 }
-
-/* TITLES */
 
 .section h2{
     color:#6f9460;
@@ -73,15 +59,11 @@ body{
     font-size:30px;
 }
 
-/* TEXT */
-
 .section p{
     color:#555;
     line-height:1.8;
     font-size:17px;
 }
-
-/* LIST */
 
 .info-list{
     list-style:none;
@@ -98,7 +80,29 @@ body{
     margin-right:10px;
 }
 
-/* BACK BUTTON */
+.booking-box{
+    background:#f7fbf4;
+    padding:22px;
+    border-left:6px solid #6f9460;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+.booking-btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#6f9460;
+    color:white;
+    padding:14px 28px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.booking-btn:hover{
+    background:#56754a;
+}
 
 .back-btn{
     display:block;
@@ -118,15 +122,12 @@ body{
 .back-btn:hover{
     background:#56754a;
 }
-
 </style>
 </head>
 
 <body>
 
-<h1 class="header">
-    🛕 Tiruvannamalai Temple
-</h1>
+<h1 class="header">🛕 Tiruvannamalai Temple</h1>
 
 <div class="details-card">
 
@@ -134,308 +135,166 @@ body{
 
     <div class="content">
 
-        <!-- TEMPLE TIMINGS -->
-
         <div class="section">
             <h2>🎫 Official Online Booking</h2>
 
-<div class="booking-box">
+            <div class="booking-box">
+                <p>
+                    Book Special Darshan, Sevas and other temple services through the official booking link below.
+                </p>
 
-<p>
-Book Special Darshan, Sevas and other temple services through the official temple website.
-</p>
+                <a href="https://annamalaiyar.hrce.tn.gov.in/ticketing/service_collectionindex.php?group_id=4&scode=21&sscode=1&target_type=1&tid=20343"
+                   target="_blank"
+                   class="booking-btn">
+                   🎟️ Book Darshan Online
+                </a>
+            </div>
+        </div>
 
-<a href="https://annamalaiyar.hrce.tn.gov.in/"
-target="_blank"
-class="booking-btn">
-
-🎟️ Book Darshan Online
-
-</a>
-
-</div>
-
+        <div class="section">
             <h2>Temple Timings</h2>
 
             <ul class="info-list">
-
-                <li>
-                    <i class="fa-solid fa-clock"></i>
-                    Temple Opening Time : 5:30 AM
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-clock"></i>
-                    Temple Closing Time : 9:30 PM
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-bell"></i>
-                    Morning Darshan : 5:00 AM – 12:30 PM
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-bell"></i>
-                    Evening Darshan : 3:30 PM – 9:30 PM
-                </li>
-
+                <li><i class="fa-solid fa-clock"></i>Temple Opening Time : 5:30 AM</li>
+                <li><i class="fa-solid fa-clock"></i>Temple Closing Time : 9:30 PM</li>
+                <li><i class="fa-solid fa-bell"></i>Morning Darshan : 5:00 AM – 12:30 PM</li>
+                <li><i class="fa-solid fa-bell"></i>Evening Darshan : 3:30 PM – 9:30 PM</li>
             </ul>
-
         </div>
 
-        <!-- DARSHAN INFORMATION -->
-
         <div class="section">
-
             <h2>Darshan Information</h2>
-
             <p>
-                Tiruvannamalai Arunachaleswarar Temple provides
-                different darshan facilities for devotees visiting
-                Lord Shiva. Thousands of devotees visit daily and
-                lakhs of devotees gather during Pournami and
-                Karthigai Deepam festivals.
+                Tiruvannamalai Arunachaleswarar Temple provides different darshan facilities for devotees visiting Lord Shiva.
+                Thousands of devotees visit daily and lakhs of devotees gather during Pournami and Karthigai Deepam festivals.
             </p>
 
             <br>
 
             <ul class="info-list">
-
-                <li>
-                    <i class="fa-solid fa-user"></i>
-                    Free Darshan – Available for all devotees.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-ticket"></i>
-                    ₹50 Special Darshan Line – Faster queue access.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-star"></i>
-                    Festival Special Darshan available during important occasions.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-wheelchair"></i>
-                    Separate arrangements for senior citizens and differently-abled devotees.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-person-praying"></i>
-                    Early morning darshan is considered spiritually powerful and peaceful.
-                </li>
-
+                <li><i class="fa-solid fa-user"></i>Free Darshan – Available for all devotees.</li>
+                <li><i class="fa-solid fa-ticket"></i>₹50 Special Darshan Line – Faster queue access.</li>
+                <li><i class="fa-solid fa-star"></i>Festival Special Darshan available during important occasions.</li>
+                <li><i class="fa-solid fa-wheelchair"></i>Separate arrangements for senior citizens and differently-abled devotees.</li>
+                <li><i class="fa-solid fa-person-praying"></i>Early morning darshan is considered spiritually powerful and peaceful.</li>
             </ul>
-
         </div>
 
-        <!-- RAJAGOPURAM -->
+        <div class="section">
+            <h2>Rajagopuram</h2>
 
-<div class="section">
+            <p>
+                The Rajagopuram of Tiruvannamalai Temple is one of the tallest temple towers in South India and stands
+                as the grand entrance to the sacred temple.
+            </p>
 
-<h2>Rajagopuram</h2>
+            <br>
 
-<p>
-The Rajagopuram of Tiruvannamalai Temple is one of
-the tallest temple towers in South India and stands
-as the grand entrance to the sacred temple.
-</p>
+            <p>
+                Built during the Vijayanagara period, the tower reflects magnificent Dravidian architecture with beautiful carvings,
+                sculptures and sacred designs.
+            </p>
 
-<br>
+            <br>
 
-<p>
-Built during the Vijayanagara period, the tower
-reflects magnificent Dravidian architecture with
-beautiful carvings, sculptures and sacred designs.
-</p>
+            <p>
+                Devotees believe entering through the Rajagopuram symbolizes entering a divine spiritual path toward inner peace and enlightenment.
+            </p>
 
-<br>
+            <br>
 
-<p>
-Devotees believe entering through the Rajagopuram
-symbolizes entering a divine spiritual path toward
-inner peace and enlightenment.
-</p>
+            <p>
+                The Eastern Rajagopuram rises to approximately 217 feet with 11 magnificent tiers.
+            </p>
 
-<br>
+            <hr style="margin:35px 0;">
 
-<p>
-The Eastern Rajagopuram rises to approximately
-217 feet (66 meters) with 11 magnificent tiers.
-It was constructed during the reign of the
-Vijayanagara Empire and is one of the largest
-temple entrance towers in Tamil Nadu.
-</p>
+            <h2>Rajagopuram Route Map</h2>
 
-<br>
+            <p>
+                Use the map below to locate Arunachaleswarar Temple and get directions to the Rajagopuram entrance.
+            </p>
 
-<p>
-Every devotee entering the Arunachaleswarar Temple
-passes through this majestic gateway before reaching
-the inner temple. The Rajagopuram is considered a
-symbol of devotion, faith, and the spiritual heritage
-of Tiruvannamalai.
-</p>
+            <br>
 
-<hr style="margin:35px 0;">
+            <iframe
+            src="https://www.google.com/maps?q=Arunachaleswarar+Temple+Tiruvannamalai&output=embed"
+            width="100%"
+            height="450"
+            style="border:0;border-radius:15px;"
+            allowfullscreen
+            loading="lazy">
+            </iframe>
 
-<h2>Rajagopuram Route Map</h2>
+            <br><br>
 
-<p>
-Use the map below to locate Arunachaleswarar Temple
-and get directions to the Rajagopuram entrance.
-</p>
-
-<br>
-
-<iframe
-src="https://www.google.com/maps?q=Arunachaleswarar+Temple+Tiruvannamalai&output=embed"
-width="100%"
-height="450"
-style="border:0;border-radius:15px;"
-allowfullscreen
-loading="lazy">
-</iframe>
-
-<br><br>
-
-<a
-href="https://www.google.com/maps/dir/?api=1&destination=Arunachaleswarar+Temple+Tiruvannamalai"
-target="_blank"
-class="back-btn">
-🗺 Open Route in Google Maps
-</a>
-
-</div>
-
-        <!-- AGNI LINGAM -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Arunachaleswarar+Temple+Tiruvannamalai"
+               target="_blank"
+               class="back-btn">
+               🗺 Open Route in Google Maps
+            </a>
+        </div>
 
         <div class="section">
-
             <h2>Agni Lingam</h2>
 
             <p>
-                Agni Lingam is one among the sacred Ashta Lingams
-                situated around the Girivalam path of Arunachala Hill.
-                It represents the fire element and the powerful energy
-                of Lord Shiva.
+                Agni Lingam is one among the sacred Ashta Lingams situated around the Girivalam path of Arunachala Hill.
+                It represents the fire element and the powerful energy of Lord Shiva.
             </p>
 
             <br>
 
             <p>
-                Devotees pray at Agni Lingam seeking courage,
-                purification, positivity and spiritual strength.
-                Many pilgrims stop here during Girivalam and offer
-                prayers and deepam.
+                Devotees pray at Agni Lingam seeking courage, purification, positivity and spiritual strength.
+                Many pilgrims stop here during Girivalam and offer prayers and deepam.
             </p>
-
-            <br>
-
-            <p>
-                The spiritual atmosphere around Agni Lingam during
-                full moon nights and Girivalam days is considered
-                highly divine and energetic.
-            </p>
-
         </div>
 
-        <!-- TEMPLE HISTORY -->
-
         <div class="section">
-
             <h2>Temple History</h2>
 
             <p>
-                Tiruvannamalai Arunachaleswarar Temple is one of the
-                oldest and most sacred Shiva temples in India. It is
-                one among the Pancha Bhoota Sthalams representing
-                the fire element (Agni).
+                Tiruvannamalai Arunachaleswarar Temple is one of the oldest and most sacred Shiva temples in India.
+                It is one among the Pancha Bhoota Sthalams representing the fire element.
             </p>
 
             <br>
 
             <p>
-                According to Hindu mythology, Lord Shiva appeared
-                here as an infinite column of fire before Lord Vishnu
-                and Lord Brahma, symbolizing the limitless divine
-                energy of Shiva.
+                According to Hindu mythology, Lord Shiva appeared here as an infinite column of fire before Lord Vishnu and Lord Brahma.
             </p>
 
             <br>
 
             <p>
-                The temple has been expanded and maintained by
-                great dynasties including the Cholas, Pandyas and
-                Vijayanagara kings. The architecture and spiritual
-                traditions attract devotees from across the world.
+                The temple has been expanded and maintained by great dynasties including the Cholas, Pandyas and Vijayanagara kings.
             </p>
-
-            <br>
-
-            <p>
-                Girivalam around Arunachala Hill is considered highly
-                sacred and is believed to provide spiritual purification,
-                blessings and peace of mind.
-            </p>
-
         </div>
 
-        <!-- SPECIAL PUJAS -->
-
         <div class="section">
-
             <h2>Special Pujas & Festivals</h2>
 
             <p>
-                Tiruvannamalai Temple celebrates many grand spiritual
-                festivals throughout the year with great devotion.
+                Tiruvannamalai Temple celebrates many grand spiritual festivals throughout the year with great devotion.
             </p>
 
             <br>
 
             <ul class="info-list">
-
-                <li>
-                    <i class="fa-solid fa-fire"></i>
-                    Karthigai Deepam – Sacred flame lighting festival on Arunachala Hill.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-moon"></i>
-                    Pournami Girivalam – Lakhs of devotees walk around Arunachala Hill.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-om"></i>
-                    Maha Shivaratri – Night-long Shiva worship and abhishekams.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-water"></i>
-                    Daily Abhishekam and Deeparadhana rituals inside the temple.
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-bell"></i>
-                    Monthly and special Tamil festival poojas conducted with devotion.
-                </li>
-
+                <li><i class="fa-solid fa-fire"></i>Karthigai Deepam – Sacred flame lighting festival on Arunachala Hill.</li>
+                <li><i class="fa-solid fa-moon"></i>Pournami Girivalam – Lakhs of devotees walk around Arunachala Hill.</li>
+                <li><i class="fa-solid fa-om"></i>Maha Shivaratri – Night-long Shiva worship and abhishekams.</li>
+                <li><i class="fa-solid fa-water"></i>Daily Abhishekam and Deeparadhana rituals inside the temple.</li>
             </ul>
-
         </div>
-
-        <!-- BACK BUTTON -->
 
         <a href="dashboard.html" class="back-btn">
             ← Back to Dashboard
         </a>
 
     </div>
-
 </div>
 
 </body>
 </html>
-```
