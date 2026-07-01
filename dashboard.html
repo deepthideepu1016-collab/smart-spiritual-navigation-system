@@ -21,7 +21,6 @@ body{
     position:relative;
 }
 
-/* PROFILE */
 .profile-container{
     position:absolute;
     top:20px;
@@ -106,7 +105,6 @@ body{
     background:#e3efdd;
 }
 
-/* MODALS */
 .modal{
     display:none;
     position:fixed;
@@ -159,7 +157,6 @@ body{
     background:#999;
 }
 
-/* TITLE */
 .dashboard-title{
     text-align:center;
     font-size:42px;
@@ -168,7 +165,6 @@ body{
     padding-top:70px;
 }
 
-/* SCROLLING IMAGES */
 .image-slider{
     width:100%;
     max-width:1500px;
@@ -208,12 +204,11 @@ body{
     }
 }
 
-/* OLD FLIP CARDS */
 .cards-container{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-    max-width:1600px;
+    grid-template-columns:repeat(2,1fr);
+    gap:35px;
+    max-width:1200px;
     margin:auto;
 }
 
@@ -335,7 +330,6 @@ body{
 
 <body>
 
-<!-- PROFILE -->
 <div class="profile-container">
     <div class="profile-circle" onclick="toggleProfileMenu()">
         <span id="profileInitial">U</span>
@@ -359,7 +353,6 @@ body{
     </div>
 </div>
 
-<!-- MODALS -->
 <div id="editModal" class="modal">
     <div class="modal-box">
         <h2>Edit Profile</h2>
@@ -382,7 +375,6 @@ body{
 
 <h1 class="dashboard-title">Tiruvannamalai Dashboard</h1>
 
-<!-- 10 MOVING IMAGES ONLY -->
 <div class="image-slider">
     <div class="slider-track">
 
@@ -411,7 +403,6 @@ body{
     </div>
 </div>
 
-<!-- OLD FLIP CARDS -->
 <div class="cards-container">
 
     <div class="flip-card">
@@ -517,12 +508,8 @@ body{
         </div>
     </div>
 
-    <div class="flip-card">
-        <div class="flip-card-inner">
+</div>
 
-            <div class="flip-card-front">
-                <img src="images/circular-map.jpg">
-                
 <script>
 const user = JSON.parse(localStorage.getItem("loggedUser"));
 
@@ -612,6 +599,7 @@ async function savePassword(){
 
     const data = await response.json();
     alert(data.message);
+
     if(data.success){
         closeModal("passwordModal");
     }
