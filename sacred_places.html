@@ -84,14 +84,25 @@ body{
 
 .place-image{
     flex:1;
+    overflow-x:auto;
 }
 
-.place-image img{
+.image-slider{
+    display:flex;
+    gap:15px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scrollbar-width:thin;
+}
+
+.image-slider img{
     width:100%;
+    min-width:100%;
     height:430px;
     object-fit:cover;
     border-radius:22px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    flex-shrink:0;
 }
 
 @media(max-width:900px){
@@ -165,8 +176,18 @@ body{
         </div>
     </div>
     <div class="place-image">
-        <img src="images/skandashramam.jpg" alt="Skandashramam">
+
+    <div class="image-slider">
+
+        <img src="sacred_places_images/skanda1.jpg" alt="Skandashramam Building">
+
+        <img src="sacred_places_images/skanda2.jpg" alt="Skandashramam Entrance Board">
+
+        <img src="sacred_places_images/skanda3.jpg" alt="Sri Ramana Maharshi">
+
     </div>
+
+</div>
 </div>
 
 <div class="place-section">
