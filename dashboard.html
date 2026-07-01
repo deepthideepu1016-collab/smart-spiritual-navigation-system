@@ -70,24 +70,6 @@ body{
     margin:0 auto 10px;
 }
 
-.profile-menu h3{
-    margin:5px 0;
-    font-size:20px;
-    color:#222;
-}
-
-.profile-menu p{
-    margin:5px 0;
-    font-size:14px;
-    color:#555;
-}
-
-.profile-menu hr{
-    margin:15px 0;
-    border:none;
-    border-top:1px solid #ddd;
-}
-
 .profile-menu button{
     width:100%;
     padding:12px;
@@ -98,63 +80,6 @@ body{
     cursor:pointer;
     font-size:15px;
     text-align:left;
-    color:black;
-}
-
-.profile-menu button:hover{
-    background:#e3efdd;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-    z-index:3000;
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-box{
-    background:white;
-    width:360px;
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 8px 25px rgba(0,0,0,0.3);
-}
-
-.modal-box h2{
-    margin-bottom:15px;
-    color:#2c3e36;
-}
-
-.modal-box input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:15px;
-}
-
-.modal-box button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:8px;
-    background:#6f9460;
-    color:white;
-    cursor:pointer;
-    font-size:15px;
-}
-
-.modal-box .cancel-btn{
-    background:#999;
 }
 
 .dashboard-title{
@@ -196,12 +121,8 @@ body{
 }
 
 @keyframes scrollImages{
-    from{
-        transform:translateX(0);
-    }
-    to{
-        transform:translateX(-50%);
-    }
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
 }
 
 .cards-container{
@@ -302,27 +223,9 @@ body{
     font-weight:bold;
 }
 
-.explore-btn:hover{
-    background:#56754a;
-}
-
 @media(max-width:1000px){
     .cards-container{
         grid-template-columns:1fr;
-    }
-
-    .dashboard-title{
-        padding-top:80px;
-        font-size:32px;
-    }
-
-    .image-slider{
-        height:220px;
-    }
-
-    .slider-track img{
-        width:290px;
-        height:220px;
     }
 }
 </style>
@@ -347,29 +250,7 @@ body{
         <hr>
 
         <button onclick="viewProfile()">👤 View Profile</button>
-        <button onclick="editProfile()">✏️ Edit Profile</button>
-        <button onclick="changePassword()">🔒 Change Password</button>
         <button onclick="logout()">🚪 Logout</button>
-    </div>
-</div>
-
-<div id="editModal" class="modal">
-    <div class="modal-box">
-        <h2>Edit Profile</h2>
-        <input id="editName" placeholder="New Name">
-        <input id="editEmail" placeholder="New Email">
-        <button onclick="saveProfile()">Save Changes</button>
-        <button class="cancel-btn" onclick="closeModal('editModal')">Cancel</button>
-    </div>
-</div>
-
-<div id="passwordModal" class="modal">
-    <div class="modal-box">
-        <h2>Change Password</h2>
-        <input id="currentPassword" type="password" placeholder="Current Password">
-        <input id="newPassword" type="password" placeholder="New Password">
-        <button onclick="savePassword()">Change Password</button>
-        <button class="cancel-btn" onclick="closeModal('passwordModal')">Cancel</button>
     </div>
 </div>
 
@@ -377,7 +258,6 @@ body{
 
 <div class="image-slider">
     <div class="slider-track">
-
         <img src="images/rajagopuram.jpg">
         <img src="images/Tiruvunamalaiar-Temple.jpg">
         <img src="images/annamalaiyar.jpg">
@@ -399,7 +279,6 @@ body{
         <img src="images/ramana-maharshi.jpg">
         <img src="images/meditation-hall.jpg">
         <img src="images/sathanur-dam.jpg">
-
     </div>
 </div>
 
@@ -407,7 +286,6 @@ body{
 
     <div class="flip-card">
         <div class="flip-card-inner">
-
             <div class="flip-card-front">
                 <img src="temple1.jpg">
                 <div class="image-title">Arunachaleswarar Temple</div>
@@ -418,27 +296,18 @@ body{
                 <ul class="info-list">
                     <li><i class="fa-solid fa-clock"></i>Temple Timings</li>
                     <li><i class="fa-solid fa-book"></i>Temple History</li>
-                    <li>
-                        <i class="fa-solid fa-gopuram"></i>
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Arunachaleswarar+Temple+Tiruvannamalai"
-                        target="_blank"
-                        style="color:black; text-decoration:none;">
-                        Rajagopuram Details - Route Map
-                        </a>
-                    </li>
+                    <li><i class="fa-solid fa-gopuram"></i>Rajagopuram Details - Route Map</li>
                     <li><i class="fa-solid fa-bell"></i>Darshan Information</li>
                     <li><i class="fa-solid fa-fire"></i>Festivals & Deepam</li>
                     <li><i class="fa-solid fa-star"></i>Special Poojas</li>
                 </ul>
                 <a href="temple-details.html" class="explore-btn">Explore Temple</a>
             </div>
-
         </div>
     </div>
 
     <div class="flip-card">
         <div class="flip-card-inner">
-
             <div class="flip-card-front">
                 <img src="temple2.jpg">
                 <div class="image-title">Girivalam Route</div>
@@ -456,13 +325,11 @@ body{
                 </ul>
                 <a href="girivalam-route.html" class="explore-btn">Start Girivalam</a>
             </div>
-
         </div>
     </div>
 
     <div class="flip-card">
         <div class="flip-card-inner">
-
             <div class="flip-card-front">
                 <img src="temple3.jpg">
                 <div class="image-title">Other Sacred Places</div>
@@ -480,15 +347,13 @@ body{
                 </ul>
                 <a href="sacred_places.html" class="explore-btn">Explore Places</a>
             </div>
-
         </div>
     </div>
 
     <div class="flip-card">
         <div class="flip-card-inner">
-
             <div class="flip-card-front">
-                <img src="temple4.jpg" alt="Hotels in Tiruvannamalai">
+                <img src="temple4.jpg">
                 <div class="image-title">Hotels in Tiruvannamalai</div>
             </div>
 
@@ -504,7 +369,6 @@ body{
                 </ul>
                 <a href="hotels.html" class="explore-btn">Explore Hotels</a>
             </div>
-
         </div>
     </div>
 
@@ -515,7 +379,6 @@ const user = JSON.parse(localStorage.getItem("loggedUser"));
 
 if(user){
     const initial = user.name ? user.name.charAt(0).toUpperCase() : "U";
-
     document.getElementById("profileInitial").innerText = initial;
     document.getElementById("menuInitial").innerText = initial;
     document.getElementById("menuName").innerText = user.name;
@@ -532,77 +395,7 @@ function toggleProfileMenu(){
 }
 
 function viewProfile(){
-    alert(
-        "Name: " + user.name +
-        "\nEmail: " + user.email +
-        "\nPhone: +91 " + user.phone
-    );
-}
-
-function editProfile(){
-    document.getElementById("editName").value = user.name;
-    document.getElementById("editEmail").value = user.email;
-    document.getElementById("editModal").style.display = "flex";
-}
-
-function changePassword(){
-    document.getElementById("currentPassword").value = "";
-    document.getElementById("newPassword").value = "";
-    document.getElementById("passwordModal").style.display = "flex";
-}
-
-function closeModal(id){
-    document.getElementById(id).style.display = "none";
-}
-
-async function saveProfile(){
-    const newName = document.getElementById("editName").value;
-    const newEmail = document.getElementById("editEmail").value;
-
-    const response = await fetch("/update-profile", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({
-            oldEmail:user.email,
-            name:newName,
-            email:newEmail
-        })
-    });
-
-    const data = await response.json();
-    alert(data.message);
-
-    if(data.success){
-        localStorage.setItem("loggedUser", JSON.stringify(data.user));
-        location.reload();
-    }
-}
-
-async function savePassword(){
-    const currentPassword = document.getElementById("currentPassword").value;
-    const newPassword = document.getElementById("newPassword").value;
-
-    if(currentPassword.trim() === "" || newPassword.trim() === ""){
-        alert("Enter current password and new password");
-        return;
-    }
-
-    const response = await fetch("/change-password", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({
-            email:user.email,
-            currentPassword,
-            newPassword
-        })
-    });
-
-    const data = await response.json();
-    alert(data.message);
-
-    if(data.success){
-        closeModal("passwordModal");
-    }
+    alert("Name: " + user.name + "\nEmail: " + user.email + "\nPhone: +91 " + user.phone);
 }
 
 function logout(){
