@@ -6,107 +6,215 @@
 <title>Other Sacred Places - Tiruvannamalai</title>
 
 <style>
-body{
+*{
     margin:0;
-    padding:20px;
+    padding:0;
+    box-sizing:border-box;
     font-family:Arial, sans-serif;
-    background:#f5f5f5;
 }
 
-h1{
+body{
+    background:#f5f3ee;
+    color:#222;
+}
+
+.header{
+    background:#2c3e36;
+    color:white;
     text-align:center;
-    color:#8B0000;
-    margin-bottom:30px;
+    padding:25px;
+    font-size:42px;
+    font-weight:bold;
 }
 
-.place-card{
+.back-btn{
+    display:inline-block;
+    margin:25px 50px;
+    background:#6f9460;
+    color:white;
+    padding:12px 25px;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.place-section{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
     background:white;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+    border-radius:25px;
+    padding:35px;
+    display:flex;
+    gap:35px;
+    align-items:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.18);
 }
 
-.place-card h2{
+.place-section:nth-child(even){
+    flex-direction:row-reverse;
+}
+
+.place-text{
+    flex:1.2;
+}
+
+.place-text h2{
     color:#d35400;
+    font-size:38px;
+    margin-bottom:18px;
 }
 
-.place-card p{
-    line-height:1.6;
+.place-text p{
+    font-size:18px;
+    line-height:1.8;
+    text-align:justify;
+    margin-bottom:14px;
 }
 
-img{
+.place-info{
+    margin-top:18px;
+    background:#fff4e8;
+    padding:18px;
+    border-left:6px solid #d35400;
+    border-radius:12px;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.place-image{
+    flex:1;
+}
+
+.place-image img{
     width:100%;
-    max-height:250px;
+    height:430px;
     object-fit:cover;
-    border-radius:10px;
-    margin-bottom:15px;
+    border-radius:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+
+@media(max-width:900px){
+    .place-section,
+    .place-section:nth-child(even){
+        flex-direction:column;
+    }
+
+    .place-image img{
+        height:280px;
+    }
+
+    .header{
+        font-size:30px;
+    }
+
+    .place-text h2{
+        font-size:30px;
+    }
 }
 </style>
-
 </head>
+
 <body>
 
-<h1>Other Sacred Places of Tiruvannamalai</h1>
+<div class="header">Other Sacred Places</div>
 
-<div class="place-card">
-    <img src="images/ramana.jpg" alt="Sri Ramana Ashramam">
-    <h2>Sri Ramana Ashramam</h2>
-    <p>
-        Sri Ramanasramam is the spiritual home of Bhagavan Ramana Maharshi.
-        Thousands of devotees visit this peaceful ashram every year for meditation,
-        self-inquiry, and spiritual growth.
-    </p>
+<a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+
+<div class="place-section">
+    <div class="place-text">
+        <h2>Sri Ramana Ashramam</h2>
+        <p>Sri Ramana Ashramam is one of the most peaceful and spiritually important places in Tiruvannamalai. It is dedicated to Bhagavan Sri Ramana Maharshi, a great saint who taught self-enquiry and inner silence.</p>
+        <p>Devotees visit this ashram for meditation, prayer, peace of mind and spiritual guidance. The calm atmosphere, meditation hall and samadhi shrine make this place very special.</p>
+        <div class="place-info">
+            <b>Famous For:</b> Meditation, Ramana Maharshi Samadhi, Peaceful Ashram<br>
+            <b>Distance:</b> Around 2 km from Arunachaleswarar Temple<br>
+            <b>Best Time:</b> Morning and evening
+        </div>
+    </div>
+    <div class="place-image">
+        <img src="images/ramana.jpg" alt="Sri Ramana Ashramam">
+    </div>
 </div>
 
-<div class="place-card">
-    <img src="images/virupaksha.jpg" alt="Virupaksha Cave">
-    <h2>Virupaksha Cave</h2>
-    <p>
-        Virupaksha Cave is located on Arunachala Hill and is famous as the place
-        where Ramana Maharshi spent many years in meditation.
-        It offers a serene atmosphere and beautiful hill views.
-    </p>
+<div class="place-section">
+    <div class="place-text">
+        <h2>Virupaksha Cave</h2>
+        <p>Virupaksha Cave is a sacred cave located on Arunachala Hill. Sri Ramana Maharshi stayed and meditated here for many years. This cave is known for deep silence and spiritual energy.</p>
+        <p>People who climb Arunachala Hill often visit this cave to experience peace and meditation. It is one of the most important places connected with Ramana Maharshi’s life.</p>
+        <div class="place-info">
+            <b>Famous For:</b> Meditation cave of Ramana Maharshi<br>
+            <b>Distance:</b> On Arunachala Hill trekking path<br>
+            <b>Best Time:</b> Early morning
+        </div>
+    </div>
+    <div class="place-image">
+        <img src="images/virupaksha.jpg" alt="Virupaksha Cave">
+    </div>
 </div>
 
-<div class="place-card">
-    <img src="images/skandashramam.jpg" alt="Skandashramam">
-    <h2>Skandashramam</h2>
-    <p>
-        Skandashramam is situated higher up on Arunachala Hill.
-        It is a peaceful meditation spot surrounded by nature and provides
-        breathtaking views of Tiruvannamalai town.
-    </p>
+<div class="place-section">
+    <div class="place-text">
+        <h2>Skandashramam</h2>
+        <p>Skandashramam is another sacred place on Arunachala Hill. Sri Ramana Maharshi lived here with his mother for several years. It is surrounded by nature and silence.</p>
+        <p>From Skandashramam, visitors can see a beautiful view of Tiruvannamalai town and Arunachaleswarar Temple. Many devotees sit here for meditation and prayer.</p>
+        <div class="place-info">
+            <b>Famous For:</b> Meditation, hill view, Ramana Maharshi history<br>
+            <b>Distance:</b> On Arunachala Hill<br>
+            <b>Best Time:</b> Morning trekking time
+        </div>
+    </div>
+    <div class="place-image">
+        <img src="images/skandashramam.jpg" alt="Skandashramam">
+    </div>
 </div>
 
-<div class="place-card">
-    <img src="images/yogi.jpg" alt="Yogi Ramsuratkumar Ashram">
-    <h2>Yogi Ramsuratkumar Ashram</h2>
-    <p>
-        Dedicated to the saint Yogi Ramsuratkumar, this ashram is known for
-        spiritual gatherings, prayers, and a calm environment that attracts
-        devotees from around the world.
-    </p>
+<div class="place-section">
+    <div class="place-text">
+        <h2>Yogi Ramsuratkumar Ashram</h2>
+        <p>Yogi Ramsuratkumar Ashram is dedicated to Yogi Ramsuratkumar, who is lovingly called the Godchild of Tiruvannamalai. He was a great saint known for devotion, simplicity and blessings.</p>
+        <p>The ashram has a peaceful prayer hall and devotional environment. Devotees visit this place to pray, meditate and receive spiritual inspiration.</p>
+        <div class="place-info">
+            <b>Famous For:</b> Yogi Ramsuratkumar, prayer hall, spiritual peace<br>
+            <b>Distance:</b> Near Tiruvannamalai town<br>
+            <b>Best Time:</b> Morning or evening
+        </div>
+    </div>
+    <div class="place-image">
+        <img src="images/yogi.jpg" alt="Yogi Ramsuratkumar Ashram">
+    </div>
 </div>
 
-<div class="place-card">
-    <img src="images/sathanur.jpg" alt="Sathanur Dam">
-    <h2>Sathanur Dam</h2>
-    <p>
-        Located about 30 kilometers from Tiruvannamalai, Sathanur Dam is a
-        popular tourist destination featuring scenic views, gardens,
-        and a crocodile farm.
-    </p>
+<div class="place-section">
+    <div class="place-text">
+        <h2>Sathanur Dam</h2>
+        <p>Sathanur Dam is a beautiful tourist place near Tiruvannamalai. It is surrounded by hills, water and greenery. Many visitors go there for relaxation after temple visits.</p>
+        <p>The dam area is known for scenic views, gardens and peaceful surroundings. It is suitable for families, students and tourists.</p>
+        <div class="place-info">
+            <b>Famous For:</b> Dam view, nature, gardens, relaxation<br>
+            <b>Distance:</b> Around 30 km from Tiruvannamalai<br>
+            <b>Best Time:</b> Daytime
+        </div>
+    </div>
+    <div class="place-image">
+        <img src="images/sathanur.jpg" alt="Sathanur Dam">
+    </div>
 </div>
 
-<div class="place-card">
-    <img src="images/pachaiamman.jpg" alt="Pachaiamman Temple">
-    <h2>Pachaiamman Temple</h2>
-    <p>
-        Pachaiamman Temple is a sacred shrine located at the foothills of
-        Arunachala. It is associated with Goddess Parvati's penance and
-        is known for its peaceful surroundings.
-    </p>
+<div class="place-section">
+    <div class="place-text">
+        <h2>Pachaiamman Temple</h2>
+        <p>Pachaiamman Temple is a famous goddess temple near Tiruvannamalai. Devotees visit this temple for blessings, protection and family welfare.</p>
+        <p>The temple is connected with local traditions and devotion. It has a peaceful atmosphere and is considered an important sacred place near Arunachala.</p>
+        <div class="place-info">
+            <b>Famous For:</b> Goddess worship, blessings, peaceful temple<br>
+            <b>Distance:</b> Near Tiruvannamalai<br>
+            <b>Best Time:</b> Morning and evening
+        </div>
+    </div>
+    <div class="place-image">
+        <img src="images/pachaiamman.jpg" alt="Pachaiamman Temple">
+    </div>
 </div>
 
 </body>
