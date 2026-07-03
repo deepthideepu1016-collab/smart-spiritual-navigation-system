@@ -94,16 +94,26 @@ app.post("/signup", async (req, res) => {
 });
 
 // ================= LOGIN =================
+// ================= LOGIN =================
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
+        if (email === "admin@gmail.com" && password === "Admin@123") {
+            return res.json({
+                success: true,
+                message: "Admin Login Successful",
+                role: "admin"
+            });
+        }
+
         const user = await User.findOne({ email, password });
 
         if (user) {
             res.json({
                 success: true,
                 message: "Login Successful",
+                role: "user",
                 user: {
                     name: user.name,
                     phone: user.phone,
@@ -357,22 +367,50 @@ app.post("/change-password", async (req, res) => {
     }
 });
 
+
 // ================= ADMIN LOGIN =================
-// ================= ADMIN LOGIN =================
-app.post("/admin-login", (req, res) => {
+// ================= LOGIN =================
+app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
-    if (email === "admin@gmail.com" && password === "Admin@123") {
-        return res.json({
+    try {
+
+        // ===== ADMIN LOGIN =====
+        if (email === "admin@gmail.com" && password === "Admin@123") {
+            return res.json({
+                success: true,
+                message: "Admin Login Successful",
+                role: "admin"
+            });
+        }
+
+        // ===== USER LOGIN =====
+        const user = await User.findOne({ email, password });
+
+        if (!user) {
+            return res.json({
+                success: false,
+                message: "Invalid Email or Password"
+            });
+        }
+
+        res.json({
             success: true,
-            message: "Admin Login Successful"
+            message: "Login Successful",
+            role: "user",
+            user: {
+                name: user.name,
+                phone: user.phone,
+                email: user.email
+            }
+        });
+
+    } catch (error) {
+        res.json({
+            success: false,
+            message: error.message
         });
     }
-
-    res.json({
-        success: false,
-        message: "Invalid Admin Email or Password"
-    });
 });
 
 // ================= GET ALL USERS FOR ADMIN =================

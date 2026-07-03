@@ -14,12 +14,13 @@ async function signup(){
         body:JSON.stringify(user)
     });
 
-    const data = await res.json();
-    return data;
+    return await res.json();
 }
 
 async function sendSignupOTP(){
-    if(!/^[0-9]{10}$/.test(phone.value)){
+    const phone = document.getElementById("phone").value.trim();
+
+    if(!/^[0-9]{10}$/.test(phone)){
         alert("Enter valid 10 digit mobile number");
         return;
     }
@@ -27,7 +28,7 @@ async function sendSignupOTP(){
     const res = await fetch("/send-signup-otp", {
         method:"POST",
         headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({ phone: phone.value })
+        body:JSON.stringify({ phone })
     });
 
     const data = await res.json();
@@ -78,8 +79,13 @@ async function login(){
     alert(data.message);
 
     if(data.success){
-        localStorage.setItem("loggedUser", JSON.stringify(data.user));
-        window.location.href = "dashboard.html";
+        if(data.role === "admin"){
+            localStorage.setItem("adminLoggedIn", "true");
+            window.location.href = "admin.html";
+        }else{
+            localStorage.setItem("loggedUser", JSON.stringify(data.user));
+            window.location.href = "dashboard.html";
+        }
     }
 }
 
@@ -93,39 +99,12 @@ function showLogin(){
     loginForm.style.display = "block";
     signupBox.style.display = "none";
     forgotBox.style.display = "none";
-    adminBox.style.display = "none";
 }
 
 function showForgotPassword(){
     loginForm.style.display = "none";
     signupBox.style.display = "none";
     forgotBox.style.display = "block";
-}
-
-function showAdminLogin(){
-    loginForm.style.display = "none";
-    signupBox.style.display = "none";
-    forgotBox.style.display = "none";
-    adminBox.style.display = "block";
-}
-
-async function adminLogin(){
-    const email = document.getElementById("adminEmail").value.trim();
-    const password = document.getElementById("adminPassword").value.trim();
-
-    const res = await fetch("/admin-login", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({ email, password })
-    });
-
-    const data = await res.json();
-    alert(data.message);
-
-    if(data.success){
-        localStorage.setItem("adminLoggedIn", "true");
-        window.location.href = "admin.html";
-    }
 }
 
 function togglePassword(){
@@ -136,9 +115,8 @@ function toggleLoginPassword(){
     loginPassword.type = loginPassword.type === "password" ? "text" : "password";
 }
 
-function validatePhone() {
+function validatePhone(){
     const phone = document.getElementById("phone");
-
     const valid = /^[6-9][0-9]{9}$/.test(phone.value);
 
     phone.style.border = valid
@@ -164,29 +142,3 @@ loginForm.addEventListener("submit", function(e){
     e.preventDefault();
     login();
 });
-
-async function adminLogin(){
-    const email = document.getElementById("adminEmail").value.trim();
-    const password = document.getElementById("adminPassword").value.trim();
-
-    const res = await fetch("/admin-login", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({ email, password })
-    });
-
-    const data = await res.json();
-    alert(data.message);
-
-    if(data.success){
-        localStorage.setItem("adminLoggedIn", "true");
-        window.location.href = "admin.html";
-    }
-}
-
-function showAdminLogin(){
-    loginForm.style.display = "none";
-    signupBox.style.display = "none";
-    forgotBox.style.display = "none";
-    adminBox.style.display = "block";
-}
