@@ -358,13 +358,11 @@ app.post("/change-password", async (req, res) => {
 });
 
 // ================= ADMIN LOGIN =================
+// ================= ADMIN LOGIN =================
 app.post("/admin-login", (req, res) => {
     const { email, password } = req.body;
 
-    if (
-        email === process.env.ADMIN_EMAIL &&
-        password === process.env.ADMIN_PASSWORD
-    ) {
+    if (email === "admin@gmail.com" && password === "Admin@123") {
         return res.json({
             success: true,
             message: "Admin Login Successful"
@@ -377,6 +375,7 @@ app.post("/admin-login", (req, res) => {
     });
 });
 
+// ================= GET ALL USERS FOR ADMIN =================
 // ================= GET ALL USERS FOR ADMIN =================
 app.get("/admin/users", async (req, res) => {
     try {
@@ -394,11 +393,6 @@ app.get("/admin/users", async (req, res) => {
         });
     }
 });
-
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "auth.html"));
-});
-
 // ================= START SERVER =================
 app.listen(PORT, "0.0.0.0", () => {
     console.log("Server Running On Port", PORT);

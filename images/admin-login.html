@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:url("temple.jpg") no-repeat center center fixed;
+    background-size:cover;
+}
+
+.overlay{
+    background:rgba(0,0,0,0.6);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box{
+    width:380px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+}
+
+h2{
+    font-size:34px;
+    margin-bottom:25px;
+    color:#2c3e36;
+}
+
+input{
+    width:100%;
+    height:48px;
+    padding:0 12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    height:48px;
+    background:#f39c12;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:17px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#d68910;
+}
+</style>
+
+</head>
+<body>
+
+<div class="overlay">
+
+<div class="box">
+
+<h2>Admin Login</h2>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="Admin Email">
+
+<input
+id="adminPassword"
+type="password"
+placeholder="Admin Password">
+
+<button onclick="adminLogin()">
+Login
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+async function adminLogin(){
+
+    const email=document.getElementById("adminEmail").value.trim();
+
+    const password=document.getElementById("adminPassword").value.trim();
+
+    const response=await fetch("/admin-login",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            email,
+            password
+        })
+
+    });
+
+    const data=await response.json();
+
+    if(data.success){
+
+        localStorage.setItem("adminLoggedIn","true");
+
+        window.location.href="admin.html";
+
+    }
+
+    else{
+
+        alert(data.message);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
