@@ -93,12 +93,39 @@ function showLogin(){
     loginForm.style.display = "block";
     signupBox.style.display = "none";
     forgotBox.style.display = "none";
+    adminBox.style.display = "none";
 }
 
 function showForgotPassword(){
     loginForm.style.display = "none";
     signupBox.style.display = "none";
     forgotBox.style.display = "block";
+}
+
+function showAdminLogin(){
+    loginForm.style.display = "none";
+    signupBox.style.display = "none";
+    forgotBox.style.display = "none";
+    adminBox.style.display = "block";
+}
+
+async function adminLogin(){
+    const email = document.getElementById("adminEmail").value.trim();
+    const password = document.getElementById("adminPassword").value.trim();
+
+    const res = await fetch("/admin-login", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    if(data.success){
+        localStorage.setItem("adminLoggedIn", "true");
+        window.location.href = "admin.html";
+    }
 }
 
 function togglePassword(){
@@ -137,3 +164,29 @@ loginForm.addEventListener("submit", function(e){
     e.preventDefault();
     login();
 });
+
+async function adminLogin(){
+    const email = document.getElementById("adminEmail").value.trim();
+    const password = document.getElementById("adminPassword").value.trim();
+
+    const res = await fetch("/admin-login", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    if(data.success){
+        localStorage.setItem("adminLoggedIn", "true");
+        window.location.href = "admin.html";
+    }
+}
+
+function showAdminLogin(){
+    loginForm.style.display = "none";
+    signupBox.style.display = "none";
+    forgotBox.style.display = "none";
+    adminBox.style.display = "block";
+}

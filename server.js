@@ -357,6 +357,44 @@ app.post("/change-password", async (req, res) => {
     }
 });
 
+// ================= ADMIN LOGIN =================
+app.post("/admin-login", (req, res) => {
+    const { email, password } = req.body;
+
+    if (
+        email === process.env.ADMIN_EMAIL &&
+        password === process.env.ADMIN_PASSWORD
+    ) {
+        return res.json({
+            success: true,
+            message: "Admin Login Successful"
+        });
+    }
+
+    res.json({
+        success: false,
+        message: "Invalid Admin Email or Password"
+    });
+});
+
+// ================= GET ALL USERS FOR ADMIN =================
+app.get("/admin/users", async (req, res) => {
+    try {
+        const users = await User.find({}, "name phone email");
+
+        res.json({
+            success: true,
+            users
+        });
+
+    } catch (error) {
+        res.json({
+            success: false,
+            message: error.message
+        });
+    }
+});
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "auth.html"));
 });

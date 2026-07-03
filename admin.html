@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f3ef;
+    padding:30px;
+}
+
+h1{
+    text-align:center;
+    color:#2c3e36;
+}
+
+.admin-box{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+
+button{
+    background:orange;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    border:1px solid #ccc;
+    padding:12px;
+    text-align:left;
+}
+
+th{
+    background:#2c3e36;
+    color:white;
+}
+
+@media print{
+    button{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="admin-box">
+    <h1>Admin Dashboard</h1>
+
+    <button onclick="window.print()">Print Users Data</button>
+    <button onclick="logoutAdmin()">Logout</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="usersTable"></tbody>
+    </table>
+</div>
+
+<script>
+if(localStorage.getItem("adminLoggedIn") !== "true"){
+    alert("Please login as admin first");
+    window.location.href = "auth.html";
+}
+
+async function loadUsers(){
+    const res = await fetch("/admin/users");
+    const data = await res.json();
+
+    const table = document.getElementById("usersTable");
+    table.innerHTML = "";
+
+    if(data.success){
+        data.users.forEach((user, index) => {
+            table.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${user.name}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.email}</td>
+                </tr>
+            `;
+        });
+    }else{
+        alert(data.message);
+    }
+}
+
+function logoutAdmin(){
+    localStorage.removeItem("adminLoggedIn");
+    window.location.href = "auth.html";
+}
+
+loadUsers();
+</script>
+
+</body>
+</html>
