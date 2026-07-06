@@ -324,3 +324,36 @@ body{
     color:#444;
     margin:8px 0;
 }
+
+.scroll-text{
+    width:100%;
+    overflow:hidden;
+    background:#2c3e36;
+    color:#fff;
+    height:45px;
+    line-height:45px;
+    border-radius:8px;
+    white-space:nowrap;
+    position:relative;
+}
+
+.scroll-track{
+    position:absolute;
+    white-space:nowrap;
+    font-size:18px;
+    font-weight:bold;
+
+    animation:scrollRight 28s linear infinite;
+}
+
+@keyframes scrollRight{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(100%);
+    }
+
+}
