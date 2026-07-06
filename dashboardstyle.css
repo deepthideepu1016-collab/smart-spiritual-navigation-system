@@ -267,3 +267,60 @@ body{
     font-size:18px;
     font-weight:bold;
 }
+.scroll-text{
+    width:100%;
+    background:#2c3e36;
+    color:white;
+    padding:10px;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:15px;
+    border-radius:10px;
+}
+
+.top-weather{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
+    margin-right:85px;
+}
+
+.weather-box{
+    background:white;
+    padding:12px 20px;
+    border-radius:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    color:#2c3e36;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.weather-widget{
+    position:absolute;
+    top:20px;
+    right:110px;      /* beside profile icon */
+    width:220px;
+
+    background:white;
+    border-radius:18px;
+    padding:12px 15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+    z-index:999;
+}
+
+.weather-title{
+    font-size:18px;
+    font-weight:bold;
+    color:#2c3e36;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+.weather-row{
+    font-size:15px;
+    color:#444;
+    margin:8px 0;
+}
