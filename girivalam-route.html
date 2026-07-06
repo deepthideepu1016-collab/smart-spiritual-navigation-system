@@ -41,7 +41,7 @@ p, li{
     border-left:6px solid #6f9460;
     padding:28px;
     border-radius:18px;
-    margin-bottom:35px;
+    margin-bottom:30px;
 }
 .map-btn{
     display:inline-block;
@@ -92,12 +92,39 @@ table td, table th{
     padding:12px;
     border-bottom:1px solid #ddd;
 }
+
+/* GIRIVALAM RIGHT-SCROLL IMAGE SLIDER */
+.girivalam-scroll-box{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    margin:30px 0 40px;
+    padding-bottom:12px;
+}
+.girivalam-scroll-track{
+    display:flex;
+    gap:20px;
+    width:max-content;
+}
+.girivalam-scroll-track img{
+    width:420px;
+    height:260px;
+    object-fit:cover;
+    border-radius:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    flex-shrink:0;
+}
+
 @media(max-width:800px){
     .container{
         padding:25px;
     }
     table{
         font-size:14px !important;
+    }
+    .girivalam-scroll-track img{
+        width:300px;
+        height:210px;
     }
 }
 </style>
@@ -119,6 +146,15 @@ table td, table th{
         <a class="map-btn" href="girivalam-map.html">
             🗺 Start 14 KM Girivalam Navigation
         </a>
+    </div>
+
+    <div class="girivalam-scroll-box">
+        <div class="girivalam-scroll-track">
+            <img src="girivalayam_images/giri1.jpg" alt="Girivalam Image 1">
+            <img src="girivalayam_images/giri2.jpg" alt="Girivalam Image 2">
+            <img src="girivalayam_images/giri3.jpg" alt="Girivalam Image 3">
+            <img src="girivalayam_images/giri4.jpg" alt="Girivalam Image 4">
+        </div>
     </div>
 
     <h2>🚶 Girivalam Route Distance & Walking Time</h2>
