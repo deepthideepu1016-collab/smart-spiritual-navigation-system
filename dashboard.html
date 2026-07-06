@@ -250,12 +250,10 @@ body{
     </div>
 
     <div class="weather-row">
-        🌧 <span id="rain">Loading...</span>
-    </div>
+    ☁️ <span id="condition">Loading...</span>
+</div>
 
-    <div class="weather-row">
-        🙏 <span id="bestTime">Loading...</span>
-    </div>
+    
 
 </div>
 
@@ -430,30 +428,48 @@ function logout(){
 
 // Paste here
 
-async function loadWeather(){
-    try{
+async function loadWeather() {
+    try {
+
         const response = await fetch(
-            "https://api.open-meteo.com/v1/forecast?latitude=12.2253&longitude=79.0747&current=temperature_2m,rain&daily=precipitation_sum&timezone=Asia%2FKolkata"
+            "https://api.open-meteo.com/v1/forecast?latitude=12.2253&longitude=79.0747&current=temperature_2m,weather_code&timezone=Asia/Kolkata"
         );
 
         const data = await response.json();
 
-        document.getElementById("temperature").innerText =
+        // Temperature
+        document.getElementById("temperature").innerHTML =
             data.current.temperature_2m + "°C";
 
-        document.getElementById("rain").innerText =
-            data.current.rain + " mm";
+        // Weather Condition
+        const code = data.current.weather_code;
 
-        if(data.daily.precipitation_sum[0] > 5){
-            document.getElementById("bestTime").innerText="Carry Umbrella";
-        }else if(data.current.temperature_2m > 35){
-            document.getElementById("bestTime").innerText="Morning / Evening";
-        }else{
-            document.getElementById("bestTime").innerText="Good for Girivalam";
+        let condition = "Sunny";
+
+        if (code === 0) {
+            condition = "Sunny";
+        } 
+        else if (code === 1 || code === 2) {
+            condition = "Partly Cloudy";
+        } 
+        else if (code === 3) {
+            condition = "Cloudy";
+        } 
+        else if (
+            code === 51 || code === 53 || code === 55 ||
+            code === 61 || code === 63 || code === 65 ||
+            code === 80 || code === 81 || code === 82
+        ) {
+            condition = "Rainy";
+        } 
+        else if (code === 45 || code === 48) {
+            condition = "Foggy";
         }
 
-    }catch(e){
-        console.log(e);
+        document.getElementById("condition").innerHTML = condition;
+
+    } catch (error) {
+        console.log(error);
     }
 }
 
