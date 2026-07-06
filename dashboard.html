@@ -233,6 +233,21 @@ body{
 
 <body>
 
+<div class="scroll-text">
+    <marquee behavior="scroll" direction="left">
+        Complete Guidance of Tiruvannamalai
+    </marquee>
+</div>
+
+<div class="top-weather">
+    <div class="weather-box">
+        🌤 Tiruvannamalai Weather:
+        <span id="temperature">Loading...</span> |
+        Rain: <span id="rain">Loading...</span> |
+        Best Time: <span id="bestTime">Loading...</span>
+    </div>
+</div>
+
 <div class="profile-container">
     <div class="profile-circle" onclick="toggleProfileMenu()">
         <span id="profileInitial">U</span>
@@ -393,7 +408,6 @@ function toggleProfileMenu(){
     const menu = document.getElementById("profileMenu");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
-
 function viewProfile(){
     alert("Name: " + user.name + "\nEmail: " + user.email + "\nPhone: +91 " + user.phone);
 }
@@ -402,6 +416,38 @@ function logout(){
     localStorage.removeItem("loggedUser");
     window.location.href = "auth.html";
 }
+
+// Paste here
+
+async function loadWeather(){
+    try{
+        const response = await fetch(
+            "https://api.open-meteo.com/v1/forecast?latitude=12.2253&longitude=79.0747&current=temperature_2m,rain&daily=precipitation_sum&timezone=Asia%2FKolkata"
+        );
+
+        const data = await response.json();
+
+        document.getElementById("temperature").innerText =
+            data.current.temperature_2m + "°C";
+
+        document.getElementById("rain").innerText =
+            data.current.rain + " mm";
+
+        if(data.daily.precipitation_sum[0] > 5){
+            document.getElementById("bestTime").innerText="Carry Umbrella";
+        }else if(data.current.temperature_2m > 35){
+            document.getElementById("bestTime").innerText="Morning / Evening";
+        }else{
+            document.getElementById("bestTime").innerText="Good for Girivalam";
+        }
+
+    }catch(e){
+        console.log(e);
+    }
+}
+
+loadWeather();
+
 </script>
 
 </body>
