@@ -3,273 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiruvannamalai Girivalam Smart Navigation</title>
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<title>Girivalam Details</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
 body{
-    font-family: Arial, sans-serif;
+    background:#f4f3ef;
+    color:#333;
 }
 
-#map{
-    height:100vh;
-    width:100%;
-}
-
-.header{
-    position:absolute;
-    top:0;
-    width:100%;
-    z-index:1000;
-    background:#f7931e;
-    color:white;
-    text-align:center;
-    padding:15px;
-    font-size:28px;
-    font-weight:bold;
-    box-shadow:0 2px 10px rgba(0,0,0,0.2);
-}
-
-.nav-btn{
-    position:absolute;
-    top:90px;
-    left:20px;
-    z-index:1000;
-    background:#ff5c00;
-    color:white;
-    border:none;
-    padding:18px 28px;
-    border-radius:14px;
-    font-size:24px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 4px 10px rgba(0,0,0,0.3);
-}
-
-.info-box{
-    position:absolute;
-    top:180px;
-    left:20px;
+.container{
+    max-width:1100px;
+    margin:auto;
     background:white;
-    z-index:1000;
-    padding:20px;
-    border-radius:15px;
-    width:340px;
-    font-size:28px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    padding:45px;
+}
+
+h1{
+    color:#d35400;
+    font-size:38px;
+    margin-bottom:25px;
+}
+
+h2{
+    color:#d35400;
+    font-size:30px;
+    margin:40px 0 20px;
+}
+
+p, li{
+    font-size:18px;
     line-height:1.8;
 }
 
-.legend{
-    position:absolute;
-    bottom:20px;
-    left:20px;
-    background:white;
-    z-index:1000;
-    padding:18px;
-    border-radius:15px;
-    width:300px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
-    font-size:22px;
+.route-box{
+    background:#f4fbf1;
+    border-left:6px solid #6f9460;
+    padding:28px;
+    border-radius:18px;
+    margin-bottom:35px;
 }
 
-.legend h3{
+.map-btn{
+    display:inline-block;
+    background:#6f9460;
+    color:white;
+    padding:16px 30px;
+    border-radius:12px;
+    font-size:20px;
+    font-weight:bold;
+    text-decoration:none;
+    margin-top:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.card{
+    background:#fafafa;
+    padding:24px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.12);
+}
+
+.card h3{
+    color:#2c3e36;
     margin-bottom:10px;
+    font-size:23px;
 }
 
-.leaflet-popup-content{
-    font-size:26px !important;
+.back-btn{
+    display:block;
+    width:260px;
+    text-align:center;
+    margin:45px auto 0;
+    background:#2c3e36;
+    color:white;
+    padding:15px;
+    border-radius:12px;
+    text-decoration:none;
     font-weight:bold;
+    font-size:18px;
 }
 
-.route-label{
-    font-size:36px;
-    font-weight:bold;
-    color:#6a0dad;
-    background:white;
-    padding:8px 18px;
-    border-radius:15px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.3);
-    white-space:nowrap;
-}
-
-.temple-label{
-    font-size:34px;
-    font-weight:bold;
-    color:red;
-    background:white;
-    padding:10px;
-    border-radius:15px;
+@media(max-width:800px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+    .container{
+        padding:25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-🛕 Tiruvannamalai Girivalam Smart Navigation
+<div class="container">
+
+    <h1>🗺 Girivalam Route Map</h1>
+
+    <div class="route-box">
+        <p>
+            Tiruvannamalai Girivalam is a sacred 14 KM walking route around Arunachala Hill.
+            Devotees walk through the Girivalam path and visit the 8 Ashta Lingams for spiritual blessings.
+        </p>
+
+        <a class="map-btn" target="_blank"
+        href="https://www.google.com/maps/dir/?api=1&destination=Arunachaleswarar+Temple+Tiruvannamalai&travelmode=walking&waypoints=Indra+Lingam+Tiruvannamalai|Agni+Lingam+Tiruvannamalai|Yama+Lingam+Tiruvannamalai|Niruthi+Lingam+Tiruvannamalai|Varuna+Lingam+Tiruvannamalai|Vayu+Lingam+Tiruvannamalai|Kubera+Lingam+Tiruvannamalai|Esanya+Lingam+Tiruvannamalai">
+            🗺 Start Girivalam Route Map
+        </a>
+    </div>
+
+    <h2>💧 Facilities on Girivalam Route</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>💧 Water Points</h3>
+            <p>Drinking water points are available along the Girivalam route for devotees.</p>
+        </div>
+
+        <div class="card">
+            <h3>🪑 Rest Points</h3>
+            <p>Resting points help pilgrims relax during the 14 KM walk.</p>
+        </div>
+
+        <div class="card">
+            <h3>🍛 Anna Prasadam Centers</h3>
+            <p>Anna Prasadam centers provide free food service for devotees during Girivalam.</p>
+        </div>
+
+        <div class="card">
+            <h3>🙏 Free Rudraksha Points</h3>
+            <p>Some spiritual service centers provide free Rudraksha and devotional guidance.</p>
+        </div>
+    </div>
+
+    <h2>🕉 8 Ashta Lingams Information</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>1. Indra Lingam</h3>
+            <p>Represents prosperity, leadership and divine blessings.</p>
+        </div>
+
+        <div class="card">
+            <h3>2. Agni Lingam</h3>
+            <p>Represents fire, purification, courage and positive energy.</p>
+        </div>
+
+        <div class="card">
+            <h3>3. Yama Lingam</h3>
+            <p>Represents discipline, health and protection from fear.</p>
+        </div>
+
+        <div class="card">
+            <h3>4. Niruthi Lingam</h3>
+            <p>Represents protection from negative energy and difficulties.</p>
+        </div>
+
+        <div class="card">
+            <h3>5. Varuna Lingam</h3>
+            <p>Represents water, purity, peace and emotional balance.</p>
+        </div>
+
+        <div class="card">
+            <h3>6. Vayu Lingam</h3>
+            <p>Represents air, life energy, strength and good health.</p>
+        </div>
+
+        <div class="card">
+            <h3>7. Kubera Lingam</h3>
+            <p>Represents wealth, success, growth and prosperity.</p>
+        </div>
+
+        <div class="card">
+            <h3>8. Esanya Lingam</h3>
+            <p>Represents wisdom, peace, spiritual growth and moksha.</p>
+        </div>
+    </div>
+
+    <a href="dashboard.html" class="back-btn">⬅ Back to Dashboard</a>
+
 </div>
-
-<button class="nav-btn" onclick="startNavigation()">
-📍 Start Girivalam Navigation
-</button>
-
-<div class="info-box">
-<b>Girivalam Distance:</b> 14 KM <br>
-<b>Main Stops:</b> 8 Lingams <br>
-<b>Facilities:</b> Water, Parking, Toilets
-</div>
-
-<div class="legend">
-<h3>LEGEND</h3>
-🕉️ 8 Lingams <br><br>
-🛕 Arunachaleswarar Temple <br><br>
-🅿️ Parking Area <br><br>
-🚻 Washroom <br><br>
-🍛 Prasadam Counter <br><br>
-🙏 Annadanam Hall <br><br>
-💧 Drinking Water Point <br><br>
-🔵 Girivalam Route (14 KM)
-</div>
-
-<div id="map"></div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-<script>
-
-var map = L.map('map').setView([12.2319,79.0677], 13);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    attribution:'© OpenStreetMap'
-}).addTo(map);
-
-
-// GIRIVALAM ROUTE
-var route = [
-[12.2319,79.0677],
-[12.2390,79.0720],
-[12.2470,79.0830],
-[12.2490,79.0980],
-[12.2430,79.1120],
-[12.2290,79.1190],
-[12.2160,79.1120],
-[12.2080,79.0980],
-[12.2100,79.0820],
-[12.2200,79.0720],
-[12.2319,79.0677]
-];
-
-L.polyline(route,{
-    color:'blue',
-    weight:8
-}).addTo(map);
-
-
-// TEMPLE
-L.marker([12.2319,79.0677])
-.addTo(map)
-.bindPopup("🛕 Arunachaleswarar Temple");
-
-L.marker([12.2319,79.0677],{
-    opacity:0
-})
-.addTo(map)
-.bindTooltip(
-"<div class='temple-label'>🛕 Arunachaleswarar Temple</div>",
-{permanent:true,direction:"top"}
-);
-
-
-// LINGAMS
-var lingams = [
-["Indra Lingam",12.240,79.078],
-["Agni Lingam",12.245,79.093],
-["Yama Lingam",12.241,79.108],
-["Niruthi Lingam",12.232,79.117],
-["Varuna Lingam",12.220,79.110],
-["Vayu Lingam",12.211,79.097],
-["Kubera Lingam",12.214,79.082],
-["Esanya Lingam",12.224,79.074]
-];
-
-lingams.forEach(function(place){
-
-L.marker([place[1],place[2]])
-.addTo(map)
-.bindPopup(place[0]);
-
-L.marker([place[1],place[2]],{
-opacity:0
-})
-.addTo(map)
-.bindTooltip(
-"<div class='route-label'>🕉️ "+place[0]+"</div>",
-{
-permanent:true,
-direction:"right"
-});
-});
-
-
-// FACILITIES
-L.marker([12.228,79.078])
-.addTo(map)
-.bindPopup("🅿️ Parking Area");
-
-L.marker([12.238,79.088])
-.addTo(map)
-.bindPopup("🚻 Public Washroom");
-
-L.marker([12.234,79.071])
-.addTo(map)
-.bindPopup("🍛 Prasadam Counter");
-
-L.marker([12.226,79.082])
-.addTo(map)
-.bindPopup("🙏 Annadanam Hall");
-
-L.marker([12.222,79.096])
-.addTo(map)
-.bindPopup("💧 Drinking Water Point");
-
-
-// CURRENT LOCATION
-navigator.geolocation.getCurrentPosition(function(position){
-
-L.marker([
-position.coords.latitude,
-position.coords.longitude
-]).addTo(map)
-.bindPopup("📍 You are Here");
-
-});
-
-
-// NAVIGATION BUTTON
-function startNavigation() {
-
-navigator.geolocation.getCurrentPosition(function(position){
-
-let userLat = position.coords.latitude;
-let userLng = position.coords.longitude;
-
-window.open(
-`https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=Arunachaleswarar+Temple+Tiruvannamalai&travelmode=walking&waypoints=Indra+Lingam+Tiruvannamalai|Agni+Lingam+Tiruvannamalai|Yama+Lingam+Tiruvannamalai|Niruthi+Lingam+Tiruvannamalai|Varuna+Lingam+Tiruvannamalai|Vayu+Lingam+Tiruvannamalai|Kubera+Lingam+Tiruvannamalai|Esanya+Lingam+Tiruvannamalai`
-);
-
-});
-
-}
-
-</script>
 
 </body>
 </html>
